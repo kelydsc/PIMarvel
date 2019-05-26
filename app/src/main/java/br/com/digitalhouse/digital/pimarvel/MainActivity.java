@@ -1,5 +1,6 @@
 package br.com.digitalhouse.digital.pimarvel;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -10,6 +11,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        System.out.println("ola");
+        //Recebe a chamada da tela de Cadastro
+        Intent intent = getIntent();
+
+
+
     }
 }
