@@ -7,4 +7,7 @@
     <string name="password">Password</string>
     <string name="confirmPassword">Confirm the password</string>
     <string name="save">Save</string>
+    <string name="sign_in">Sign in</string>
+    <string name="sign_in_wi_your_google_account">Sign in wi your Google Account</string>
+    <string name="google">Google</string>
 </resources>
