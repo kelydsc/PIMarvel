@@ -1,6 +1,8 @@
 package br.com.digitalhouse.digital.pimarvel.cadastro;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -24,6 +26,7 @@ public class CadastroActivity extends AppCompatActivity {
     private TextInputLayout textInputLayoutConfPassword;
     private Button btnSave;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +40,8 @@ public class CadastroActivity extends AppCompatActivity {
 
         //Valida o preenchimento dos Dados
         validaDados();
+
+
 
     }
 
@@ -52,6 +57,7 @@ public class CadastroActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("Register"); //Titulo para ser exibido na sua Action Bar em frente à seta
         setSupportActionBar(toolbar);
+
 
         ActionBar actionBar = getSupportActionBar();
 
