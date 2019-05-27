@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">PiMarvel</string>
+    <string name="hello">Hello!</string>
+    <string name="registerMarvel">Register for the world of Marvel</string>
+    <string name="name">Name</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirmPassword">Confirm the password</string>
+    <string name="save">Save</string>
 </resources>
