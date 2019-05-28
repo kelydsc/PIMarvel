@@ -3,11 +3,13 @@
     <string name="hello">Hello!</string>
     <string name="registerMarvel">Register for the world of Marvel</string>
     <string name="name">Name</string>
-    <string name="email">E-mail</string>
+    <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="confirmPassword">Confirm the password</string>
     <string name="save">Save</string>
-    <string name="sign_in">Sign in</string>
-    <string name="sign_in_wi_your_google_account">Sign in wi your Google Account</string>
-    <string name="google">Google</string>
+    <string name="login">LOG IN</string>
+    <string name="welcomeLogin">Welcome to the Marvel Universe</string>
+    <string name="create_acccount">Create acccount</string>
+    <string name="or">OR</string>
+    <string name="welcome">Welcome!</string>
 </resources>

@@ -1,20 +1,18 @@
 package br.com.digitalhouse.digital.pimarvel.cadastro;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ActionBarContainer;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import br.com.digitalhouse.digital.pimarvel.MainActivity;
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.login.LoginActivity;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -41,8 +39,6 @@ public class CadastroActivity extends AppCompatActivity {
         //Valida o preenchimento dos Dados
         validaDados();
 
-
-
     }
 
     private void initViews() {
@@ -62,7 +58,7 @@ public class CadastroActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         //Inclui a seta de Back
-        if (actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);//Mostrar o botão Back
             actionBar.setDisplayShowHomeEnabled(true); //Ativar o botão Back
         }
@@ -78,51 +74,49 @@ public class CadastroActivity extends AppCompatActivity {
                 String senha = textInputLayoutPassword.getEditText().getText().toString();
                 String confsenha = textInputLayoutConfPassword.getEditText().getText().toString();
 
+                //minimo de caracteres permitidos para o cadastro de senha
+                int minimalPassLen = 6;
+
                 //Inicializa o set Error
                 initSetError();
 
                 if (nome.isEmpty()) {
                     textInputLayoutName.setError("Enter your name");
                     return;
-                }else {
-                    textInputLayoutName.setError("");
                 }
 
                 if (email.isEmpty()) {
                     textInputLayoutEmail.setError("Enter your email address");
                     return;
-                }else {
-                    textInputLayoutEmail.setError("");
                 }
 
                 if (senha.isEmpty()) {
                     textInputLayoutPassword.setError("Inform your password");
                     return;
-                }else {
-                    textInputLayoutPassword.setError("");
+                }
+
+                if (senha.length() < minimalPassLen){
+                    textInputLayoutPassword.setError("Enter password with 6 or more characters");
+                    return;
                 }
 
                 if (confsenha.isEmpty()) {
                     textInputLayoutConfPassword.setError("Inform your password confirmation");
                     return;
-                }else {
-                    textInputLayoutConfPassword.setError("");
                 }
 
                 //Verifica se a confirmação de senha está igual a senha
                 if (!confsenha.equals(senha)) {
                     textInputLayoutConfPassword.setError("Invalid password verification");
                     return;
-                }else {
-                    textInputLayoutConfPassword.setError("");
                 }
 
                 //Se todos os campos estiverem preenchidos chama a tela de Login
                 if (!(nome.isEmpty()) && !(email.isEmpty()) && !(senha.isEmpty())
-                && !(confsenha.isEmpty())) {
+                        && !(confsenha.isEmpty())) {
 
                     //Chama a tela de Login
-                    Intent intent = new Intent(CadastroActivity.this, MainActivity.class);
+                    Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
 
                     startActivity(intent);
                 }
@@ -130,7 +124,7 @@ public class CadastroActivity extends AppCompatActivity {
         });
     }
 
-    private void initSetError(){
+    private void initSetError() {
 
         textInputLayoutName.setError("");
         textInputLayoutEmail.setError("");
@@ -142,10 +136,10 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        if(item.getItemId()==android.R.id.home){
+        if (item.getItemId() == android.R.id.home) {
 
             //Chama a tela de Login a partir do click do botão Back da tela de Cadastro
-            Intent intent = new Intent(CadastroActivity.this, MainActivity.class);
+            Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
 
             startActivity(intent);
 

@@ -60,14 +60,17 @@
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="384dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTituloCadastro">
+        app:layout_constraintTop_toBottomOf="@+id/textViewTituloCadastro"
+        app:layout_constraintVertical_bias="0.0">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/TextInputLayoutName"
@@ -80,8 +83,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
-                android:textColor="#000000"
                 android:inputType="textPersonName"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -96,8 +99,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
-                android:textColor="#000000"
                 android:inputType="textEmailAddress"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -112,8 +115,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
-                android:textColor="#000000"
                 android:inputType="textPassword"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -128,27 +131,28 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirmPassword"
-                android:textColor="#000000"
                 android:inputType="textPassword"
+                android:textColor="#000000"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/btnSave"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="311dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="65dp"
+            android:backgroundTint="#A60A17"
+            android:text="@string/save"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnSave"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="311dp"
-        android:layout_height="56dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="45dp"
-        android:backgroundTint="#A60A17"
-        android:text="@string/save"
-        android:textColor="#ffffff"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
