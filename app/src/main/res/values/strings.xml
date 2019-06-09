@@ -12,4 +12,9 @@
     <string name="create_acccount">Create acccount</string>
     <string name="or">OR</string>
     <string name="welcome">Welcome!</string>
+    <string name="bottom_nav_menu_game">Game</string>
+    <string name="bottom_nav_menu_movie">Filmes</string>
+    <string name="bottom_nav_menu_hq">HQ</string>
+    <string name="bottom_nav_menu_news">Notícias</string>
+    <string name="bottom_nav_menu_favorite">Favoritos</string>
 </resources>

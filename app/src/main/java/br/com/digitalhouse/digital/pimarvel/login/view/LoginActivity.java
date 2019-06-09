@@ -1,4 +1,4 @@
-package br.com.digitalhouse.digital.pimarvel.login;
+package br.com.digitalhouse.digital.pimarvel.login.view;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
@@ -9,8 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.cadastro.CadastroActivity;
-import br.com.digitalhouse.digital.pimarvel.home.MainActivity;
+import br.com.digitalhouse.digital.pimarvel.cadastro.view.CadastroActivity;
+import br.com.digitalhouse.digital.pimarvel.home.view.HomeActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!(emailLog.isEmpty()) && !(senhaLog.isEmpty())){
 
                     //Chama a tela de Login
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
 
                     startActivity(intent);
                 }

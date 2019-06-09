@@ -1,7 +1,6 @@
-package br.com.digitalhouse.digital.pimarvel.cadastro;
+package br.com.digitalhouse.digital.pimarvel.cadastro.view;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -12,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.login.LoginActivity;
+import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 
 public class CadastroActivity extends AppCompatActivity {
 
