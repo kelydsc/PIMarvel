@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff"
+    android:background="@color/appBackground"
     tools:context=".login.view.LoginActivity"
     tools:ignore="MissingConstraints">
 
@@ -12,14 +12,11 @@
         android:id="@+id/textViewWelcomeLog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="96dp"
         android:text="@string/welcomeLogin"
-        android:textColor="@color/azulClaro"
-        android:textSize="24sp"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/welcome_title"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,17 +25,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="200dp"
         android:orientation="vertical"
         android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewWelcomeLog"
-        app:layout_constraintVertical_bias="0.185">
+        app:layout_constraintEnd_toEndOf="@+id/textViewWelcomeLog"
+        app:layout_constraintStart_toStartOf="@+id/textViewWelcomeLog"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWelcomeLog">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/textInputLayoutEmailLog"
@@ -51,7 +44,6 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 android:inputType="textEmailAddress"
-                android:textColor="#000000"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
@@ -66,63 +58,52 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/password"
                 android:inputType="textPassword"
-                android:textColor="#000000"
                 android:textSize="16sp" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
             android:layout_marginBottom="16dp"
             android:backgroundTint="#A60A17"
-            android:textSize="18sp"
             android:text="@string/login"
-            android:textColor="#ffffff" />
+            android:textColor="@color/coloredButtonText"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
     <TextView
         android:id="@+id/textViewCreateAccount"
-        android:layout_width="131dp"
-        android:layout_height="22dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/create_acccount"
-        android:textColor="#47525E"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayoutLogin"
+        app:layout_constraintStart_toStartOf="@+id/linearLayoutLogin"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutLogin" />
 
     <TextView
         android:id="@+id/textViewOr"
-        android:layout_width="73dp"
-        android:layout_height="31dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/or"
-        android:textColor="#47525E"
         android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.596"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewCreateAccount"
+        app:layout_constraintStart_toStartOf="@+id/textViewCreateAccount"
         app:layout_constraintTop_toBottomOf="@+id/textViewCreateAccount" />
 
     <ImageView
         android:id="@+id/imageViewGoogleFacebook"
         android:layout_width="100dp"
         android:layout_height="45dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.511"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="@+id/textViewOr"
+        app:layout_constraintStart_toStartOf="@+id/textViewOr"
         app:layout_constraintTop_toBottomOf="@+id/textViewOr"
         app:srcCompat="@drawable/logogooglefacebook" />
 

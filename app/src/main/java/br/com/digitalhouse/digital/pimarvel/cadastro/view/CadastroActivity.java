@@ -16,24 +16,24 @@ import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 public class CadastroActivity extends AppCompatActivity {
 
     //Declaração de atributos
-    private Toolbar toolbar;
     private TextInputLayout textInputLayoutName;
     private TextInputLayout textInputLayoutEmail;
     private TextInputLayout textInputLayoutPassword;
     private TextInputLayout textInputLayoutConfPassword;
     private Button btnSave;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
 
+        //Seta a toolbar e o botão voltar(back)
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         //Inicialização de View's
         initViews();
-
-        //Seta o titulo na ToolBar
-        setToolBar();
 
         //Valida o preenchimento dos Dados
         validaDados();
@@ -46,21 +46,6 @@ public class CadastroActivity extends AppCompatActivity {
         textInputLayoutPassword = findViewById(R.id.TextInputLayoutPassword);
         textInputLayoutConfPassword = findViewById(R.id.TextInputLayoutConfPassword);
         btnSave = findViewById(R.id.btnSave);
-    }
-
-    private void setToolBar() {
-        toolbar = findViewById(R.id.toolbar);
-        toolbar.setTitle("Register"); //Titulo para ser exibido na sua Action Bar em frente à seta
-        setSupportActionBar(toolbar);
-
-
-        ActionBar actionBar = getSupportActionBar();
-
-        //Inclui a seta de Back
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);//Mostrar o botão Back
-            actionBar.setDisplayShowHomeEnabled(true); //Ativar o botão Back
-        }
     }
 
     private void validaDados() {

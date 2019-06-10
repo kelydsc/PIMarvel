@@ -8,20 +8,8 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="TextToolBar">
-        <item name="android:textColor">@color/colorTextToolBar</item>
-        <item name="android:textSize">26sp</item>
-    </style>
-
-    <!-- Style da Toolbar-->
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.ActionBar">
-        <item name="colorControlNormal">#FFFFFF</item>
-    </style>
-
+    <!--Style do menu superior-->
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
-
-    <style name="BottomNavigationTheme" parent="Theme.AppCompat.Light">
-        <item name="colorPrimary">#FF7F27</item>
-    </style>
 
 </resources>
