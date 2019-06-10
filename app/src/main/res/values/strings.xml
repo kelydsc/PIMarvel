@@ -15,6 +15,6 @@
     <string name="bottom_nav_menu_game">Game</string>
     <string name="bottom_nav_menu_movie">Filmes</string>
     <string name="bottom_nav_menu_hq">HQ</string>
-    <string name="bottom_nav_menu_news">Notícias</string>
+    <string name="bottom_nav_menu_event">Eventos</string>
     <string name="bottom_nav_menu_favorite">Favoritos</string>
 </resources>

@@ -1,4 +1,4 @@
-package br.com.digitalhouse.digital.pimarvel.news.view;
+package br.com.digitalhouse.digital.pimarvel.event.view;
 
 
 import android.os.Bundle;
@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.base.view.BaseActivity;
 
-public class NewsFragment extends Fragment {
+public class EventFragment extends Fragment {
 
 
-    public NewsFragment() {
+    public EventFragment() {
         // Required empty public constructor
     }
 
@@ -21,7 +22,9 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_news, container, false);
+
+        /*((BaseActivity)getActivity()).replaceFragment();*/
+        return inflater.inflate(R.layout.fragment_event, container, false);
     }
 
 }
