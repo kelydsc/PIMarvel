@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.cadastro.view.CadastroActivity;
-import br.com.digitalhouse.digital.pimarvel.home.view.HomeActivity;
+import br.com.digitalhouse.digital.pimarvel.base.view.BaseActivity;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!(emailLog.isEmpty()) && !(senhaLog.isEmpty())){
 
                     //Chama a tela de Login
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
 
                     startActivity(intent);
                 }

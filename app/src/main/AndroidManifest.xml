@@ -9,12 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".hq.view.HqActivity"></activity>
-        <activity android:name=".favorite.view.FavoriteActivity" />
-        <activity android:name=".game.view.GameActivity" />
-        <activity android:name=".movie.view.MovieActivity" />
-        <activity android:name=".news.view.NewsActivity" />
-        <activity android:name=".home.view.HomeActivity" />
+        <activity android:name=".base.view.BaseActivity" />
         <activity android:name=".splash.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +18,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".login.view.LoginActivity" />
-        <activity android:name=".cadastro.view.CadastroActivity" />
+        <activity android:name=".cadastro.view.CadastroActivity"
+            android:parentActivityName=".login.view.LoginActivity"
+            android:label="Register">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".login.view.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>
