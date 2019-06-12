@@ -26,7 +26,7 @@ public class RecyclerViewFaqAdapter extends RecyclerView.Adapter<RecyclerViewFaq
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.faq_question_recyclerview_item, viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.faq_recyclerview_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }
