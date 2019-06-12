@@ -40,18 +40,11 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
 
     private List<Event> getEvents() {
         List<Event> events = new ArrayList<>();
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
         return events;
     }
 

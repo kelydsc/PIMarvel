@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
@@ -21,6 +21,7 @@
     <!--Theme for all texts in the app-->
     <style name="TextTheme" parent="AppTheme">
         <item name="android:textSize">@dimen/textSize</item>
+        <item name="android:justificationMode" tools:targetApi="o">inter_word</item>
     </style>
 
 </resources>
