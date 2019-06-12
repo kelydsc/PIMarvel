@@ -22,8 +22,8 @@
         android:title="@string/bottom_nav_menu_movie" />
 
     <item
-        android:id="@+id/navigation_hq"
+        android:id="@+id/navigation_comic"
         android:icon="@drawable/ic_hq_32dp"
-        android:title="@string/bottom_nav_menu_hq" />
+        android:title="@string/bottom_nav_menu_comic" />
 
 </menu>
