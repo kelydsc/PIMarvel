@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,20 +40,20 @@ public class SettingsActivity extends AppCompatActivity implements RecyclerViewA
 
     private List<Avatar> getAvatars() {
         List<Avatar> avatars = new ArrayList<>();
-        avatars.add(new Avatar(R.drawable.avatar1));
-        avatars.add(new Avatar(R.drawable.avatar2));
-        avatars.add(new Avatar(R.drawable.avatar3));
-        avatars.add(new Avatar(R.drawable.avatar4));
-        avatars.add(new Avatar(R.drawable.avatar5));
-        avatars.add(new Avatar(R.drawable.avatar6));
-        avatars.add(new Avatar(R.drawable.avatar7));
-        avatars.add(new Avatar(R.drawable.avatar8));
-        avatars.add(new Avatar(R.drawable.avatar9));
+        avatars.add(new Avatar(R.drawable.avatar1, "Captain America"));
+        avatars.add(new Avatar(R.drawable.avatar2, "Captain America"));
+        avatars.add(new Avatar(R.drawable.avatar3, "Captain America"));
+        avatars.add(new Avatar(R.drawable.avatar4, "Iron Man"));
+        avatars.add(new Avatar(R.drawable.avatar5, "Iron Man"));
+        avatars.add(new Avatar(R.drawable.avatar6, "Spider Man"));
+        avatars.add(new Avatar(R.drawable.avatar7, "Thor"));
+        avatars.add(new Avatar(R.drawable.avatar8, "Thor"));
+        avatars.add(new Avatar(R.drawable.avatar9, "Hulk"));
         return avatars;
     }
 
     @Override
     public void onClick(Avatar avatar) {
-        //Precisa ser definido o que irá alterar depois que clicar em um avatar/herói
+        Toast.makeText(getApplicationContext(),"Welcome back to the Avenger's HQ " + avatar.getHeroName() + "!", Toast.LENGTH_LONG).show();
     }
 }

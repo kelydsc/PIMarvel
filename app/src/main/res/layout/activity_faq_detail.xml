@@ -24,28 +24,27 @@
 
     <TextView
         android:id="@+id/faqDetailsTextViewQuestion"
+        style="@style/TitleTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="@dimen/default_martin_top"
         android:layout_marginEnd="32dp"
-        android:text="Aqui vai a pergunta"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/titleSize"
         android:gravity="center"
+        android:text="Aqui vai a pergunta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
     <TextView
         android:id="@+id/faqDetailsTextViewAnswer"
+        style="@style/TextTheme"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="@dimen/default_line_spacing"
         android:layout_marginEnd="32dp"
         android:text="Aqui vai a resposta"
-        android:textSize="@dimen/textSize"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faqDetailsTextViewQuestion" />
