@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menu.view.SettingsActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:id="@+id/settingsTextViewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_martin_top"
+        android:text="@string/settings_title"
+        android:textColor="@color/colorAccent"
+        android:textSize="@dimen/welcome_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+    <TextView
+        android:id="@+id/setttingsTextViewDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_line_spacing"
+        android:text="@string/settings_description"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintEnd_toEndOf="@+id/settingsTextViewTitle"
+        app:layout_constraintStart_toStartOf="@+id/settingsTextViewTitle"
+        app:layout_constraintTop_toBottomOf="@+id/settingsTextViewTitle" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/settginsRecyclerViewAvatars"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/default_line_spacing"
+        android:layout_marginEnd="16dp"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setttingsTextViewDescription"
+        app:spanCount="3"
+        tools:listitem="@layout/settings_avatar_recyclerview_item"
+        tools:itemCount="9"/>
+
+    <TextView
+        android:id="@+id/settginsTextViewSound"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_line_spacing"
+        android:layout_marginBottom="32dp"
+        android:drawableBottom="@drawable/ic_volume_off_32dp"
+        android:text="@string/settings_label_sound"
+        android:textSize="@dimen/textSize"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/settginsRecyclerViewAvatars"
+        app:layout_constraintStart_toStartOf="@+id/settginsRecyclerViewAvatars"
+        app:layout_constraintTop_toBottomOf="@+id/settginsRecyclerViewAvatars" />
+
+</android.support.constraint.ConstraintLayout>

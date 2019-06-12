@@ -1,8 +1,7 @@
-package br.com.digitalhouse.digital.pimarvel.cadastro.view;
+package br.com.digitalhouse.digital.pimarvel.register.view;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -13,7 +12,7 @@ import android.widget.Button;
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 
-public class CadastroActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
     //Declaração de atributos
     private TextInputLayout textInputLayoutName;
@@ -25,7 +24,7 @@ public class CadastroActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro);
+        setContentView(R.layout.activity_register);
 
         //Seta a toolbar e o botão voltar(back)
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -100,7 +99,7 @@ public class CadastroActivity extends AppCompatActivity {
                         && !(confsenha.isEmpty())) {
 
                     //Chama a tela de Login
-                    Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 
                     startActivity(intent);
                 }
@@ -123,7 +122,7 @@ public class CadastroActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
 
             //Chama a tela de Login a partir do click do botão Back da tela de Cadastro
-            Intent intent = new Intent(CadastroActivity.this, LoginActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 
             startActivity(intent);
 

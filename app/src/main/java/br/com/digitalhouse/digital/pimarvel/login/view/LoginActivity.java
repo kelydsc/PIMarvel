@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.cadastro.view.CadastroActivity;
+import br.com.digitalhouse.digital.pimarvel.register.view.RegisterActivity;
 import br.com.digitalhouse.digital.pimarvel.base.view.BaseActivity;
 
 
@@ -34,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //Chama a tela de Cadastro
         chamaTelaCadastro();
-
-        //Recebe a chamada da tela de Cadastro
-        Intent intent = getIntent();
     }
 
     private void initViews() {
@@ -86,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 //Chama a tela de Cadastro
-                Intent intent = new Intent(LoginActivity.this, CadastroActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
 
                 startActivity(intent);
             }
