@@ -44,6 +44,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/faqTextViewTitle"
-        tools:listitem="@layout/faq_question_recyclerview_item" />
+        tools:listitem="@layout/faq_recyclerview_item" />
 
 </android.support.constraint.ConstraintLayout>

@@ -27,7 +27,7 @@ public class RecyclerViewAvatarAdapter extends RecyclerView.Adapter<RecyclerView
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.settings_avatar_recyclerview_item, viewGroup, false);
+        View itemView = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.settings_recyclerview_item, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(itemView);
         return viewHolder;
     }
