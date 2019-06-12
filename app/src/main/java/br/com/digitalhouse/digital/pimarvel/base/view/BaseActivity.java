@@ -15,6 +15,10 @@ import br.com.digitalhouse.digital.pimarvel.event.view.EventFragment;
 import br.com.digitalhouse.digital.pimarvel.favorite.view.FavoriteFragment;
 import br.com.digitalhouse.digital.pimarvel.game.view.GameFragment;
 import br.com.digitalhouse.digital.pimarvel.hq.view.HqFragment;
+import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
+import br.com.digitalhouse.digital.pimarvel.menu.view.AboutActivity;
+import br.com.digitalhouse.digital.pimarvel.menu.view.FaqActivity;
+import br.com.digitalhouse.digital.pimarvel.menu.view.SettingsActivity;
 import br.com.digitalhouse.digital.pimarvel.movie.view.MovieFragment;
 
 public class BaseActivity extends AppCompatActivity {
@@ -31,9 +35,6 @@ public class BaseActivity extends AppCompatActivity {
         //Configura a BottomNavigationBar e seta o listener dos botões
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav_bar_view);
         navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        //Recebe a chamada da tela de Login
-        Intent intent = getIntent();
 
         //Inicia o container com event fragment
         initFirstFragment();
@@ -61,24 +62,24 @@ public class BaseActivity extends AppCompatActivity {
 
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                    switch (menuItem.getItemId()) {
-                        case R.id.navigation_event:
-                            replaceFragment(new EventFragment());
-                            return true;
-                        case R.id.navigation_favorite:
-                            replaceFragment(new FavoriteFragment());
-                            return true;
-                        case R.id.navigation_game:
-                            replaceFragment(new GameFragment());
-                            return true;
-                        case R.id.navigation_movie:
-                            replaceFragment(new MovieFragment());
-                            return true;
-                        case R.id.navigation_hq:
-                            replaceFragment(new HqFragment());
-                            return true;
-                    }
-                    return false;
+        switch (menuItem.getItemId()) {
+            case R.id.navigation_event:
+                replaceFragment(new EventFragment());
+                return true;
+            case R.id.navigation_favorite:
+                replaceFragment(new FavoriteFragment());
+                return true;
+            case R.id.navigation_game:
+                replaceFragment(new GameFragment());
+                return true;
+            case R.id.navigation_movie:
+                replaceFragment(new MovieFragment());
+                return true;
+            case R.id.navigation_hq:
+                replaceFragment(new HqFragment());
+                return true;
+        }
+        return false;
         }
     };
 
@@ -91,16 +92,26 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        Intent intent;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                intent = new Intent(BaseActivity.this, SettingsActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_faq:
+                intent = new Intent(BaseActivity.this, FaqActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_about:
+                intent = new Intent(BaseActivity.this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_logout:
+                intent = new Intent(BaseActivity.this, LoginActivity.class);
+                startActivity(intent);
+                return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
