@@ -12,6 +12,14 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".menu.view.FaqDetailActivity"
+            android:label="FAQ's"
+            android:parentActivityName=".menu.view.FaqActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".menu.view.FaqActivity" />
+        </activity>
+        <activity
             android:name=".menu.view.AboutActivity"
             android:label="About"
             android:parentActivityName=".base.view.BaseActivity">

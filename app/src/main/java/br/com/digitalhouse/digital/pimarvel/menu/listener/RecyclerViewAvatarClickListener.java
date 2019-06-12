@@ -1,4 +1,4 @@
-package br.com.digitalhouse.digital.pimarvel;
+package br.com.digitalhouse.digital.pimarvel.menu.listener;
 
 import br.com.digitalhouse.digital.pimarvel.menu.model.Avatar;
 

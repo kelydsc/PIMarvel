@@ -52,10 +52,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="@dimen/default_line_spacing"
         android:layout_marginEnd="16dp"
-        app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/setttingsTextViewDescription"
+        app:layoutManager="android.support.v7.widget.GridLayoutManager"
         app:spanCount="3"
         tools:listitem="@layout/settings_avatar_recyclerview_item"
         tools:itemCount="9"/>

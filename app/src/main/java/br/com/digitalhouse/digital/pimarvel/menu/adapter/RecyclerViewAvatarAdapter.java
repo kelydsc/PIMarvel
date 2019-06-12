@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.RecyclerViewAvatarClickListener;
+import br.com.digitalhouse.digital.pimarvel.menu.listener.RecyclerViewAvatarClickListener;
 import br.com.digitalhouse.digital.pimarvel.menu.model.Avatar;
 
 public class RecyclerViewAvatarAdapter extends RecyclerView.Adapter<RecyclerViewAvatarAdapter.ViewHolder> {
@@ -51,16 +51,16 @@ public class RecyclerViewAvatarAdapter extends RecyclerView.Adapter<RecyclerView
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView imageViewAvatar;
+        private ImageView recyclerImageViewAvatar;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imageViewAvatar =itemView.findViewById(R.id.recyclerImageViewAvatar);
+            recyclerImageViewAvatar = itemView.findViewById(R.id.recyclerImageViewAvatar);
         }
 
         public void bind(Avatar avatar) {
-            imageViewAvatar.setImageDrawable(ContextCompat.getDrawable(imageViewAvatar.getContext(), avatar.getImage()));
+            recyclerImageViewAvatar.setImageDrawable(ContextCompat.getDrawable(recyclerImageViewAvatar.getContext(), avatar.getImage()));
         }
     }
 }

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.RecyclerViewAvatarClickListener;
+import br.com.digitalhouse.digital.pimarvel.menu.listener.RecyclerViewAvatarClickListener;
 import br.com.digitalhouse.digital.pimarvel.menu.adapter.RecyclerViewAvatarAdapter;
 import br.com.digitalhouse.digital.pimarvel.menu.model.Avatar;
 
