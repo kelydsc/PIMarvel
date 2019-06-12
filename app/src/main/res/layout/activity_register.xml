@@ -19,7 +19,6 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
-
     </android.support.design.widget.AppBarLayout>
 
     <ImageView
@@ -36,23 +35,21 @@
 
     <TextView
         android:id="@+id/textViewHello"
+        style="@style/TitleTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/hello"
-        android:textColor="@color/titleColor"
-        android:textSize="@dimen/titleSize"
         app:layout_constraintStart_toEndOf="@+id/imageViewThor"
         app:layout_constraintTop_toTopOf="@+id/imageViewThor" />
 
     <TextView
         android:id="@+id/textViewTituloCadastro"
+        style="@style/TitleTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/registerMarvel"
-        android:textColor="@color/titleColor"
-        android:textSize="@dimen/titleSize"
         app:layout_constraintEnd_toEndOf="@+id/imageViewThor"
         app:layout_constraintStart_toStartOf="@+id/imageViewThor"
         app:layout_constraintTop_toBottomOf="@+id/imageViewThor" />
@@ -126,12 +123,12 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
             android:backgroundTint="@color/colorPrimary"
             android:text="@string/save"
             android:textColor="@color/coloredButtonText"
-            android:textSize="@dimen/textSize"
-            android:layout_marginTop="32dp"
-            android:layout_gravity="center"/>
+            android:textSize="@dimen/textSize" />
 
     </LinearLayout>
 

@@ -13,10 +13,10 @@
     <string name="or">OR</string>
     <string name="welcome">Welcome!</string>
     <string name="bottom_nav_menu_game">Game</string>
-    <string name="bottom_nav_menu_movie">Filmes</string>
+    <string name="bottom_nav_menu_movie">Movies</string>
     <string name="bottom_nav_menu_hq">HQ</string>
-    <string name="bottom_nav_menu_event">Eventos</string>
-    <string name="bottom_nav_menu_favorite">Favoritos</string>
+    <string name="bottom_nav_menu_event">Events</string>
+    <string name="bottom_nav_menu_favorite">Favorite</string>
     <string name="app_version">Version 1.0</string>
     <string name="about_app_description">Marvel Universe app was produced by Mobile Android students of Brazil\'s Digital House school.</string>
     <string name="settings_label_sound">Sound</string>

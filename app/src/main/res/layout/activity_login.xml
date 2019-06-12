@@ -10,12 +10,11 @@
 
     <TextView
         android:id="@+id/textViewWelcomeLog"
+        style="@style/TitleTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="96dp"
         android:text="@string/welcomeLogin"
-        android:textColor="@color/colorAccent"
-        android:textSize="@dimen/welcome_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
