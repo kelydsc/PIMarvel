@@ -14,7 +14,7 @@
     <string name="welcome">Welcome!</string>
     <string name="bottom_nav_menu_game">Game</string>
     <string name="bottom_nav_menu_movie">Movies</string>
-    <string name="bottom_nav_menu_hq">HQ</string>
+    <string name="bottom_nav_menu_comic">Comics</string>
     <string name="bottom_nav_menu_event">Events</string>
     <string name="bottom_nav_menu_favorite">Favorite</string>
     <string name="app_version">Version 1.0</string>

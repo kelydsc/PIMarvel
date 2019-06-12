@@ -14,7 +14,7 @@ import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.event.view.EventFragment;
 import br.com.digitalhouse.digital.pimarvel.favorite.view.FavoriteFragment;
 import br.com.digitalhouse.digital.pimarvel.game.view.GameFragment;
-import br.com.digitalhouse.digital.pimarvel.hq.view.HqFragment;
+import br.com.digitalhouse.digital.pimarvel.comic.view.ComicFragment;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.AboutActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.FaqActivity;
@@ -75,8 +75,8 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.navigation_movie:
                 replaceFragment(new MovieFragment());
                 return true;
-            case R.id.navigation_hq:
-                replaceFragment(new HqFragment());
+            case R.id.navigation_comic:
+                replaceFragment(new ComicFragment());
                 return true;
         }
         return false;
