@@ -28,7 +28,7 @@
         style="@style/TitleTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_martin_top"
+        android:layout_marginTop="@dimen/default_martin_top_or_bottom"
         android:text="@string/faq_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
