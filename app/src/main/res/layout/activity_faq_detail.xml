@@ -28,7 +28,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="@dimen/default_martin_top"
+        android:layout_marginTop="@dimen/default_martin_top_or_bottom"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="Aqui vai a pergunta"
