@@ -3,23 +3,58 @@ package br.com.digitalhouse.digital.pimarvel.movie.view;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import br.com.digitalhouse.digital.pimarvel.R;
+import java.util.ArrayList;
+import java.util.List;
 
-public class MovieFragment extends Fragment {
+import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.event.adapter.RecyclerViewEventAdapter;
+import br.com.digitalhouse.digital.pimarvel.movie.adapter.RecyclerViewMovieAdapter;
+import br.com.digitalhouse.digital.pimarvel.movie.listener.RecyclerViewMovieClickListener;
+import br.com.digitalhouse.digital.pimarvel.movie.model.Movie;
+
+public class MovieFragment extends Fragment implements RecyclerViewMovieClickListener {
+
+    private RecyclerView recyclerView;
+    private RecyclerViewMovieAdapter adapter;
 
     public MovieFragment() {
-        // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_movie, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_movie, container, false);
+
+        recyclerView = view.findViewById(R.id.recyclerview);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 4));
+        adapter = new RecyclerViewMovieAdapter(getMovie(), this);
+        recyclerView.setAdapter(adapter);
+
+        return view;
     }
 
+    private List<Movie> getMovie() {
+        List<Movie> movies = new ArrayList<>();
+
+        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+
+        return movies;
+
+    }
+
+
+    public void onClick(Movie movie) {
+
+
+    }
 }
