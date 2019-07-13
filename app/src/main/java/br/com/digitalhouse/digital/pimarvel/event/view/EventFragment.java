@@ -49,9 +49,10 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
 
         eventTextViewTitle = view.findViewById(R.id.eventTextViewTitle);
         eventTextViewDescription = view.findViewById(R.id.eventTextViewDescription);
-        return view;
 
-        dao = DataBase.getDatabase(this).eventDao();
+
+
+        dao = DataBase.getDatabase(getContext()).eventDao();
 
         eventImageViewFavorite.setOnClickListener((View -> {
             // Salvar item no banco ao clicar
@@ -60,27 +61,27 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
 
             new Thread(() -> {
                 dao.insert(new Event(title, description));
-                buscarTodosOsContatos();
+                buscarTodosOsEventos();
             }).start();
-        });
+        }));
 
         // buscar todos os item salvos na base de dados e carregar no recyclerview
-        buscarTodosOsContatos();
+        buscarTodosOsEventos();
 
-        Spinner spinner = findViewById(R.id.spinner);
+        Spinner spinner = view.findViewById(R.id.spinner);
         String[] listItem = new String[]{"Tairo", "Jessica", "Vinicius"};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.spinner_item, listItem);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.event_recyclerview_item, listItem);
         spinner.setAdapter(arrayAdapter);
-
+        return view;
     }
 
     private List<Event> getEvents() {
         List<Event> events = new ArrayList<>();
-        events.add(new Event("captain","Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("homem_ferro","Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("viuva","Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("hulk","Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
-        events.add(new Event("thor","Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
+        events.add(new Event("Memorial Event", "Event dedicated to the greatest comic book writer, yes him, Stan Lee!", R.drawable.stan_lee));
         return events;
     }
 
@@ -89,19 +90,7 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
         Toast.makeText(getActivity(), "Your will be redirected to the event site.", Toast.LENGTH_LONG).show();
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public void buscarTodosOsContatos() {
+    public void buscarTodosOsEventos() {
 
         // Uso de thread
         /*new Thread(() -> {
@@ -116,20 +105,20 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
         dao.getAllRxJava()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(contatos -> {
-                    adapter.update(contatos);
+                .subscribe(eventos -> {
+                    adapter.update(eventos);
                 }, throwable -> {
-                    Log.i("TAG", "buscarTodosOsContatos: " + throwable.getMessage());
+                    Log.i("TAG", "buscarTodosOsEventos: " + throwable.getMessage());
                 });
     }
 
     @Override
-    public void onItemClick(Contato contato) {
+    public void onItemClick(Event event) {
         // ao clicar no item, deletar e remover da lista
         new Thread(() -> {
-            dao.delete(contato);
-            buscarTodosOsContatos();
+            dao.delete(event);
+            buscarTodosOsEventos();
         }).start();
     }
 }
-}
+
