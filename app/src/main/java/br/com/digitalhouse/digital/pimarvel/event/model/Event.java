@@ -22,11 +22,10 @@ public class Event implements Parcelable {
     @ColumnInfo(name = "thumbnail")
     private int thumbnail;
 
-    public Event() {
+    public Event(String title, String description) {
     }
 
-    public Event(Long id, String title, String description, int thumbnail) {
-        this.id = id;
+    public Event( String title, String description, int thumbnail) {
         this.title = title;
         this.description = description;
         this.thumbnail = thumbnail;
