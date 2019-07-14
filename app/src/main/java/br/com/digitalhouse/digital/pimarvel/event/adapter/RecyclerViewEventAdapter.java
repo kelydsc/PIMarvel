@@ -50,6 +50,11 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         return events.size();
     }
 
+    public void update(List<Event> eventList){
+        this.events = eventList;
+        notifyDataSetChanged();
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView eventImageViewThumbnail;
