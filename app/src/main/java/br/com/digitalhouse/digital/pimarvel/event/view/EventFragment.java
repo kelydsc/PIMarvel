@@ -9,9 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,10 +66,6 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
         // buscar todos os item salvos na base de dados e carregar no recyclerview
         buscarTodosOsEventos();
 
-        Spinner spinner = view.findViewById(R.id.spinner);
-        String[] listItem = new String[]{"Tairo", "Jessica", "Vinicius"};
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, R.layout.event_recyclerview_item, listItem);
-        spinner.setAdapter(arrayAdapter);
         return view;
     }
 
@@ -85,12 +79,7 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
         return events;
     }
 
-    @Override
-    public void onClick(Event event) {
-        Toast.makeText(getActivity(), "Your will be redirected to the event site.", Toast.LENGTH_LONG).show();
-    }
-
-    public void buscarTodosOsEventos() {
+       public void buscarTodosOsEventos() {
 
         // Uso de thread
         /*new Thread(() -> {
@@ -113,12 +102,14 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
     }
 
     @Override
-    public void onItemClick(Event event) {
+    public void onClick(Event event) {
         // ao clicar no item, deletar e remover da lista
         new Thread(() -> {
             dao.delete(event);
             buscarTodosOsEventos();
         }).start();
+
+        Toast.makeText(getActivity(), "Your will be redirected to the event site.", Toast.LENGTH_LONG).show();
     }
 }
 
