@@ -1,6 +1,6 @@
 package br.com.digitalhouse.digital.pimarvel.event.data.network;
 
-import br.com.digitalhouse.digital.pimarvel.event.model.EventsResponse;
+import br.com.digitalhouse.digital.pimarvel.event.model.Events;
 import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 public interface Api {
 
     @GET("comics")
-    Single<EventsResponse> getEvents (
+    Single<Events> getEvents (
             @Query("format") String format,
             @Query("formatType") String formatType,
             @Query("noVariants") boolean noVariants,
