@@ -21,7 +21,6 @@ import br.com.digitalhouse.digital.pimarvel.event.adapter.RecyclerViewEventAdapt
 import br.com.digitalhouse.digital.pimarvel.event.data.database.DataBase;
 import br.com.digitalhouse.digital.pimarvel.event.data.database.dao.EventDao;
 import br.com.digitalhouse.digital.pimarvel.event.listener.RecyclerViewEventClickListener;
-import br.com.digitalhouse.digital.pimarvel.event.model.Event;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 

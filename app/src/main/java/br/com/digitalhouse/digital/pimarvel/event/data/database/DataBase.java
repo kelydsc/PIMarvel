@@ -7,7 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import br.com.digitalhouse.digital.pimarvel.event.data.database.dao.EventDao;
-import br.com.digitalhouse.digital.pimarvel.event.model.Event;
+import br.com.digitalhouse.digital.pimarvel.event.view.Event;
 
 @android.arch.persistence.room.Database(entities = {Event.class}, version = 1, exportSchema = false)
 @TypeConverters(Converters.class)

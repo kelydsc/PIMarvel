@@ -9,7 +9,7 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-import br.com.digitalhouse.digital.pimarvel.event.model.Event;
+import br.com.digitalhouse.digital.pimarvel.event.view.Event;
 import io.reactivex.Flowable;
 
 @Dao

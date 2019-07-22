@@ -1,4 +1,4 @@
-package br.com.digitalhouse.digital.pimarvel.event.model;
+package br.com.digitalhouse.digital.pimarvel.event.view;
 
 
 import android.arch.persistence.room.ColumnInfo;
