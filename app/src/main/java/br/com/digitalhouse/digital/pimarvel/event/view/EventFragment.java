@@ -56,6 +56,7 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
             String title = eventTextViewTitle.getEditableText().toString();
             String description = eventTextViewDescription.getEditableText().toString();
 
+
             new Thread(() -> {
                 dao.insert(new Event(title, description));
                 buscarTodosOsEventos();

@@ -22,9 +22,6 @@ public class Event implements Parcelable {
     @ColumnInfo(name = "thumbnail")
     private int thumbnail;
 
-    public Event(String title, String description) {
-    }
-
     public Event( String title, String description, int thumbnail) {
         this.title = title;
         this.description = description;
