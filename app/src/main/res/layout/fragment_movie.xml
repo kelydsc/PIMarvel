@@ -7,9 +7,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    android:id="@+id/recyclerview">
-
-
+    android:id="@+id/recyclerview"
+    tools:listitem="@layout/movie_item"
+    app:spanCount="4"
+    app:layoutManager="android.support.v7.widget.GridLayoutManager"
+    >
 
 </android.support.v7.widget.RecyclerView>
 

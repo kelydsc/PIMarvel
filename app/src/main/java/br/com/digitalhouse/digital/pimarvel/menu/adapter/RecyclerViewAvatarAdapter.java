@@ -16,7 +16,7 @@ import br.com.digitalhouse.digital.pimarvel.menu.model.Avatar;
 
 public class RecyclerViewAvatarAdapter extends RecyclerView.Adapter<RecyclerViewAvatarAdapter.ViewHolder> {
 
-    private List<Avatar> avatars;
+      private List<Avatar> avatars;
     private RecyclerViewAvatarClickListener listener;
 
     public RecyclerViewAvatarAdapter(List<Avatar> avatars, RecyclerViewAvatarClickListener listener) {
@@ -49,18 +49,18 @@ public class RecyclerViewAvatarAdapter extends RecyclerView.Adapter<RecyclerView
         return avatars.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView recyclerImageViewAvatar;
+    private ImageView recyclerImageViewAvatar;
 
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
+    public ViewHolder(@NonNull View itemView) {
+        super(itemView);
 
-            recyclerImageViewAvatar = itemView.findViewById(R.id.recyclerImageViewAvatar);
-        }
-
-        public void bind(Avatar avatar) {
-            recyclerImageViewAvatar.setImageDrawable(ContextCompat.getDrawable(recyclerImageViewAvatar.getContext(), avatar.getImage()));
-        }
+        recyclerImageViewAvatar = itemView.findViewById(R.id.recyclerImageViewAvatar);
     }
+
+    public void bind(Avatar avatar) {
+        recyclerImageViewAvatar.setImageDrawable(ContextCompat.getDrawable(recyclerImageViewAvatar.getContext(), avatar.getImage()));
+    }
+}
 }

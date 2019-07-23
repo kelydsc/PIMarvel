@@ -23,6 +23,7 @@
     <string name="settings_title">Settings</string>
     <string name="settings_description">Which marvel hero are you?</string>
     <string name="faq_title">FAQ\'s</string>
-    <string name="comics">comics</string>
-    <string name="choose_your_comic">choose_your_comic</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

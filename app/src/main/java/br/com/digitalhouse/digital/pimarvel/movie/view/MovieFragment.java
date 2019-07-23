@@ -1,8 +1,11 @@
 package br.com.digitalhouse.digital.pimarvel.movie.view;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,12 +44,26 @@ public class MovieFragment extends Fragment implements RecyclerViewMovieClickLis
     private List<Movie> getMovie() {
         List<Movie> movies = new ArrayList<>();
 
-        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
-        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
-        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
-        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
-        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
-        movies.add(new Movie("Black Panther", 1999, R.drawable.avatar1));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
+        movies.add(new Movie("Avengers End Game", 2019, R.drawable.movies_avengers_endgame));
 
         return movies;
 
@@ -54,7 +71,9 @@ public class MovieFragment extends Fragment implements RecyclerViewMovieClickLis
 
 
     public void onClick(Movie movie) {
-
-
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.replace(R.id.container, new MovieFragmentDetail());
+        ft.commit();
     }
 }
