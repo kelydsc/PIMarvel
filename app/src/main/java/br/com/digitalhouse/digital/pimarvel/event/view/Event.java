@@ -35,6 +35,9 @@ public class Event implements Parcelable {
         thumbnail = in.readInt();
     }
 
+    public Event(String title, String description) {
+    }
+
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeLong(id);
