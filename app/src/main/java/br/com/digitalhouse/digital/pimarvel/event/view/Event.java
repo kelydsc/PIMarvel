@@ -1,4 +1,4 @@
-package br.com.digitalhouse.digital.pimarvel.event.model;
+package br.com.digitalhouse.digital.pimarvel.event.view;
 
 
 import android.arch.persistence.room.ColumnInfo;
@@ -22,9 +22,6 @@ public class Event implements Parcelable {
     @ColumnInfo(name = "thumbnail")
     private int thumbnail;
 
-    public Event(String title, String description) {
-    }
-
     public Event( String title, String description, int thumbnail) {
         this.title = title;
         this.description = description;
@@ -36,6 +33,9 @@ public class Event implements Parcelable {
         title = in.readString();
         description = in.readString();
         thumbnail = in.readInt();
+    }
+
+    public Event(String title, String description) {
     }
 
     @Override
