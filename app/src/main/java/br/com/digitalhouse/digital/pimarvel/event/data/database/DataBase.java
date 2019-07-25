@@ -1,15 +1,15 @@
 package br.com.digitalhouse.digital.pimarvel.event.data.database;
 
 
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
-import android.arch.persistence.room.TypeConverters;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import android.content.Context;
 
 import br.com.digitalhouse.digital.pimarvel.event.data.database.dao.EventDao;
 import br.com.digitalhouse.digital.pimarvel.event.view.Event;
 
-@android.arch.persistence.room.Database(entities = {Event.class}, version = 1, exportSchema = false)
+@androidx.room.Database(entities = {Event.class}, version = 1, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class DataBase extends RoomDatabase {
 
