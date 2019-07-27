@@ -20,7 +20,6 @@ import br.com.digitalhouse.digital.pimarvel.game.view.GameFragment;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.AboutActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.FaqActivity;
-import br.com.digitalhouse.digital.pimarvel.menu.view.SettingsActivity;
 import br.com.digitalhouse.digital.pimarvel.movie.view.MovieFragment;
 
 public class BaseActivity extends AppCompatActivity {
@@ -98,10 +97,6 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent;
 
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                intent = new Intent(BaseActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.action_faq:
                 intent = new Intent(BaseActivity.this, FaqActivity.class);
                 startActivity(intent);
