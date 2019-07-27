@@ -1,16 +1,13 @@
 package br.com.digitalhouse.digital.pimarvel.comic.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.appbar.AppBarLayout;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -24,24 +21,21 @@ import br.com.digitalhouse.digital.pimarvel.comic.model.Result;
 public class ComicDetalheActivity extends AppCompatActivity {
 
     private ImageView imageHero;
-
-    //private Toolbar toolbar;
-    //private AppBarLayout appBarLayout;
     private Result result;
     private TextView textTitle;
     private TextView textViewDescription;
     private TextView textViewPublished;
-    private TextView textViewPrice;
-    private TextView textViewPages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comic_detalhe);
 
-        //Configura a ToolBar
+        //Seta a toolbar e o botão voltar(back)
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //toolbar.setTitle("Marvel Universe Comic");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Inicializa as views que serão utilizadas na activity
         initViews();
@@ -56,16 +50,17 @@ public class ComicDetalheActivity extends AppCompatActivity {
         // Configuramos nas view os valores do quadrinho que pegamos
         textTitle.setText(result.getTitle());
         textViewDescription.setText(Html.fromHtml(result.getDescription()));
-        textViewPrice.setText("Price: $ " + result.getPrices().get(0).getPrice());
-        textViewPages.setText("Pages: "+result.getPageCount());
 
+        /*
         Picasso.get().load(result.getThumbnail().getPath() + "/portrait_incredible." + result.getThumbnail().getExtension())
                 .placeholder(R.drawable.ic_logo_marvel)
                 .error(R.drawable.ic_logo_marvel)
                 .into(imageHero);
+       */
+
 
         if (!result.getImages().isEmpty()) {
-            Picasso.get().load(result.getImages().get(0).getPath() + "/landscape_incredible." + result.getImages().get(0).getExtension())
+            Picasso.get().load(result.getImages().get(0).getPath() + "/portrait_incredible." + result.getImages().get(0).getExtension())
                     .placeholder(R.drawable.ic_logo_marvel)
                     .error(R.drawable.ic_logo_marvel)
                     .into(imageHero);
@@ -81,39 +76,12 @@ public class ComicDetalheActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-        /*
-        // Adicionamos o evendo se click na imagem para irmos para tela
-        // que mostra a imagem inteira
-        imageHero.setOnClickListener(view -> {
-            Intent intent = new Intent(DetailActivity.this, ImagePopupActivity.class);
-            intent.putExtra("image", result.getThumbnail().getPath() + "/detail." + result.getThumbnail().getExtension());
-            startActivity(intent);
-        });
-
-
-        // Adicionamos o evento de scroll, para mostrar ou não a imagem pequena do quadrinho
-        appBarLayout.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
-            if (verticalOffset == 0&&imageHero!=null) {
-                imageHero.setVisibility(View.VISIBLE);
-            } else if (Math.abs(verticalOffset) >= appBarLayout.getTotalScrollRange()) {
-                imageHero.setVisibility(View.GONE);
-                toolbar.setTitle(result.getTitle());
-            } else {
-                imageHero.setVisibility(View.VISIBLE);
-            }
-        });
-        */
     }
 
     private void initViews() {
-        //toolbar = findViewById(R.id.toolbar);
         imageHero = findViewById(R.id.iconDetail);
-        //appBarLayout = findViewById(R.id.appBarLayout);
         textTitle = findViewById(R.id.textTitle);
         textViewDescription = findViewById(R.id.textDescription);
         textViewPublished = findViewById(R.id.textViewPublished);
-        textViewPrice = findViewById(R.id.textViewPrice);
-        textViewPages = findViewById(R.id.textViewPages);
     }
 }

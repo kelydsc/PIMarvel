@@ -19,7 +19,7 @@ import io.reactivex.schedulers.Schedulers;
 public class ComicViewModel extends AndroidViewModel {// Variáveis que serão usadas para buscar os quadrinhos na API
 
     private MutableLiveData<List<Result>> resultLiveData = new MutableLiveData<>();
-    private MutableLiveData<Boolean> loading = new MutableLiveData<>();
+    //private MutableLiveData<Boolean> loading = new MutableLiveData<>();
     private CompositeDisposable disposable = new CompositeDisposable();
     private ComicRepository repository = new ComicRepository();
 
@@ -32,9 +32,11 @@ public class ComicViewModel extends AndroidViewModel {// Variáveis que serão u
         return resultLiveData;
     }
 
+    /*precisa???????
     public LiveData<Boolean> isLoading() {
         return loading;
     }
+    */
 
     public void getComics() {
 
@@ -42,8 +44,8 @@ public class ComicViewModel extends AndroidViewModel {// Variáveis que serão u
         disposable.add(repository.getComics()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(disposable1 -> loading.setValue(true))
-                .doAfterTerminate(() -> loading.setValue(false))
+              //  .doOnSubscribe(disposable1 -> loading.setValue(true)) ???
+              //  .doAfterTerminate(() -> loading.setValue(false)) ????
                 .subscribe(response -> {
                     // Chegou aqui então alteramos o live data, assim a View que está observando ele pode atualizar a tela
                     resultLiveData.setValue(response.getData().getResults());

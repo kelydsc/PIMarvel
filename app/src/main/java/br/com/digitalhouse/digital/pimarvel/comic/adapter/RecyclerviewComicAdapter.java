@@ -44,7 +44,7 @@ public class RecyclerviewComicAdapter extends RecyclerView.Adapter<RecyclerviewC
             @Override
             public void onClick(View v) {
 
-                String transitionName = "image_" + position;
+                String transitionName = "image" + position;
                 Intent intent = new Intent(holder.itemView.getContext(), ComicDetalheActivity.class);
                 intent.putExtra("comic", result);
                 intent.putExtra("transitionName", transitionName);

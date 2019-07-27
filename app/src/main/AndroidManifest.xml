@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="br.com.digitalhouse.digital.pimarvel">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +16,11 @@
 
         <activity
             android:name=".comic.view.ComicDetalheActivity"
-            android:label="Marvel Universe HQ">
+            android:label="Marvel Universe Comic"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
         </activity>
 
         <activity
@@ -40,14 +43,6 @@
 
         <activity
             android:name=".menu.view.FaqActivity"
-            android:parentActivityName=".base.view.BaseActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
-        </activity>
-
-        <activity
-            android:name=".menu.view.SettingsActivity"
             android:parentActivityName=".base.view.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

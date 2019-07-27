@@ -20,8 +20,6 @@ import br.com.digitalhouse.digital.pimarvel.comic.viewmodel.ComicViewModel;
 
 public class ComicFragment extends Fragment {
 
-    //  private ProgressBar progressBar;
-
     private RecyclerView recyclerViewhome;
     private RecyclerviewComicAdapter recyclerviewComicAdapter;
     private ComicViewModel comicViewModel;
@@ -38,10 +36,10 @@ public class ComicFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comic, container, false);
 
-        //ProgressBar progressBar = view.findViewById(R.id.progressBar);
-
         comicViewModel = ViewModelProviders.of(this).get(ComicViewModel.class);
+
         recyclerViewhome = view.findViewById(R.id.recyclerview_home_comic);
+
         recyclerviewComicAdapter = new RecyclerviewComicAdapter(new ArrayList<>());
         recyclerViewhome.setAdapter(recyclerviewComicAdapter);
 
@@ -55,28 +53,6 @@ public class ComicFragment extends Fragment {
             recyclerviewComicAdapter.update(results);
         });
 
-        /*
-        //Observable Loading
-        viewModel.getLoadingLiveData().observe(this, isLoading -> {
-            if (isLoading) {
-                progressBar.setVisibility(View.VISIBLE);
-            } else {
-                progressBar.setVisibility(View.GONE);
-            }
-        });
-        */
         return view;
     }
-
-    /*
-    @Override
-    public void onClick(Result result) {
-
-        Intent intent = new Intent(getContext(), ComicDetalheActivity.class);
-
-        intent.putExtra("COMIC", result);
-
-        startActivity(intent);
-    }
-    */
 }
