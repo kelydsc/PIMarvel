@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.movie.listener.RecyclerViewMovieClickListener;
+import br.com.digitalhouse.digital.pimarvel.movie.interfaces.RecyclerViewMovieClickListener;
 import br.com.digitalhouse.digital.pimarvel.movie.model.Movie;
 
 public class RecyclerViewMovieAdapter extends RecyclerView.Adapter<RecyclerViewMovieAdapter.ViewHolder> {

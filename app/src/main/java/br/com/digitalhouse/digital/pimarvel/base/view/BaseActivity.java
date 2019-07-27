@@ -1,20 +1,22 @@
 package br.com.digitalhouse.digital.pimarvel.base.view;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.comic.view.ComicFragment;
 import br.com.digitalhouse.digital.pimarvel.event.view.EventFragment;
 import br.com.digitalhouse.digital.pimarvel.favorite.view.FavoriteFragment;
 import br.com.digitalhouse.digital.pimarvel.game.view.GameFragment;
-import br.com.digitalhouse.digital.pimarvel.comic.view.ComicFragment;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.AboutActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.FaqActivity;
@@ -44,7 +46,8 @@ public class BaseActivity extends AppCompatActivity {
     private void initFirstFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.container, new EventFragment())
+                // .replace(R.id.container, new EventFragment())
+                .replace(R.id.container, new ComicFragment())
                 .commit();
     }
 
@@ -60,26 +63,26 @@ public class BaseActivity extends AppCompatActivity {
     //Define as ações de cada botão do NavigationBar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.navigation_event:
-                replaceFragment(new EventFragment());
-                return true;
-            case R.id.navigation_favorite:
-                replaceFragment(new FavoriteFragment());
-                return true;
-            case R.id.navigation_game:
-                replaceFragment(new GameFragment());
-                return true;
-            case R.id.navigation_movie:
-                replaceFragment(new MovieFragment());
-                return true;
-            case R.id.navigation_comic:
-                replaceFragment(new ComicFragment());
-                return true;
-        }
-        return false;
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_event:
+                    replaceFragment(new EventFragment());
+                    return true;
+                case R.id.navigation_favorite:
+                    replaceFragment(new FavoriteFragment());
+                    return true;
+                case R.id.navigation_game:
+                    replaceFragment(new GameFragment());
+                    return true;
+                case R.id.navigation_movie:
+                    replaceFragment(new MovieFragment());
+                    return true;
+                case R.id.navigation_comic:
+                    replaceFragment(new ComicFragment());
+                    return true;
+            }
+            return false;
         }
     };
 

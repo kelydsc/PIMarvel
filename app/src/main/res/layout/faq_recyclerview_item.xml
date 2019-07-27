@@ -11,7 +11,7 @@
         style="@style/TextTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aqui irá uma pergunta?"
+        android:text="Here will a question?"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

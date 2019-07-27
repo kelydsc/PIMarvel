@@ -14,6 +14,12 @@ import br.com.digitalhouse.digital.pimarvel.R;
  */
 public class GameFragment extends Fragment {
 
+    //Declaração das variaveis para calcular a pontuação e o numero de jogadas
+    private int pontuacaoApp = 0;
+    private int pontuacaoUsuario = 0;
+    private int pontuacaoEmpate = 0;
+    private int numeroJogadas = 0;
+
 
     public GameFragment() {
         // Required empty public constructor

@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 //Se todos os campos estiverem preenchidos chama a tela de Login
                 if (!(emailLog.isEmpty()) && !(senhaLog.isEmpty())) {
 
-                    //Chama a tela de Login
+                    //Chama a tela de Home
                     Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
 
                     startActivity(intent);

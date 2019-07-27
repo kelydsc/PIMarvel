@@ -102,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                         && !(confsenha.isEmpty())) {
 
                     //Chama a tela de Login
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
 
                     startActivity(intent);
                 }
@@ -125,7 +125,7 @@ public class RegisterActivity extends AppCompatActivity {
         if (item.getItemId() == android.R.id.home) {
 
             //Chama a tela de Login a partir do click do botão Back da tela de Cadastro
-            Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
 
             startActivity(intent);
 

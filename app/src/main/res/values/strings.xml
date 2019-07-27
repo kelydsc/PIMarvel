@@ -28,4 +28,31 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="comics">Comics</string>
     <string name="choose_your_comic">Choose your comic</string>
+    <string name="title_escolha_app">Choice of application:</string>
+    <string name="pontos_vitoria">Victory:</string>
+    <string name="titulo_empate">Draw:</string>
+    <string name="titulo_vitoria">Victory:</string>
+    <string name="titulo_perdedor">Defeat:</string>
+    <string name="titulo_pergunta_game">Are you a villain or a hero?</string>
+    <string name="titulo_qtde_jogadas">Payed:</string>
+    <string name="title_comic">Marvel Tales: Iron Man (2019) #1</string>
+
+    <string name="large_text">
+    "The gleaming Golden Avenger steals the show as we"
+    "celebrate the80th anniversary of the House of Ideas with the era-spanning"
+    "MARVEL TALES!"
+    "This anthology series shines a spotlight on fan-favorite characters,"
+    "features timeless stories and highlights some of our most"
+    "impressive talent from the past eight decades. First,"
+    "Iron Man is born in the incredible origin story of Tony Stark, as"
+    "told by Stan Lee, Larry Lieber and Don Heck in TALES OF SUSPENSE"
+    "(1959) #39!"
+    "Then the unforgettable Pepper Potts enters Tony’s life as his hard-"
+    "working assistant in TALES OF SUSPENSE (1959) #45! And, in IRON"
+    "MAN (1968) #150, the team supreme of Bob Layton, David"
+    "Michelinie and John Romita Jr. tell a Shell-Head story for the ages!"
+    "Trapped in the time-lost land of King Arthur, Iron Man battles Doctor"
+    "Doom!"
+    </string>
+
 </resources>

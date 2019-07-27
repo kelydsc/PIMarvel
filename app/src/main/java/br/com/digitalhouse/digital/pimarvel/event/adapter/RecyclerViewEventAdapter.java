@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.event.listener.RecyclerViewEventClickListener;
+import br.com.digitalhouse.digital.pimarvel.event.interfaces.RecyclerViewEventClickListener;
 import br.com.digitalhouse.digital.pimarvel.event.view.Event;
 
 public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewEventAdapter.ViewHolder> {

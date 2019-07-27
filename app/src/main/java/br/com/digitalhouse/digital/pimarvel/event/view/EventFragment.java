@@ -2,9 +2,6 @@ package br.com.digitalhouse.digital.pimarvel.event.view;
 
 
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +10,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.event.adapter.RecyclerViewEventAdapter;
-import br.com.digitalhouse.digital.pimarvel.event.data.database.DataBase;
-import br.com.digitalhouse.digital.pimarvel.event.data.database.dao.EventDao;
-import br.com.digitalhouse.digital.pimarvel.event.listener.RecyclerViewEventClickListener;
+import br.com.digitalhouse.digital.pimarvel.event.database.dao.EventDao;
+import br.com.digitalhouse.digital.pimarvel.event.interfaces.RecyclerViewEventClickListener;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -49,7 +49,7 @@ public class EventFragment extends Fragment implements RecyclerViewEventClickLis
 
 
 
-        dao = DataBase.getDatabase(getContext()).eventDao();
+        //dao = Database.getDatabase(getContext()).eventDao();
 
         eventImageViewFavorite.setOnClickListener((View -> {
             // Salvar item no banco ao clicar

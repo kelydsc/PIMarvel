@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.digitalhouse.digital.pimarvel">
 
@@ -14,8 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
         android:usesCleartextTraffic="true">
+
+        <activity
+            android:name=".comic.view.ComicDetalheActivity"
+            android:label="Marvel Universe HQ">
+        </activity>
+
         <activity
             android:name=".menu.view.FaqDetailActivity"
             android:label="FAQ&apos;s"
@@ -24,6 +28,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".menu.view.FaqActivity" />
         </activity>
+
         <activity
             android:name=".menu.view.AboutActivity"
             android:label="About"
@@ -32,6 +37,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
+
         <activity
             android:name=".menu.view.FaqActivity"
             android:parentActivityName=".base.view.BaseActivity">
@@ -39,6 +45,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
+
         <activity
             android:name=".menu.view.SettingsActivity"
             android:parentActivityName=".base.view.BaseActivity">
@@ -46,7 +53,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
+
         <activity android:name=".base.view.BaseActivity" />
+
         <activity android:name=".splash.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +63,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".login.view.LoginActivity" />
+
         <activity
             android:name=".register.view.RegisterActivity"
             android:label="Register"
@@ -63,18 +74,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.view.LoginActivity" />
         </activity>
-        <receiver
-            android:name=".event.receivers.BootReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:label="BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
+
     </application>
 
 </manifest>
