@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/appBackground"
-    tools:context=".register.view.RegisterActivity"
+    tools:context=".comic.view.ComicDetalheActivity"
     tools:ignore="MissingConstraints">
 
     <androidx.recyclerview.widget.RecyclerView

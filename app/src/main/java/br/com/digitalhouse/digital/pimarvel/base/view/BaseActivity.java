@@ -20,7 +20,7 @@ import br.com.digitalhouse.digital.pimarvel.game.view.GameFragment;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.AboutActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.FaqActivity;
-import br.com.digitalhouse.digital.pimarvel.movie.view.MovieFragment;
+import br.com.digitalhouse.digital.pimarvel.serie.view.SerieFragment;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class BaseActivity extends AppCompatActivity {
         getSupportFragmentManager()
                 .beginTransaction()
                 // .replace(R.id.container, new EventFragment())
-                .replace(R.id.container, new ComicFragment())
+                .replace(R.id.container, new EventFragment())
                 .commit();
     }
 
@@ -74,8 +74,8 @@ public class BaseActivity extends AppCompatActivity {
                 case R.id.navigation_game:
                     replaceFragment(new GameFragment());
                     return true;
-                case R.id.navigation_movie:
-                    replaceFragment(new MovieFragment());
+                case R.id.navigation_serie:
+                    replaceFragment(new SerieFragment());
                     return true;
                 case R.id.navigation_comic:
                     replaceFragment(new ComicFragment());

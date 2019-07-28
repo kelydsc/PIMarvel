@@ -4,11 +4,13 @@ package br.com.digitalhouse.digital.pimarvel.comic.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.room.Entity;
+
 import com.google.gson.annotations.Expose;
 
 import java.util.List;
 
-
+@Entity(tableName = "comics")
 public class Result implements Parcelable {
 
     @Expose
@@ -97,6 +99,9 @@ public class Result implements Parcelable {
 
     @Expose
     private List<Variant> variants;
+
+    public Result() {
+    }
 
     protected Result(Parcel in) {
         characters = in.readParcelable(Characters.class.getClassLoader());

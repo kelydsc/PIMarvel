@@ -17,9 +17,9 @@
         android:title="@string/bottom_nav_menu_game" />
 
     <item
-        android:id="@+id/navigation_movie"
-        android:icon="@drawable/ic_movies_32dp"
-        android:title="@string/bottom_nav_menu_movie" />
+        android:id="@+id/navigation_serie"
+        android:icon="@drawable/ic_phone_android_32dp"
+        android:title="@string/bottom_nav_menu_serie" />
 
     <item
         android:id="@+id/navigation_comic"

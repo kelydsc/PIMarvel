@@ -30,6 +30,9 @@ public class ComicsResponse implements Parcelable {
     @Expose
     private String status;
 
+    public ComicsResponse() {
+    }
+
     protected ComicsResponse(Parcel in) {
         attributionHTML = in.readString();
         attributionText = in.readString();

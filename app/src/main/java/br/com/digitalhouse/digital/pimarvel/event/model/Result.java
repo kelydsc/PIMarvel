@@ -1,172 +1,242 @@
 
 package br.com.digitalhouse.digital.pimarvel.event.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.room.Entity;
+
+import com.google.gson.annotations.Expose;
+
 import java.util.List;
 
-import com.google.gson.annotations.SerializedName;
+@Entity(tableName = "events")
+public class Result implements Parcelable {
 
+    @Expose
+    private Characters characters;
 
-public class Result {
+    @Expose
+    private Comics comics;
 
-    @SerializedName("characters")
-    private Characters mCharacters;
-    @SerializedName("comics")
-    private Comics mComics;
-    @SerializedName("creators")
-    private Creators mCreators;
-    @SerializedName("description")
-    private String mDescription;
-    @SerializedName("end")
-    private String mEnd;
-    @SerializedName("id")
-    private Long mId;
-    @SerializedName("modified")
-    private String mModified;
-    @SerializedName("next")
-    private Next mNext;
-    @SerializedName("previous")
-    private Previous mPrevious;
-    @SerializedName("resourceURI")
-    private String mResourceURI;
-    @SerializedName("series")
-    private Series mSeries;
-    @SerializedName("start")
-    private String mStart;
-    @SerializedName("stories")
-    private Stories mStories;
-    @SerializedName("thumbnail")
-    private Thumbnail mThumbnail;
-    @SerializedName("title")
-    private String mTitle;
-    @SerializedName("urls")
-    private List<Url> mUrls;
+    @Expose
+    private Creators creators;
+
+    @Expose
+    private String description;
+
+    @Expose
+    private String end;
+
+    @Expose
+    private String id;
+
+    @Expose
+    private String modified;
+
+    @Expose
+    private Next next;
+
+    @Expose
+    private Previous previous;
+
+    @Expose
+    private String resourceURI;
+
+    @Expose
+    private Series series;
+
+    @Expose
+    private String start;
+
+    @Expose
+    private Stories stories;
+
+    @Expose
+    private Thumbnail thumbnail;
+
+    @Expose
+    private String title;
+
+    @Expose
+    private List<Url> urls;
+
+    public Result() {
+    }
+
+    protected Result(Parcel in) {
+        characters = in.readParcelable(Characters.class.getClassLoader());
+        comics = in.readParcelable(Comics.class.getClassLoader());
+        creators = in.readParcelable(Creators.class.getClassLoader());
+        description = in.readString();
+        end = in.readString();
+        id = in.readString();
+        modified = in.readString();
+        next = in.readParcelable(Next.class.getClassLoader());
+        previous = in.readParcelable(Previous.class.getClassLoader());
+        resourceURI = in.readString();
+        start = in.readString();
+        title = in.readString();
+    }
+
+    public static final Creator<Result> CREATOR = new Creator<Result>() {
+        @Override
+        public Result createFromParcel(Parcel in) {
+            return new Result(in);
+        }
+
+        @Override
+        public Result[] newArray(int size) {
+            return new Result[size];
+        }
+    };
 
     public Characters getCharacters() {
-        return mCharacters;
+        return characters;
     }
 
     public void setCharacters(Characters characters) {
-        mCharacters = characters;
+        this.characters = characters;
     }
 
     public Comics getComics() {
-        return mComics;
+        return comics;
     }
 
     public void setComics(Comics comics) {
-        mComics = comics;
+        this.comics = comics;
     }
 
     public Creators getCreators() {
-        return mCreators;
+        return creators;
     }
 
     public void setCreators(Creators creators) {
-        mCreators = creators;
+        this.creators = creators;
     }
 
     public String getDescription() {
-        return mDescription;
+        return description;
     }
 
     public void setDescription(String description) {
-        mDescription = description;
+        this.description = description;
     }
 
     public String getEnd() {
-        return mEnd;
+        return end;
     }
 
     public void setEnd(String end) {
-        mEnd = end;
+        this.end = end;
     }
 
-    public Long getId() {
-        return mId;
+    public String getId() {
+        return id;
     }
 
-    public void setId(Long id) {
-        mId = id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getModified() {
-        return mModified;
+        return modified;
     }
 
     public void setModified(String modified) {
-        mModified = modified;
+        this.modified = modified;
     }
 
     public Next getNext() {
-        return mNext;
+        return next;
     }
 
     public void setNext(Next next) {
-        mNext = next;
+        this.next = next;
     }
 
     public Previous getPrevious() {
-        return mPrevious;
+        return previous;
     }
 
     public void setPrevious(Previous previous) {
-        mPrevious = previous;
+        this.previous = previous;
     }
 
     public String getResourceURI() {
-        return mResourceURI;
+        return resourceURI;
     }
 
     public void setResourceURI(String resourceURI) {
-        mResourceURI = resourceURI;
+        this.resourceURI = resourceURI;
     }
 
     public Series getSeries() {
-        return mSeries;
+        return series;
     }
 
     public void setSeries(Series series) {
-        mSeries = series;
+        this.series = series;
     }
 
     public String getStart() {
-        return mStart;
+        return start;
     }
 
     public void setStart(String start) {
-        mStart = start;
+        this.start = start;
     }
 
     public Stories getStories() {
-        return mStories;
+        return stories;
     }
 
     public void setStories(Stories stories) {
-        mStories = stories;
+        this.stories = stories;
     }
 
     public Thumbnail getThumbnail() {
-        return mThumbnail;
+        return thumbnail;
     }
 
     public void setThumbnail(Thumbnail thumbnail) {
-        mThumbnail = thumbnail;
+        this.thumbnail = thumbnail;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public void setTitle(String title) {
-        mTitle = title;
+        this.title = title;
     }
 
     public List<Url> getUrls() {
-        return mUrls;
+        return urls;
     }
 
     public void setUrls(List<Url> urls) {
-        mUrls = urls;
+        this.urls = urls;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeParcelable(characters, flags);
+        dest.writeParcelable(comics, flags);
+        dest.writeParcelable(creators, flags);
+        dest.writeString(description);
+        dest.writeString(end);
+        dest.writeString(id);
+        dest.writeString(modified);
+        dest.writeParcelable(next, flags);
+        dest.writeParcelable(previous, flags);
+        dest.writeString(resourceURI);
+        dest.writeString(start);
+        dest.writeString(title);
+    }
 }

@@ -1,50 +1,86 @@
 
 package br.com.digitalhouse.digital.pimarvel.event.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 
-import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose;
 
-public class Item {
+public class Item implements Parcelable {
 
-    @SerializedName("name")
-    private String mName;
-    @SerializedName("resourceURI")
-    private String mResourceURI;
-    @SerializedName("role")
-    private String mRole;
-    @SerializedName("type")
-    private String mType;
+    @Expose
+    private String name;
+
+    @Expose
+    private String resourceURI;
+
+    @Expose
+    private String role;
+
+    @Expose
+    private String type;
+
+    protected Item(Parcel in) {
+        name = in.readString();
+        resourceURI = in.readString();
+        role = in.readString();
+        type = in.readString();
+    }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
 
     public String getName() {
-        return mName;
+        return name;
     }
 
     public void setName(String name) {
-        mName = name;
+        this.name = name;
     }
 
     public String getResourceURI() {
-        return mResourceURI;
+        return resourceURI;
     }
 
     public void setResourceURI(String resourceURI) {
-        mResourceURI = resourceURI;
+        this.resourceURI = resourceURI;
     }
 
     public String getRole() {
-        return mRole;
+        return role;
     }
 
     public void setRole(String role) {
-        mRole = role;
+        this.role = role;
     }
 
     public String getType() {
-        return mType;
+        return type;
     }
 
     public void setType(String type) {
-        mType = type;
+        this.type = type;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(resourceURI);
+        dest.writeString(role);
+        dest.writeString(type);
+    }
 }

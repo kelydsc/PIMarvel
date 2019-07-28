@@ -13,16 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity
-            android:name=".comic.view.ComicDetalheActivity"
-            android:label="Marvel Universe Comic"
+        <activity android:name=".event.view.EventDetalheActivity"
+            android:label="Marvel Universe Events"
             android:parentActivityName=".base.view.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
-
+        <activity
+            android:name=".serie.view.SerieDetalheActivity"
+            android:label="Marvel Universe Digital Comics"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".comic.view.ComicDetalheActivity"
+            android:label="Marvel Universe Comics"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
+        </activity>
         <activity
             android:name=".menu.view.FaqDetailActivity"
             android:label="FAQ&apos;s"
@@ -31,7 +44,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".menu.view.FaqActivity" />
         </activity>
-
         <activity
             android:name=".menu.view.AboutActivity"
             android:label="About"
@@ -40,7 +52,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
-
         <activity
             android:name=".menu.view.FaqActivity"
             android:parentActivityName=".base.view.BaseActivity">
@@ -48,9 +59,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
-
         <activity android:name=".base.view.BaseActivity" />
-
         <activity android:name=".splash.view.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,9 +67,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".login.view.LoginActivity" />
-
         <activity
             android:name=".register.view.RegisterActivity"
             android:label="Register"
@@ -69,7 +76,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.view.LoginActivity" />
         </activity>
-
     </application>
 
 </manifest>

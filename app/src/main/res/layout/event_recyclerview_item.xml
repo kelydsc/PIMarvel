@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,29 +13,33 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/eventImageViewThumbnail"
+            android:id="@+id/imageEventHome"
             android:layout_width="0dp"
-            android:layout_height="150dp"
+            android:layout_height="155dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/ic_logo_marvel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/eventTextViewTitle"
+            android:id="@+id/textTitle"
             style="@style/TextTheme"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="8dp"
+            android:textSize="20sp"
+            android:gravity="left"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventImageViewThumbnail"
+            app:layout_constraintTop_toBottomOf="@+id/imageEventHome"
             tools:text="Event Title" />
-
+        <!--
         <TextView
-            android:id="@+id/eventTextViewDescription"
+            android:id="@+id/textDescription"
             style="@style/TextTheme"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,28 +51,29 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventTextViewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/textTitle"
             tools:text="Event description" />
+            -->
 
         <ImageView
             android:id="@+id/eventImageViewShare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="11dp"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/ic_share_24dp"
+            android:src="@drawable/ic_share_black_32dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/eventImageViewThumbnail" />
+            app:layout_constraintTop_toBottomOf="@+id/imageEventHome" />
 
         <ImageView
             android:id="@+id/eventImageViewFavorite"
             android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:src="@drawable/ic_favorite_border_24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/ic_favorite_32dp"
             app:layout_constraintEnd_toStartOf="@+id/eventImageViewShare"
-            app:layout_constraintTop_toBottomOf="@+id/eventImageViewThumbnail" />
+            app:layout_constraintTop_toBottomOf="@+id/imageEventHome" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

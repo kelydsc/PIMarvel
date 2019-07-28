@@ -13,7 +13,7 @@
     <string name="or">OR</string>
     <string name="welcome">Welcome!</string>
     <string name="bottom_nav_menu_game">Game</string>
-    <string name="bottom_nav_menu_movie">Movies</string>
+    <string name="bottom_nav_menu_serie">Series</string>
     <string name="bottom_nav_menu_comic">Comics</string>
     <string name="bottom_nav_menu_event">Events</string>
     <string name="bottom_nav_menu_favorite">Favorite</string>

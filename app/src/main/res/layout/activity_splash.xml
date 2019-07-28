@@ -12,8 +12,7 @@
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_splash_marvel"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-8dp" />
+        tools:layout_editor_absoluteY="8dp" />
 
     <ImageView
         android:id="@+id/imageViewLogoMarvel"
