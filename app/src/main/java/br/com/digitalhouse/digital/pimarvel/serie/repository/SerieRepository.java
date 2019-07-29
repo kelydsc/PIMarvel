@@ -4,8 +4,8 @@ import android.content.Context;
 
 import java.util.List;
 
-import br.com.digitalhouse.digital.pimarvel.data.database.Database;
-import br.com.digitalhouse.digital.pimarvel.serie.dao.SerieDAO;
+import br.com.digitalhouse.digital.pimarvel.serie.data.database.Database;
+import br.com.digitalhouse.digital.pimarvel.serie.data.database.dao.SerieDAO;
 import br.com.digitalhouse.digital.pimarvel.serie.model.Result;
 import br.com.digitalhouse.digital.pimarvel.serie.model.SeriesResponse;
 import io.reactivex.Flowable;

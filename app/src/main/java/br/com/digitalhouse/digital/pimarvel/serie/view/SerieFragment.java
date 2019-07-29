@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +23,17 @@ import br.com.digitalhouse.digital.pimarvel.serie.viewmodel.SerieViewModel;
 public class SerieFragment extends Fragment {
 
     private RecyclerView recyclerViewhome;
-    private RecyclerviewSerieAdapter recyclerviewSerieAdapter;
+    private RecyclerviewSerieAdapter adapter;
     private SerieViewModel serieViewModel;
+
+    private List<Result> serieList = new ArrayList<>();
 
     public SerieFragment() {
         // Required empty public constructor
     }
 
     @Override
+
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
@@ -39,17 +44,32 @@ public class SerieFragment extends Fragment {
 
         recyclerViewhome = view.findViewById(R.id.recyclerview_home_serie);
 
-        recyclerviewSerieAdapter = new RecyclerviewSerieAdapter(new ArrayList<>());
-        recyclerViewhome.setAdapter(recyclerviewSerieAdapter);
+        //adapter = new RecyclerviewComicAdapter(new ArrayList<>());
+        adapter = new RecyclerviewSerieAdapter(serieList);
+        recyclerViewhome.setAdapter(adapter);
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
 
         recyclerViewhome.setLayoutManager(gridLayoutManager);
 
-        serieViewModel.getSeries();
+        serieViewModel.searchSerie();
 
-        serieViewModel.getResults().observe(this, (List<Result> results) -> {
-            recyclerviewSerieAdapter.update(results);
+        // Adicionar os observables
+
+        serieViewModel.getResults().observe(this, series -> adapter.update(series));
+
+        //Observable Loading
+        serieViewModel.getLoadingLiveData().observe(this, isLoading -> {
+            if (isLoading) {
+                //progressBar.setVisibility(View.VISIBLE);
+            } else {
+                //progressBar.setVisibility(View.GONE);
+            }
+        });
+
+        //Observable Error
+        serieViewModel.getErrorLiveData().observe(this, throwable -> {
+            Snackbar.make(recyclerViewhome, throwable.getMessage(), Snackbar.LENGTH_SHORT).show();
         });
 
         return view;

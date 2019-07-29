@@ -76,7 +76,6 @@ public class RecyclerviewComicAdapter extends RecyclerView.Adapter<RecyclerviewC
 
         }
 
-
         private void bind(Result result) {
             Picasso.get().load(result.getThumbnail().getPath() + "/portrait_incredible." + result.getThumbnail().getExtension())
                     .placeholder(R.drawable.ic_logo_marvel)
@@ -91,8 +90,8 @@ public class RecyclerviewComicAdapter extends RecyclerView.Adapter<RecyclerviewC
     }
 
     public void update(List<Result> resultList) {
-
         this.results = resultList;
+
         notifyDataSetChanged();
     }
 }

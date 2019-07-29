@@ -4,10 +4,10 @@ import android.content.Context;
 
 import java.util.List;
 
-import br.com.digitalhouse.digital.pimarvel.comic.dao.ComicDAO;
+import br.com.digitalhouse.digital.pimarvel.comic.data.database.Database;
+import br.com.digitalhouse.digital.pimarvel.comic.data.database.dao.ComicDAO;
 import br.com.digitalhouse.digital.pimarvel.comic.model.ComicsResponse;
 import br.com.digitalhouse.digital.pimarvel.comic.model.Result;
-import br.com.digitalhouse.digital.pimarvel.data.database.Database;
 import io.reactivex.Flowable;
 import io.reactivex.Single;
 
@@ -36,7 +36,6 @@ public class ComicRepository {
         comicDAO.deleteAll();
         comicDAO.insertAll(results);
     }
-
 
     //Pega os items que virão da API de Comics
     public Single<ComicsResponse> getComics() {

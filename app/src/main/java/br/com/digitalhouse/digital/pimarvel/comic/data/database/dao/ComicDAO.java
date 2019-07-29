@@ -1,4 +1,4 @@
-package br.com.digitalhouse.digital.pimarvel.serie.dao;
+package br.com.digitalhouse.digital.pimarvel.comic.data.database.dao;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
@@ -9,11 +9,11 @@ import androidx.room.Update;
 
 import java.util.List;
 
-import br.com.digitalhouse.digital.pimarvel.serie.model.Result;
+import br.com.digitalhouse.digital.pimarvel.comic.model.Result;
 import io.reactivex.Flowable;
 
 @Dao
-public interface SerieDAO {
+public interface ComicDAO {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Result result);
@@ -27,18 +27,18 @@ public interface SerieDAO {
     @Delete
     void delete(Result result);
 
-    @Query("DELETE FROM series")
+    @Query("DELETE FROM comics")
     void deleteAll();
 
-    @Query("SELECT * FROM series")
+    @Query("SELECT * FROM comics")
     List<Result> getAll();
 
-    @Query("SELECT * FROM series")
+    @Query("SELECT * FROM comics")
     Flowable<List<Result>> getAllRxJava();
 
-    @Query("SELECT * FROM series WHERE id = :id ORDER BY id")
+    @Query("SELECT * FROM comics WHERE id = :id ORDER BY id")
     Result getById(String id);
 
-    @Query("SELECT * FROM series WHERE title = :title")
+    @Query("SELECT * FROM comics WHERE title = :title")
     Result getByTitle(String title);
 }

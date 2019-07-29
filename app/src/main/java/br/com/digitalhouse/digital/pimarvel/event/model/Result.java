@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 
@@ -12,6 +13,9 @@ import java.util.List;
 
 @Entity(tableName = "events")
 public class Result implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private long idBancoEvent;
 
     @Expose
     private Characters characters;
@@ -65,6 +69,7 @@ public class Result implements Parcelable {
     }
 
     protected Result(Parcel in) {
+        idBancoEvent = in.readLong();
         characters = in.readParcelable(Characters.class.getClassLoader());
         comics = in.readParcelable(Comics.class.getClassLoader());
         creators = in.readParcelable(Creators.class.getClassLoader());
@@ -75,8 +80,12 @@ public class Result implements Parcelable {
         next = in.readParcelable(Next.class.getClassLoader());
         previous = in.readParcelable(Previous.class.getClassLoader());
         resourceURI = in.readString();
+        series = in.readParcelable(Series.class.getClassLoader());
         start = in.readString();
+        stories = in.readParcelable(Stories.class.getClassLoader());
+        thumbnail = in.readParcelable(Thumbnail.class.getClassLoader());
         title = in.readString();
+        urls = in.createTypedArrayList(Url.CREATOR);
     }
 
     public static final Creator<Result> CREATOR = new Creator<Result>() {
@@ -90,6 +99,14 @@ public class Result implements Parcelable {
             return new Result[size];
         }
     };
+
+    public long getIdBancoEvent() {
+        return idBancoEvent;
+    }
+
+    public void setIdBancoEvent(long idBancoEvent) {
+        this.idBancoEvent = idBancoEvent;
+    }
 
     public Characters getCharacters() {
         return characters;
@@ -226,6 +243,7 @@ public class Result implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idBancoEvent);
         dest.writeParcelable(characters, flags);
         dest.writeParcelable(comics, flags);
         dest.writeParcelable(creators, flags);
@@ -236,7 +254,11 @@ public class Result implements Parcelable {
         dest.writeParcelable(next, flags);
         dest.writeParcelable(previous, flags);
         dest.writeString(resourceURI);
+        dest.writeParcelable(series, flags);
         dest.writeString(start);
+        dest.writeParcelable(stories, flags);
+        dest.writeParcelable(thumbnail, flags);
         dest.writeString(title);
+        dest.writeTypedList(urls);
     }
 }

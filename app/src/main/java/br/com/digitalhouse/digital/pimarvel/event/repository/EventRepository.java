@@ -5,8 +5,8 @@ import android.content.Context;
 
 import java.util.List;
 
-import br.com.digitalhouse.digital.pimarvel.data.database.Database;
-import br.com.digitalhouse.digital.pimarvel.event.dao.EventDAO;
+import br.com.digitalhouse.digital.pimarvel.event.data.database.Database;
+import br.com.digitalhouse.digital.pimarvel.event.data.database.dao.EventDAO;
 import br.com.digitalhouse.digital.pimarvel.event.model.EventsResponse;
 import br.com.digitalhouse.digital.pimarvel.event.model.Result;
 import io.reactivex.Flowable;

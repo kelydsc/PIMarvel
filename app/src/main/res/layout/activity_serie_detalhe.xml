@@ -29,8 +29,6 @@
         android:layout_height="wrap_content"
         android:background="@color/appBackground"
         android:fillViewport="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
         app:layout_constraintEnd_toEndOf="@+id/appBarLayout"
         app:layout_constraintStart_toStartOf="@+id/appBarLayout"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" >
@@ -40,9 +38,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp">
+            android:layout_margin="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,17 +49,15 @@
                     android:id="@+id/iconDetail"
                     android:layout_width="120dp"
                     android:layout_height="180dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/movies_avengers_endgame" />
+                    android:src="@drawable/ic_digital_comic" />
 
                 <ImageView
                     android:id="@+id/image_star_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="160dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_star_gold" />
 
@@ -71,7 +65,7 @@
                     android:id="@+id/image_star_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="160dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_star_gold" />
 
@@ -79,7 +73,7 @@
                     android:id="@+id/image_star_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="160dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_star_gold" />
 
@@ -87,7 +81,7 @@
                     android:id="@+id/image_star_4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="160dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_star_gold" />
 
@@ -95,7 +89,7 @@
                     android:id="@+id/image_star_5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="160dp"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_star_gold" />
 
@@ -103,12 +97,12 @@
                     android:id="@+id/image_favorito"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="72dp"
+                    android:layout_marginStart="82dp"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="65dp"
+                    android:layout_marginTop="160dp"
                     android:layout_marginEnd="8dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_favorite_32dp" />
+                    android:src="@drawable/ic_favorite_24dp" />
 
             </LinearLayout>
 

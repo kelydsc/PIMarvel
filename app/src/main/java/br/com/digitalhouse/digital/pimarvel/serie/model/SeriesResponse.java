@@ -20,6 +20,7 @@ public class SeriesResponse implements Parcelable {
     @Expose
     private String copyright;
 
+    //retorna o resultado retornado pela chamada da API
     @Expose
     private Data data;
 

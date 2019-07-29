@@ -56,7 +56,7 @@ public class ComicDetalheActivity extends AppCompatActivity {
                 .placeholder(R.drawable.ic_logo_marvel)
                 .error(R.drawable.ic_logo_marvel)
                 .into(imageHero);
-       */
+        */
 
         if (!result.getImages().isEmpty()) {
             Picasso.get().load(result.getImages().get(0).getPath() + "/portrait_incredible." + result.getImages().get(0).getExtension())

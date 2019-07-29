@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
@@ -69,19 +70,24 @@ public class RecyclerviewEventAdapter extends RecyclerView.Adapter<RecyclerviewE
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageEventHome;
+        TextView textViewEventTitle;
+        TextView textViewEventDescription;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageEventHome = itemView.findViewById(R.id.imageEventHome);
-
+            textViewEventTitle = itemView.findViewById(R.id.textTitle);
+            textViewEventDescription = itemView.findViewById(R.id.textDescription);
         }
-
 
         private void bind(Result result) {
             Picasso.get().load(result.getThumbnail().getPath() + "/portrait_incredible." + result.getThumbnail().getExtension())
                     .placeholder(R.drawable.ic_logo_marvel)
                     .error(R.drawable.ic_logo_marvel)
                     .into(imageEventHome);
+
+            textViewEventTitle.setText(result.getTitle());
+            textViewEventDescription.setText(result.getDescription());
         }
     }
 
@@ -91,7 +97,6 @@ public class RecyclerviewEventAdapter extends RecyclerView.Adapter<RecyclerviewE
     }
 
     public void update(List<Result> resultList) {
-
         this.results = resultList;
         notifyDataSetChanged();
     }

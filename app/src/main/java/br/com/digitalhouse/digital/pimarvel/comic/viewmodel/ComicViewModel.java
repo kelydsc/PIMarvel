@@ -1,7 +1,6 @@
 package br.com.digitalhouse.digital.pimarvel.comic.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -10,23 +9,26 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import br.com.digitalhouse.digital.pimarvel.comic.dao.ComicDAO;
+import br.com.digitalhouse.digital.pimarvel.comic.data.database.Database;
+import br.com.digitalhouse.digital.pimarvel.comic.data.database.dao.ComicDAO;
 import br.com.digitalhouse.digital.pimarvel.comic.model.ComicsResponse;
 import br.com.digitalhouse.digital.pimarvel.comic.model.Result;
 import br.com.digitalhouse.digital.pimarvel.comic.repository.ComicRepository;
-import br.com.digitalhouse.digital.pimarvel.data.database.Database;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class ComicViewModel extends AndroidViewModel {// Variáveis que serão usadas para buscar os quadrinhos na API
+import static br.com.digitalhouse.digital.pimarvel.util.AppUtil.isNetworkConnected;
+
+public class ComicViewModel extends AndroidViewModel {
 
     private MutableLiveData<List<Result>> resultLiveData = new MutableLiveData<>();
     private MutableLiveData<Throwable> errorLiveData = new MutableLiveData<>();
     private MutableLiveData<Boolean> loadingLiveData = new MutableLiveData<>();
 
     private CompositeDisposable disposable = new CompositeDisposable();
+
     private ComicRepository repository = new ComicRepository();
 
     // Construtor padrão do viewmodel
@@ -37,7 +39,6 @@ public class ComicViewModel extends AndroidViewModel {// Variáveis que serão u
     public LiveData<List<Result>> getResults() {
         return resultLiveData;
     }
-
 
     public LiveData<Boolean> getLoadingLiveData() {
 
@@ -50,6 +51,7 @@ public class ComicViewModel extends AndroidViewModel {// Variáveis que serão u
         return errorLiveData;
 
     }
+
 
     public void searchComic() {
 
@@ -78,16 +80,16 @@ public class ComicViewModel extends AndroidViewModel {// Variáveis que serão u
         );
     }
 
-    private ComicsResponse saveItems(Result result) {
+    private ComicsResponse saveItems(ComicsResponse comicsResponse) {
 
         ComicDAO comicDAO = Database.getDatabase(getApplication()
                 .getApplicationContext())
                 .comicDAO();
 
         comicDAO.deleteAll();
-        comicDAO.insertAll(result.getData().getResults());
+        comicDAO.insertAll(comicsResponse.getData().getResults());
 
-        return result;
+        return comicsResponse;
 
     }
 
@@ -95,27 +97,21 @@ public class ComicViewModel extends AndroidViewModel {// Variáveis que serão u
     public void getComics() {
 
         // Adicionamos a chamada a um disposible para podermos eliminar o disposable da destruição do viewmodel
-        disposable.add(repository.getComics()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(disposable1 -> loadingLiveData.setValue(true))
-                .doAfterTerminate(() -> loadingLiveData.setValue(false))
-                .subscribe(new Consumer<ComicsResponse>() {
-                    @Override
-                    public void accept(ComicsResponse response) throws Exception {
-                        // Chegou aqui então alteramos o live data, assim a View que está observando ele pode atualizar a tela
-                        resultLiveData.setValue(response.getData().getResults());
-                    }
-                }, throwable -> errorLiveData.setValue(throwable)));
+        disposable.add(
+                repository.getComics()
+                        .subscribeOn(Schedulers.newThread())
+                        .map(comicsResponse -> saveItems(comicsResponse))
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnSubscribe(disposable1 -> loadingLiveData.setValue(true))
+                        .doAfterTerminate(() -> loadingLiveData.setValue(false))
+                        .subscribe(comicsResponse -> resultLiveData.setValue(comicsResponse.getData().getResults())
+                                , throwable -> errorLiveData.setValue(throwable)));
     }
 
     // Limpa as chamadas que fizemos no RX
     @Override
     protected void onCleared() {
-
         super.onCleared();
         disposable.clear();
     }
-
-
 }

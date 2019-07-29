@@ -18,8 +18,10 @@ public class SerieDetalheActivity extends AppCompatActivity {
     private ImageView imageHero;
     private Result result;
     private TextView textTitle;
-    private TextView textViewDescription;
+    //private TextView textViewDescription;
     private TextView textViewRating;
+    private TextView textViewStartYear;
+    private TextView textViewEndYear;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +46,14 @@ public class SerieDetalheActivity extends AppCompatActivity {
 
         // Configuramos nas view os valores do quadrinho que pegamos
         textTitle.setText(result.getTitle());
-        //textViewDescription.setText(Html.fromHtml(result.getDescription()));
 
         textViewRating.setText(Html.fromHtml(result.getRating()));
+
+        textViewStartYear.setText(result.getStartYear());
+
+        textViewEndYear.setText(result.getEndYear());
+
+        //textViewDescription.setText(Html.fromHtml(result.getDescription()));
 
         /*
         Picasso.get().load(result.getThumbnail().getPath() + "/portrait_incredible." + result.getThumbnail().getExtension())
@@ -81,7 +88,9 @@ public class SerieDetalheActivity extends AppCompatActivity {
     private void initViews() {
         imageHero = findViewById(R.id.iconDetail);
         textTitle = findViewById(R.id.textTitle);
-        textViewDescription = findViewById(R.id.textDescription);
+        //textViewDescription = findViewById(R.id.textDescription);
         textViewRating = findViewById(R.id.textViewRating);
+        textViewStartYear = findViewById(R.id.textViewStartYear);
+        textViewEndYear = findViewById(R.id.textViewEndYear);
     }
 }

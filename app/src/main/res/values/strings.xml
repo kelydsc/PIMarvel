@@ -54,5 +54,7 @@
     "Trapped in the time-lost land of King Arthur, Iron Man battles Doctor"
     "Doom!"
     </string>
+    <string name="event_description">Event description</string>
+    <string name="event_title">Event Title</string>
 
 </resources>

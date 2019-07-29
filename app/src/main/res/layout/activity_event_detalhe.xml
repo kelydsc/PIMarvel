@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".event.view.EventDetalheActivity"
     android:background="@color/appBackground"
+    tools:context=".event.view.EventDetalheActivity"
     tools:ignore="MissingConstraints">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -36,16 +36,16 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp">
+            android:layout_margin="16dp"
+            android:padding="8dp">
 
             <ImageView
                 android:id="@+id/imageEventHome"
-                android:layout_width="match_parent"
-                android:layout_height="175dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_logo_marvel"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                android:layout_width="150dp"
+                android:layout_height="180dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_event"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,58 +54,59 @@
                 style="@style/TextTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
                 android:gravity="left"
+                android:justificationMode="inter_word"
+                android:text="@string/event_title"
                 android:textColor="#0A7AA6"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.513"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageEventHome"
-                tools:text="Event Title" />
-
-            <ImageView
-                android:id="@+id/eventImageViewShare"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="11dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_share_black_32dp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageEventHome" />
 
             <ImageView
                 android:id="@+id/eventImageViewFavorite"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginEnd="8dp"
-                android:src="@drawable/ic_favorite_32dp"
+                android:layout_marginTop="160dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_favorite_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageEventHome"
                 app:layout_constraintEnd_toStartOf="@+id/eventImageViewShare"
-                app:layout_constraintTop_toBottomOf="@+id/imageEventHome" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/imageEventHome"
+                app:layout_constraintTop_toTopOf="@+id/imageEventHome"
+                app:layout_constraintVertical_bias="0.425" />
+
+            <ImageView
+                android:id="@+id/eventImageViewShare"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/eventImageViewFavorite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/eventImageViewFavorite" />
 
             <TextView
                 android:id="@+id/textDescription"
                 style="@style/TextTheme"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
-                android:justificationMode="inter_word"
-                android:textColor="#000000"
                 android:gravity="left"
+                android:justificationMode="inter_word"
+                android:text="@string/event_description"
+                android:textColor="#000000"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textTitle"
-                tools:text="Event description" />
+                app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

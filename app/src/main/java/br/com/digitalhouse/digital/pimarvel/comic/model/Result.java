@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 
@@ -12,6 +13,9 @@ import java.util.List;
 
 @Entity(tableName = "comics")
 public class Result implements Parcelable {
+
+    @PrimaryKey(autoGenerate = true)
+    private long idBancoComics;
 
     @Expose
     private Characters characters;
@@ -104,6 +108,7 @@ public class Result implements Parcelable {
     }
 
     protected Result(Parcel in) {
+        idBancoComics = in.readLong();
         characters = in.readParcelable(Characters.class.getClassLoader());
         collectedIssues = in.createTypedArrayList(CollectedIssue.CREATOR);
         collections = in.createTypedArrayList(Collection.CREATOR);
@@ -124,9 +129,15 @@ public class Result implements Parcelable {
         pageCount = in.readString();
         prices = in.createTypedArrayList(Price.CREATOR);
         resourceURI = in.readString();
+        series = in.readParcelable(Series.class.getClassLoader());
+        stories = in.readParcelable(Stories.class.getClassLoader());
+        textObjects = in.createTypedArrayList(TextObject.CREATOR);
+        thumbnail = in.readParcelable(Thumbnail.class.getClassLoader());
         title = in.readString();
         upc = in.readString();
+        urls = in.createTypedArrayList(Url.CREATOR);
         variantDescription = in.readString();
+        variants = in.createTypedArrayList(Variant.CREATOR);
     }
 
     public static final Creator<Result> CREATOR = new Creator<Result>() {
@@ -140,6 +151,14 @@ public class Result implements Parcelable {
             return new Result[size];
         }
     };
+
+    public long getIdBancoComics() {
+        return idBancoComics;
+    }
+
+    public void setIdBancoComics(long idBancoComics) {
+        this.idBancoComics = idBancoComics;
+    }
 
     public Characters getCharacters() {
         return characters;
@@ -380,6 +399,7 @@ public class Result implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(idBancoComics);
         dest.writeParcelable(characters, flags);
         dest.writeTypedList(collectedIssues);
         dest.writeTypedList(collections);
@@ -400,8 +420,14 @@ public class Result implements Parcelable {
         dest.writeString(pageCount);
         dest.writeTypedList(prices);
         dest.writeString(resourceURI);
+        dest.writeParcelable(series, flags);
+        dest.writeParcelable(stories, flags);
+        dest.writeTypedList(textObjects);
+        dest.writeParcelable(thumbnail, flags);
         dest.writeString(title);
         dest.writeString(upc);
+        dest.writeTypedList(urls);
         dest.writeString(variantDescription);
+        dest.writeTypedList(variants);
     }
 }
