@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -40,11 +41,12 @@ public class ComicFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_comic, container, false);
 
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
+
         comicViewModel = ViewModelProviders.of(this).get(ComicViewModel.class);
 
         recyclerViewhome = view.findViewById(R.id.recyclerview_home_comic);
 
-        //adapter = new RecyclerviewComicAdapter(new ArrayList<>());
         adapter = new RecyclerviewComicAdapter(comicList);
         recyclerViewhome.setAdapter(adapter);
 
@@ -55,15 +57,14 @@ public class ComicFragment extends Fragment {
         comicViewModel.searchComic();
 
         // Adicionar os observables
-
         comicViewModel.getResults().observe(this, comics -> adapter.update(comics));
 
         //Observable Loading
         comicViewModel.getLoadingLiveData().observe(this, isLoading -> {
             if (isLoading) {
-                //progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
             } else {
-                //progressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
             }
         });
 

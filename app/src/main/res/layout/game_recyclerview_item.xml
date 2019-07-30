@@ -1,89 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recyclerImageViewHeroi_01"
+        android:id="@+id/imageViewHeroi01"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        app:civ_border_width="5dp"
+        android:src="@drawable/ic_personagem_game_groot"
         app:civ_border_color="#F2D889"
-        android:src="@drawable/ic_personagem_game"
+        app:civ_border_width="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recyclerImageViewHeroi_02"
+        android:id="@+id/imageViewHeroi02"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
-        android:src="@drawable/ic_personagem_game"
+        android:src="@drawable/ic_personagem_game_thor"
         app:civ_border_color="#F2D889"
         app:civ_border_width="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerImageViewHeroi_01"
-        app:layout_constraintStart_toEndOf="@+id/recyclerImageViewHeroi_01"
-        app:layout_constraintTop_toTopOf="@+id/recyclerImageViewHeroi_01"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewHeroi01"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHeroi01"
+        app:layout_constraintTop_toTopOf="@+id/imageViewHeroi01"
         app:layout_constraintVertical_bias="0.0" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recyclerImageViewHeroi_03"
+        android:id="@+id/imageViewHeroi03"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:src="@drawable/ic_personagem_game"
+        android:src="@drawable/ic_personagem_game_pantera_negra"
         app:civ_border_color="#F2D889"
         app:civ_border_width="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerImageViewHeroi_02"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewHeroi02"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/recyclerImageViewHeroi_02"
-        app:layout_constraintTop_toTopOf="@+id/recyclerImageViewHeroi_02"
+        app:layout_constraintStart_toEndOf="@+id/imageViewHeroi02"
+        app:layout_constraintTop_toTopOf="@+id/imageViewHeroi02"
         app:layout_constraintVertical_bias="0.0" />
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recyclerImageViewVilao_01"
+        android:id="@+id/imageViewVilao01"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/ic_personagem_game"
+        android:src="@drawable/ic_personagem_game_thanos"
         app:civ_border_color="#F2D889"
         app:civ_border_width="5dp"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerImageViewHeroi_01"
-        app:layout_constraintStart_toStartOf="@+id/recyclerImageViewHeroi_01"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerImageViewHeroi_01" />
+        app:layout_constraintEnd_toEndOf="@+id/imageViewHeroi01"
+        app:layout_constraintStart_toStartOf="@+id/imageViewHeroi01"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewHeroi01" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recyclerImageViewVilao_02"
+        android:id="@+id/imageViewVilao02"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/ic_personagem_game"
+        android:src="@drawable/ic_personagem_game_loki"
         app:civ_border_color="#F2D889"
         app:civ_border_width="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerImageViewVilao_01"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerImageViewHeroi_02"
-        app:layout_constraintStart_toStartOf="@+id/recyclerImageViewHeroi_02"
-        app:layout_constraintTop_toTopOf="@+id/recyclerImageViewVilao_01" />
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewVilao01"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewHeroi02"
+        app:layout_constraintStart_toStartOf="@+id/imageViewHeroi02"
+        app:layout_constraintTop_toTopOf="@+id/imageViewVilao01" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/recyclerImageViewVilao_03"
+        android:id="@+id/imageViewVilao03"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
-        android:src="@drawable/ic_personagem_game"
+        android:src="@drawable/ic_personagem_game_erik"
         app:civ_border_color="#F2D889"
         app:civ_border_width="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerImageViewVilao_02"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerImageViewHeroi_03"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewVilao02"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewHeroi03"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/recyclerImageViewHeroi_03"
-        app:layout_constraintTop_toTopOf="@+id/recyclerImageViewVilao_02"
+        app:layout_constraintStart_toStartOf="@+id/imageViewHeroi03"
+        app:layout_constraintTop_toTopOf="@+id/imageViewVilao02"
         app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

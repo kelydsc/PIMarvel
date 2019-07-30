@@ -16,7 +16,6 @@ import br.com.digitalhouse.digital.pimarvel.comic.model.Result;
 import br.com.digitalhouse.digital.pimarvel.comic.repository.ComicRepository;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static br.com.digitalhouse.digital.pimarvel.util.AppUtil.isNetworkConnected;
@@ -31,7 +30,7 @@ public class ComicViewModel extends AndroidViewModel {
 
     private ComicRepository repository = new ComicRepository();
 
-    // Construtor padrão do viewmodel
+    //Construtor padrão do viewmodel
     public ComicViewModel(@NonNull Application application) {
         super(application);
     }

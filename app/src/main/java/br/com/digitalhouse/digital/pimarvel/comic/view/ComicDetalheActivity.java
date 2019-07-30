@@ -34,7 +34,6 @@ public class ComicDetalheActivity extends AppCompatActivity {
         //Seta a toolbar e o botão voltar(back)
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //toolbar.setTitle("Marvel Universe Comic");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Inicializa as views que serão utilizadas na activity

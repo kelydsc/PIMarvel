@@ -23,7 +23,6 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnCreateAccount;
     private Button btnLogin;
     private ImageView imageViewGoogle;
-    private ImageView imageViewFacebook;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +40,6 @@ public class LoginActivity extends AppCompatActivity {
 
         //Chama a tela de acesso do Google
         chamaTelaAcessoGoogle();
-
-        //Chama a tela de acesso ado Facebook
-        chamaTelaAcessoFacebook();
     }
 
     private void initViews() {
@@ -52,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
         btnLogin = findViewById(R.id.btnLogin);
         imageViewGoogle = findViewById(R.id.imageViewGoogle);
-        imageViewFacebook = findViewById(R.id.imageViewFacebook);
     }
 
     private void validaDadosLogin() {
@@ -109,15 +104,5 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void chamaTelaAcessoFacebook() {
-        imageViewFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
     }
 }

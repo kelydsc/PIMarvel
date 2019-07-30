@@ -1,7 +1,8 @@
 package br.com.digitalhouse.digital.pimarvel.menu.view;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import br.com.digitalhouse.digital.pimarvel.R;

@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
-//import java.util.Date;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.comic.model.Characters;
@@ -24,9 +23,12 @@ import br.com.digitalhouse.digital.pimarvel.comic.model.Thumbnail;
 import br.com.digitalhouse.digital.pimarvel.comic.model.Url;
 import br.com.digitalhouse.digital.pimarvel.comic.model.Variant;
 
+//import java.util.Date;
+
 public class Converters {
 
     //import java.util.Date;
+    //Foi substituido pelo campo do Model, porque estava ocorrendo conflito
     /*
     @TypeConverter
     public Date toDate(Long timestamp) {

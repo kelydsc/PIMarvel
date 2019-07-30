@@ -45,7 +45,6 @@ public class BaseActivity extends AppCompatActivity {
     private void initFirstFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                // .replace(R.id.container, new EventFragment())
                 .replace(R.id.container, new EventFragment())
                 .commit();
     }

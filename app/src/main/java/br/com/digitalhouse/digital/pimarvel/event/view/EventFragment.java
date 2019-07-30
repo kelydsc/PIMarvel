@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -41,11 +41,12 @@ public class EventFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_event, container, false);
 
+        ProgressBar progressBar = view.findViewById(R.id.progressBar);
+
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
 
         recyclerViewhome = view.findViewById(R.id.recyclerview_home_event);
 
-        //adapter = new RecyclerviewComicAdapter(new ArrayList<>());
         adapter = new RecyclerviewEventAdapter(eventList);
         recyclerViewhome.setAdapter(adapter);
 
@@ -59,9 +60,9 @@ public class EventFragment extends Fragment {
         //Observable Loading
         eventViewModel.getLoadingLiveData().observe(this, isLoading -> {
             if (isLoading) {
-                //progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
             } else {
-                //progressBar.setVisibility(View.GONE);
+                progressBar.setVisibility(View.GONE);
             }
         });
 

@@ -9,7 +9,8 @@ import androidx.room.TypeConverters;
 import br.com.digitalhouse.digital.pimarvel.serie.data.database.dao.SerieDAO;
 import br.com.digitalhouse.digital.pimarvel.serie.model.Result;
 
-@androidx.room.Database(entities = {Result.class}, version = 05, exportSchema = false)
+//Foi criado um Database para cada API para evitar conflito devido a classe Result
+@androidx.room.Database(entities = {Result.class}, version = 07, exportSchema = false)
 @TypeConverters(Converters.class)
 
 public abstract class Database extends RoomDatabase {

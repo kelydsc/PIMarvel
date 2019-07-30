@@ -4,6 +4,7 @@ package br.com.digitalhouse.digital.pimarvel.comic.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -13,9 +14,6 @@ import java.util.List;
 
 @Entity(tableName = "comics")
 public class Result implements Parcelable {
-
-    @PrimaryKey(autoGenerate = true)
-    private long idBancoComics;
 
     @Expose
     private Characters characters;
@@ -51,6 +49,8 @@ public class Result implements Parcelable {
     private String format;
 
     @Expose
+    @PrimaryKey
+    @NonNull
     private String id;
 
     @Expose
@@ -108,7 +108,6 @@ public class Result implements Parcelable {
     }
 
     protected Result(Parcel in) {
-        idBancoComics = in.readLong();
         characters = in.readParcelable(Characters.class.getClassLoader());
         collectedIssues = in.createTypedArrayList(CollectedIssue.CREATOR);
         collections = in.createTypedArrayList(Collection.CREATOR);
@@ -151,14 +150,6 @@ public class Result implements Parcelable {
             return new Result[size];
         }
     };
-
-    public long getIdBancoComics() {
-        return idBancoComics;
-    }
-
-    public void setIdBancoComics(long idBancoComics) {
-        this.idBancoComics = idBancoComics;
-    }
 
     public Characters getCharacters() {
         return characters;
@@ -399,7 +390,6 @@ public class Result implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(idBancoComics);
         dest.writeParcelable(characters, flags);
         dest.writeTypedList(collectedIssues);
         dest.writeTypedList(collections);
