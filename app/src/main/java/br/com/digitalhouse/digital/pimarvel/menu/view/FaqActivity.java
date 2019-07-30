@@ -41,10 +41,10 @@ public class FaqActivity extends AppCompatActivity implements RecyclerViewFaqCli
 
     private List<Faq> getQuestions() {
         List<Faq> faqs = new ArrayList<>();
-        faqs.add(new Faq("How do I choose a movie?", "Clicar em Filmes na barra de navegação embaixo > Escolher uma das capas > Ponto! Já tem todos os dados do filme selecionado."));
-        faqs.add(new Faq("How do I choose a HQ?", "Clicar em HQs na barra de navegação embaixo > Escolher uma das capas > Ponto! Já tem todos os dados do HQ selecionado."));
-        faqs.add(new Faq("How do I choose an avatar and save on preference?", "Clicar no menu superior > Escolher Settings > Ponto! Escolha o seu herói!"));
-        faqs.add(new Faq("How to play the game?", "Clicar em Game na barra de navegação embaixo > Escolher um herói ou vilão na barra abaixo dos quadros de luta > Ponto! Agora derrote o computador!"));
+        faqs.add(new Faq("How do I choose a Series?", "1-Click on the phone icon in the bottom navigation bar.                                                               2-Click the series you would like to know more about."));
+        faqs.add(new Faq("How do I choose a HQ?", "1-Click on HQs in the bottom navigation bar.             2-Pick the HQ you would like to know more about."));
+        faqs.add(new Faq("How do I favorite a Event, HQ or Series?", "1-Click on the item you would like to favorite.      2- Now you just have to click on the heart icon.       3-If you would like to see all your favorites, click on the favorite tab on the bottom navigation bar."));
+        faqs.add(new Faq("How to play the game?", "1-Click on Game in the bottom navigation bar.        2-Now you are ready to beat the computer."));
         return faqs;
     }
 
