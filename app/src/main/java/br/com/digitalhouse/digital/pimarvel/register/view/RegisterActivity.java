@@ -1,15 +1,18 @@
 package br.com.digitalhouse.digital.pimarvel.register.view;
 
 import android.content.Intent;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.textfield.TextInputLayout;
+
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.base.view.BaseActivity;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -78,7 +81,7 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (senha.length() < minimalPassLen){
+                if (senha.length() < minimalPassLen) {
                     textInputLayoutPassword.setError("Enter password with 6 or more characters");
                     return;
                 }
@@ -99,7 +102,7 @@ public class RegisterActivity extends AppCompatActivity {
                         && !(confsenha.isEmpty())) {
 
                     //Chama a tela de Login
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
 
                     startActivity(intent);
                 }

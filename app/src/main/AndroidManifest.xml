@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.digitalhouse.digital.pimarvel">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -15,7 +12,39 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".game.view.GameDetalheActivity"
+            android:label="Marvel Universe Game"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".event.view.EventDetalheActivity"
+            android:label="Marvel Universe Events"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".serie.view.SerieDetalheActivity"
+            android:label="Marvel Digital Comics"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".comic.view.ComicDetalheActivity"
+            android:label="Marvel Universe Comics"
+            android:parentActivityName=".base.view.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".base.view.BaseActivity" />
+        </activity>
         <activity
             android:name=".menu.view.FaqDetailActivity"
             android:label="FAQ&apos;s"
@@ -39,13 +68,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".base.view.BaseActivity" />
         </activity>
-        <activity
-            android:name=".menu.view.SettingsActivity"
-            android:parentActivityName=".base.view.BaseActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
-        </activity>
         <activity android:name=".base.view.BaseActivity" />
         <activity android:name=".splash.view.SplashActivity">
             <intent-filter>
@@ -63,18 +85,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".login.view.LoginActivity" />
         </activity>
-        <receiver
-            android:name=".event.receivers.BootReceiver"
-            android:enabled="true"
-            android:exported="true"
-            android:label="BootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.LOCKED_BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
     </application>
 
 </manifest>

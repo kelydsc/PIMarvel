@@ -1,25 +1,26 @@
 package br.com.digitalhouse.digital.pimarvel.base.view;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.comic.view.ComicFragment;
 import br.com.digitalhouse.digital.pimarvel.event.view.EventFragment;
 import br.com.digitalhouse.digital.pimarvel.favorite.view.FavoriteFragment;
 import br.com.digitalhouse.digital.pimarvel.game.view.GameFragment;
-import br.com.digitalhouse.digital.pimarvel.comic.view.ComicFragment;
 import br.com.digitalhouse.digital.pimarvel.login.view.LoginActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.AboutActivity;
 import br.com.digitalhouse.digital.pimarvel.menu.view.FaqActivity;
-import br.com.digitalhouse.digital.pimarvel.menu.view.SettingsActivity;
-import br.com.digitalhouse.digital.pimarvel.movie.view.MovieFragment;
+import br.com.digitalhouse.digital.pimarvel.serie.view.SerieFragment;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -60,26 +61,26 @@ public class BaseActivity extends AppCompatActivity {
     //Define as ações de cada botão do NavigationBar
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.navigation_event:
-                replaceFragment(new EventFragment());
-                return true;
-            case R.id.navigation_favorite:
-                replaceFragment(new FavoriteFragment());
-                return true;
-            case R.id.navigation_game:
-                replaceFragment(new GameFragment());
-                return true;
-            case R.id.navigation_movie:
-                replaceFragment(new MovieFragment());
-                return true;
-            case R.id.navigation_comic:
-                replaceFragment(new ComicFragment());
-                return true;
-        }
-        return false;
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.navigation_event:
+                    replaceFragment(new EventFragment());
+                    return true;
+                case R.id.navigation_favorite:
+                    replaceFragment(new FavoriteFragment());
+                    return true;
+                case R.id.navigation_game:
+                    replaceFragment(new GameFragment());
+                    return true;
+                case R.id.navigation_serie:
+                    replaceFragment(new SerieFragment());
+                    return true;
+                case R.id.navigation_comic:
+                    replaceFragment(new ComicFragment());
+                    return true;
+            }
+            return false;
         }
     };
 
@@ -95,10 +96,6 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent;
 
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                intent = new Intent(BaseActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
             case R.id.action_faq:
                 intent = new Intent(BaseActivity.this, FaqActivity.class);
                 startActivity(intent);
