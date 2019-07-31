@@ -1,7 +1,9 @@
 package br.com.digitalhouse.digital.pimarvel.event.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class EventDetalheActivity extends AppCompatActivity {
     private Result result;
     private TextView textTitle;
     private TextView textViewDescription;
+    private ImageView eventImageViewShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +51,44 @@ public class EventDetalheActivity extends AppCompatActivity {
                 .placeholder(R.drawable.ic_logo_marvel)
                 .error(R.drawable.ic_logo_marvel)
                 .into(imageHero);
+
+        //Metodo para acessar os aplicativos de compartilhamento de dados
+        compartilharEvento();
+    }
+
+    private void compartilharEvento() {
+
+        eventImageViewShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Acao de envio na intencao de chamar outra Actitivity
+                Intent intentCompartilhar = new Intent(Intent.ACTION_SEND);
+
+                //Envia texto no compartilhamento
+                intentCompartilhar.putExtra(Intent.EXTRA_TEXT, "Sharing event:" + "\n" +
+                        "\nEvent: " + result.getTitle() + "\n" +
+                        "\nDescription: " + result.getDescription() + "\n" +
+                        "\nImage: " + result.getThumbnail().getPath() + "/portrait_incredible."
+                        + result.getThumbnail().getExtension());
+
+                //tipo de compartilhamento
+                intentCompartilhar.setType("text/plain");
+
+                //Mostra os aplicativos disponiveis para compartilhamento de dados
+                Intent intentChooser = Intent.createChooser(
+                        intentCompartilhar, "Compartilhar via:");
+
+                //Start na Activity de compartilhamento
+                startActivity(intentChooser);
+            }
+        });
     }
 
     private void initViews() {
         imageHero = findViewById(R.id.imageEventHome);
         textTitle = findViewById(R.id.textTitle);
         textViewDescription = findViewById(R.id.textDescription);
+        eventImageViewShare = findViewById(R.id.eventImageViewShare);
     }
 }
