@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
@@ -69,10 +70,12 @@ public class RecyclerviewSerieAdapter extends RecyclerView.Adapter<RecyclerviewS
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageSerieHome;
+        TextView textViewSerieTitle;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageSerieHome = itemView.findViewById(R.id.imageSerieHome);
+            textViewSerieTitle = itemView.findViewById(R.id.textTitle);
 
         }
 
@@ -82,6 +85,8 @@ public class RecyclerviewSerieAdapter extends RecyclerView.Adapter<RecyclerviewS
                     .placeholder(R.drawable.ic_logo_marvel)
                     .error(R.drawable.ic_logo_marvel)
                     .into(imageSerieHome);
+
+            textViewSerieTitle.setText(result.getTitle());
         }
     }
 

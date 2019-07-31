@@ -50,7 +50,7 @@ public class SerieFragment extends Fragment {
         adapter = new RecyclerviewSerieAdapter(serieList);
         recyclerViewhome.setAdapter(adapter);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
 
         recyclerViewhome.setLayoutManager(gridLayoutManager);
 

@@ -31,7 +31,7 @@
         </activity>
         <activity
             android:name=".serie.view.SerieDetalheActivity"
-            android:label="Marvel Universe Digital Comics"
+            android:label="Marvel Digital Comics"
             android:parentActivityName=".base.view.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

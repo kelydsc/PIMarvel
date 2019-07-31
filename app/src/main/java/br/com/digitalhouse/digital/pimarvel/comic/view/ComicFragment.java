@@ -50,7 +50,7 @@ public class ComicFragment extends Fragment {
         adapter = new RecyclerviewComicAdapter(comicList);
         recyclerViewhome.setAdapter(adapter);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
 
         recyclerViewhome.setLayoutManager(gridLayoutManager);
 

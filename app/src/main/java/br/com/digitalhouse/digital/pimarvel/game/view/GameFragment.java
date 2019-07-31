@@ -40,6 +40,7 @@ public class GameFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
+        /*
         imageViewHeroi01 = view.findViewById(R.id.imageViewHeroi01);
         imageViewHeroi02 = view.findViewById(R.id.imageViewHeroi02);
         imageViewHeroi03 = view.findViewById(R.id.imageViewHeroi03);
@@ -120,6 +121,8 @@ public class GameFragment extends Fragment {
             }
         });
 
+*/
         return view;
     }
+
 }

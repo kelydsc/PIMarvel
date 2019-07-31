@@ -8,6 +8,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.squareup.picasso.Picasso;
+
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.serie.model.Result;
 
@@ -49,12 +51,10 @@ public class SerieDetalheActivity extends AppCompatActivity {
 
         textViewEndYear.setText(result.getEndYear());
 
-        /*
         Picasso.get().load(result.getThumbnail().getPath() + "/portrait_incredible." + result.getThumbnail().getExtension())
                 .placeholder(R.drawable.ic_logo_marvel)
                 .error(R.drawable.ic_logo_marvel)
                 .into(imageHero);
-                *///voltar
     }
 
     private void initViews() {

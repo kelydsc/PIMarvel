@@ -15,6 +15,8 @@ import br.com.digitalhouse.digital.pimarvel.R;
 
 public class GameDetalheActivity extends AppCompatActivity {
 
+
+
     //Declaração das variaveis para calcular a pontuação e o numero de jogadas
     private int pontuacaoApp = 0;
     private int pontuacaoUsuario = 0;
@@ -230,4 +232,6 @@ public class GameDetalheActivity extends AppCompatActivity {
         imageViewVilao02 = findViewById(R.id.imageViewVilao02);
         imageViewVilao03 = findViewById(R.id.imageViewVilao03);
     }
+
+
 }
