@@ -8,7 +8,7 @@ import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -50,9 +50,7 @@ public class SerieFragment extends Fragment {
         adapter = new RecyclerviewSerieAdapter(serieList);
         recyclerViewhome.setAdapter(adapter);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 2);
-
-        recyclerViewhome.setLayoutManager(gridLayoutManager);
+        recyclerViewhome.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         serieViewModel.searchSerie();
 
