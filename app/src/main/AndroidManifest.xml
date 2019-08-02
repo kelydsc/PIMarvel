@@ -14,14 +14,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.game.view.GameDetalheActivity"
-            android:label="Marvel Universe Game"
-            android:parentActivityName=".view.base.BaseActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".view.base.BaseActivity" />
-        </activity>
-        <activity
             android:name=".view.event.EventDetalheActivity"
             android:label="Marvel Universe Events"
             android:parentActivityName=".view.base.BaseActivity">
