@@ -75,7 +75,10 @@ public class ComicDetalheActivity extends AppCompatActivity {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+
     }
+
+
 
     private void initViews() {
         imageHero = findViewById(R.id.iconDetail);
