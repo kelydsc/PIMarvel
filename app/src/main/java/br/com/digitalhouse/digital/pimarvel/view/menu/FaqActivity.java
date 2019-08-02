@@ -70,6 +70,13 @@ public class FaqActivity extends AppCompatActivity implements RecyclerViewFaqCli
 
         return faqs;
     }
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); // one inherited from android.support.v4.app.FragmentActivity
+
+        return false;
+    }
+
 
     @Override
     public void onClick(Faq faq) {
