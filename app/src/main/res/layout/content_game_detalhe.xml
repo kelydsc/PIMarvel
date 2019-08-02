@@ -1,179 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:background="@color/appBackground"
-    android:orientation="vertical"
-    android:padding="8dp"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:ignore="MissingConstraints">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/appBackground">
 
-        <TextView
-            android:id="@+id/textViewTituloEscolhadoApp"
-            android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/title_escolha_app"
-            android:textColor="#024059"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textViewTituloEscolhadoUser"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="76dp"
-            android:text="Your choice:"
-            android:textColor="#024059"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewTituloEscolhadoApp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.538"
-            app:layout_constraintStart_toEndOf="@+id/textViewTituloEscolhadoApp"
-            app:layout_constraintTop_toTopOf="@+id/textViewTituloEscolhadoApp"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <ImageView
-            android:id="@+id/imageViewFundoGame"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:scaleType="fitCenter"
-            app:layout_constraintEnd_toEndOf="@+id/textViewTituloEscolhadoUser"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/textViewTituloEscolhadoApp"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTituloEscolhadoApp"
-            app:srcCompat="@drawable/ic_fundo_game" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageViewAppGame"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="45dp"
-            android:layout_marginBottom="8dp"
-            android:foregroundGravity="center_horizontal"
-            android:src="@drawable/ic_interrogacao_game"
-            app:civ_border_color="#F2D889"
-            app:civ_border_width="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewFundoGame"
-            app:layout_constraintStart_toStartOf="@+id/imageViewFundoGame"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTituloEscolhadoApp"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imageViewUserGame"
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:layout_marginStart="82dp"
-            android:layout_marginEnd="8dp"
-            android:foregroundGravity="center_horizontal"
-            android:src="@drawable/ic_interrogacao_game"
-            app:civ_border_color="#F2D889"
-            app:civ_border_width="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageViewAppGame"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewFundoGame"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/imageViewAppGame"
-            app:layout_constraintTop_toTopOf="@+id/imageViewAppGame"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textViewTituloVitoria"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center_horizontal"
-            android:text="@string/titulo_vitoria"
-            android:textColor="#024059"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="@+id/imageViewFundoGame"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewFundoGame" />
-
-        <TextView
-            android:id="@+id/textViewTituloEmpate"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="76dp"
-            android:text="@string/titulo_empate"
-            android:textColor="#024059"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewTituloVitoria"
-            app:layout_constraintStart_toEndOf="@+id/textViewTituloVitoria"
-            app:layout_constraintTop_toTopOf="@+id/textViewTituloVitoria"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textViewTituloPerdedor"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/titulo_perdedor"
-            android:textColor="#024059"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/textViewTituloEmpate"
-            app:layout_constraintEnd_toEndOf="@+id/imageViewFundoGame"
-            app:layout_constraintHorizontal_bias="0.54"
-            app:layout_constraintStart_toEndOf="@+id/textViewTituloEmpate"
-            app:layout_constraintTop_toTopOf="@+id/textViewTituloEmpate"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <TextView
-            android:id="@+id/textViewTituloPerguntaGame"
-            android:layout_width="246dp"
-            android:layout_height="28dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="8dp"
-            android:text="@string/titulo_pergunta_game"
-            android:textColor="#024059"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.572"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTituloEmpate" />
-
-        <include
-            android:id="@+id/include"
-            layout="@layout/game_recyclerview_item"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
-            app:layout_constraintEnd_toEndOf="@+id/textViewTituloPerguntaGame"
-            app:layout_constraintHorizontal_bias="0.573"
-            app:layout_constraintStart_toStartOf="@+id/textViewTituloPerguntaGame"
-            app:layout_constraintTop_toBottomOf="@+id/textViewTituloPerguntaGame" />
+            android:layout_margin="8dp"
+            android:orientation="vertical"
+            android:padding="8dp">
 
-        <TextView
-            android:id="@+id/textViewTituloQteJogadas"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:text="@string/titulo_qtde_jogadas"
-            android:textColor="#024059"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="@+id/include"
-            app:layout_constraintHorizontal_bias="0.512"
-            app:layout_constraintStart_toStartOf="@+id/include"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textViewTituloEscolhadoApp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left|center_horizontal"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/title_escolha_app"
+                    android:textColor="#024059"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/textViewTituloEscolhadoUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right|center_horizontal"
+                    android:layout_weight="1"
+                    android:text="Your choice:"
+                    android:textColor="#024059"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/appBackground">
+
+                    <ImageView
+                        android:id="@+id/imageViewFundoGame"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:background="@color/appBackground"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/ic_fundo_game" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="135dp"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewAppGame"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center|right"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_interrogacao_game"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="10dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewUserGame"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_gravity="center|left"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_interrogacao_game"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="10dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewTituloPerguntaGame"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_horizontal"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"
+                        android:text="@string/titulo_pergunta_game"
+                        android:textColor="#024059"
+                        android:textSize="20sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewHeroi01"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personagem_game_groot"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="5dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewHeroi02"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personagem_game_thor"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="5dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewHeroi03"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personagem_game_pantera_negra"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="5dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewVilao01"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personagem_game_thanos"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="5dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewVilao02"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personagem_game_loki"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="5dp" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/imageViewVilao03"
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_weight="1"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_personagem_game_erik"
+                            app:civ_border_color="#F2D889"
+                            app:civ_border_width="5dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewTituloDerrota"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_pontucao_app"
+                            android:textColor="#024059"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewPontosApp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:textColor="#A60B18"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewTituloVitoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_pontucao_user"
+                            android:textColor="#024059"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewPontosUser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:textColor="#A60B18"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewTituloEmpate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_pontucao_empate"
+                            android:textColor="#024059"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewPontosEmpate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:textColor="#A60B18"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewTituloQtdeDeJogadas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/title_qtde_jogadas"
+                            android:textColor="#024059"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/textViewPontosQtdeJogadas"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="0"
+                            android:textColor="#A60B18"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</ScrollView>
