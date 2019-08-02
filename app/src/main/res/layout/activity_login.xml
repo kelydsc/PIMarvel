@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:padding="16dp"
-        tools:context=".login.view.LoginActivity">
+        tools:context=".view.login.LoginActivity">
 
         <TextView
             android:id="@+id/textViewWelcomeLog"

@@ -47,7 +47,7 @@
                 <TextView
                     android:id="@+id/textTitle"
                     style="@style/TitleTheme"
-                    android:layout_width="350dp"
+                    android:layout_width="235dp"
                     android:layout_height="wrap_content"
                     android:text="@string/event_title"
                     android:textColor="#0A7AA6"
