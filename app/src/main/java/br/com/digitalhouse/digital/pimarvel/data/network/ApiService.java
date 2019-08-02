@@ -19,6 +19,7 @@ public class ApiService {
     private static Retrofit retrofit;
 
     private static Retrofit getRetrofit() {
+
         if (retrofit == null) {
 
         /* configurações da conexão, onde podemos setar o timeout e outras opções para
@@ -41,10 +42,13 @@ public class ApiService {
             retrofit = new Retrofit.Builder()
                     // Url obrigatória
                     .baseUrl(BASE_URL)
+
                     // adapter para o uso do RXJava
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+
                     // Conversor que transforma-rá o json recebido em classes Java
                     .addConverterFactory(GsonConverterFactory.create())
+
                     // Adicionamos as configurações de requisição configurado acima
                     .client(httpClient.build()).build();
         }

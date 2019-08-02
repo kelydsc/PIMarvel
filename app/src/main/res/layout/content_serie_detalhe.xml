@@ -7,54 +7,93 @@
     android:layout_marginTop="16dp"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textTitle"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:id="@+id/linearLayout01"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/title_comic"
-        android:gravity="left"
-        android:textColor="#0A7AA6"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageSerieHome">
+
+        <LinearLayout
+            android:id="@+id/linearLayout02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/textTitle"
+                style="@style/TitleTheme"
+                android:layout_width="235dp"
+                android:layout_height="wrap_content"
+                android:text="@string/title_comic"
+                android:textColor="#0A7AA6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageSerieHome" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:gravity="end">
+
+            <ImageView
+                android:id="@+id/serieImageViewShare"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/ic_share_black_24dp" />
+
+            <ImageView
+                android:id="@+id/serieImageViewFavorite"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_favorite_24dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <TextView
-    android:id="@+id/textView4"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="16dp"
-    android:textSize="16sp"
-    android:justificationMode="inter_word"
-    android:textColor="#000000"
-    android:textStyle="bold"
-    android:text="Rating: "
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:justificationMode="inter_word"
+        android:text="Rating: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout01" />
 
     <TextView
         android:id="@+id/textViewRating"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:text="Adult"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:text="Adult"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/textTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout01" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
         android:justificationMode="inter_word"
-        android:textColor="#000000"
-        android:textStyle="bold"
         android:text="Start Year: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
@@ -67,9 +106,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:text="2010"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:text="2010"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView7"
@@ -80,11 +119,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textSize="16sp"
         android:justificationMode="inter_word"
-        android:textColor="#000000"
-        android:textStyle="bold"
         android:text="End Year: "
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -97,30 +136,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:text="2015"
         android:textColor="#000000"
         android:textSize="16sp"
-        android:text="2015"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/textViewStartYear" />
-
-
-    <!--
-    <TextView
-        android:id="@+id/textDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:gravity="left"
-        android:justificationMode="inter_word"
-        android:text="@string/large_text"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewRating" />
-     -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

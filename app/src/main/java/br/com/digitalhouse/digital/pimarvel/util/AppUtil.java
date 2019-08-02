@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class AppUtil {
 
-    //Verifica se temos conexão com internet
+    //Verifica se tem conexão com internet
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager connectivityManager = (
                 ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);

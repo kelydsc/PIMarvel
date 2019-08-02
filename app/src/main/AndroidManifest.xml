@@ -13,68 +13,77 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".event.view.EventDetalheActivity"
+        <activity
+            android:name=".view.game.view.GameDetalheActivity"
+            android:label="Marvel Universe Game"
+            android:parentActivityName=".view.base.BaseActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.base.BaseActivity" />
+        </activity>
+        <activity
+            android:name=".view.event.EventDetalheActivity"
             android:label="Marvel Universe Events"
-            android:parentActivityName=".base.view.BaseActivity">
+            android:parentActivityName=".view.base.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
+                android:value=".view.base.BaseActivity" />
         </activity>
         <activity
-            android:name=".serie.view.SerieDetalheActivity"
-            android:label="Marvel Universe Digital Comics"
-            android:parentActivityName=".base.view.BaseActivity">
+            android:name=".view.serie.SerieDetalheActivity"
+            android:label="Marvel Digital Comics"
+            android:parentActivityName=".view.base.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
+                android:value=".view.base.BaseActivity" />
         </activity>
         <activity
-            android:name=".comic.view.ComicDetalheActivity"
+            android:name=".view.comic.ComicDetalheActivity"
             android:label="Marvel Universe Comics"
-            android:parentActivityName=".base.view.BaseActivity">
+            android:parentActivityName=".view.base.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
+                android:value=".view.base.BaseActivity" />
         </activity>
         <activity
-            android:name=".menu.view.FaqDetailActivity"
+            android:name=".view.menu.FaqDetailActivity"
             android:label="FAQ&apos;s"
-            android:parentActivityName=".menu.view.FaqActivity">
+            android:parentActivityName=".view.menu.FaqActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".menu.view.FaqActivity" />
+                android:value=".view.menu.FaqActivity" />
         </activity>
         <activity
-            android:name=".menu.view.AboutActivity"
+            android:name=".view.menu.AboutActivity"
             android:label="About"
-            android:parentActivityName=".base.view.BaseActivity">
+            android:parentActivityName=".view.base.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
+                android:value=".view.base.BaseActivity" />
         </activity>
         <activity
-            android:name=".menu.view.FaqActivity"
-            android:parentActivityName=".base.view.BaseActivity">
+            android:name=".view.menu.FaqActivity"
+            android:parentActivityName=".view.base.BaseActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".base.view.BaseActivity" />
+                android:value=".view.base.BaseActivity" />
         </activity>
-        <activity android:name=".base.view.BaseActivity" />
-        <activity android:name=".splash.view.SplashActivity">
+        <activity android:name=".view.base.BaseActivity" />
+        <activity android:name=".view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".login.view.LoginActivity" />
+        <activity android:name=".view.login.LoginActivity" />
         <activity
-            android:name=".register.view.RegisterActivity"
+            android:name=".view.register.RegisterActivity"
             android:label="Register"
-            android:parentActivityName=".login.view.LoginActivity">
+            android:parentActivityName=".view.login.LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".login.view.LoginActivity" />
+                android:value=".view.login.LoginActivity" />
         </activity>
     </application>
 
