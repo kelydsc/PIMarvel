@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
+import br.com.digitalhouse.digital.pimarvel.view.base.BaseActivity;
 
 public class ComicDetalheActivity extends AppCompatActivity {
 
@@ -118,6 +119,13 @@ public class ComicDetalheActivity extends AppCompatActivity {
                 startActivity(intentChooser);
             }
         });
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed(); // one inherited from android.support.v4.app.FragmentActivity
+
+        return false;
     }
 
     private void initViews() {
