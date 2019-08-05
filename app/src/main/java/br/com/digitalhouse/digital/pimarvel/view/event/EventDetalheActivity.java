@@ -101,6 +101,8 @@ public class EventDetalheActivity extends AppCompatActivity {
     }
 
 
+
+
     private void initViews() {
         imageHero = findViewById(R.id.imageEventHome);
         textTitle = findViewById(R.id.textTitle);

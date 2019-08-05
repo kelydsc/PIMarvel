@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
+import br.com.digitalhouse.digital.pimarvel.view.base.BaseActivity;
 
 public class ComicDetalheActivity extends AppCompatActivity {
 
@@ -125,6 +126,7 @@ public class ComicDetalheActivity extends AppCompatActivity {
 
         return false;
     }
+
 
 
     private void initViews() {

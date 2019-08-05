@@ -78,6 +78,8 @@ public class FaqActivity extends AppCompatActivity implements RecyclerViewFaqCli
     }
 
 
+
+
     @Override
     public void onClick(Faq faq) {
         Intent intent = new Intent(this, FaqDetailActivity.class);

@@ -109,6 +109,8 @@ public class SerieDetalheActivity extends AppCompatActivity {
         return false;
     }
 
+
+
     private void initViews() {
         imageHero = findViewById(R.id.iconDetail);
         textTitle = findViewById(R.id.textTitle);
