@@ -13,6 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -20,6 +24,7 @@ import java.util.List;
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.data.database.Database;
 import br.com.digitalhouse.digital.pimarvel.data.database.dao.FavoriteDAO;
+import br.com.digitalhouse.digital.pimarvel.interfaces.RecyclerViewFavoriteClickListener;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
 import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
 import br.com.digitalhouse.digital.pimarvel.view.comic.ComicDetalheActivity;
