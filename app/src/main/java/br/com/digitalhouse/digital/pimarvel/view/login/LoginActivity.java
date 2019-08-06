@@ -5,10 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.view.base.BaseActivity;
@@ -23,6 +30,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button btnCreateAccount;
     private Button btnLogin;
     private ImageView imageViewGoogle;
+
+    //Declaração de FirebaseAuth
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
         btnLogin = findViewById(R.id.btnLogin);
         imageViewGoogle = findViewById(R.id.imageViewGoogle);
+
+        // Initialize Firebase Auth
+        firebaseAuth = FirebaseAuth.getInstance();
     }
 
     private void validaDadosLogin() {
@@ -75,13 +88,51 @@ public class LoginActivity extends AppCompatActivity {
                 //Se todos os campos estiverem preenchidos chama a tela de Login
                 if (!(emailLog.isEmpty()) && !(senhaLog.isEmpty())) {
 
-                    //Chama a tela de Home
-                    Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
+                    Toast.makeText(v.getContext(),
+                            "Login in progress...",
+                            Toast.LENGTH_SHORT).show();
 
-                    startActivity(intent);
+                    //Login do usuario
+                    firebaseAuth.signInWithEmailAndPassword(emailLog, senhaLog)
+                            .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                    if (task.isSuccessful()) { //Retorna true se o usuario for logado
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                                        updateUI(user);
+
+                                        //Chama a tela de Home
+                                        Intent intent = new Intent(LoginActivity.this, BaseActivity.class);
+
+                                        startActivity(intent);
+
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(v.getContext(),
+                                                "Authentication failed: " + task.getException(),
+                                                Toast.LENGTH_SHORT).show();
+
+                                        updateUI(null);
+                                    }
+                                }
+                            });
                 }
             }
         });
+    }
+
+    private void updateUI(FirebaseUser user) {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        updateUI(currentUser);
     }
 
     private void chamaTelaCadastro() {

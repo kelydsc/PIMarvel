@@ -69,6 +69,23 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
             }
         });
 
+        //Ação no click do Favoritos do Fragmento Serie
+        holder.serieImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                serie.setFavorite(!serie.isFavorite());
+
+                if(serie.isFavorite()){
+                    holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+                }else{
+                    holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,12 +116,14 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
         ImageView imageSerieHome;
         TextView textViewSerieTitle;
         ImageView serieImageViewShare;
+        ImageView serieImageViewFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageSerieHome = itemView.findViewById(R.id.imageSerieHome);
             textViewSerieTitle = itemView.findViewById(R.id.textTitle);
             serieImageViewShare = itemView.findViewById(R.id.serieImageViewShare);
+            serieImageViewFavorite = itemView.findViewById(R.id.serieImageViewFavorite);
 
         }
 
@@ -120,6 +139,8 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
 
             if (serie.getTitle() != null) {
                 textViewSerieTitle.setText(serie.getTitle());
+            }else{
+                textViewSerieTitle.setText("");
             }
         }
     }

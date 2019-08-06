@@ -1,6 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,10 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.data.database.Database;
+import br.com.digitalhouse.digital.pimarvel.data.database.dao.FavoriteDAO;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
+import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
 import br.com.digitalhouse.digital.pimarvel.view.comic.ComicDetalheActivity;
 
 public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewComicAdapter.ViewHolder> {
@@ -68,6 +72,23 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
             }
         });
 
+        //Ação no click do Favoritos do Fragmento Comic
+        holder.comicImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                comic.setFavorite(!comic.isFavorite());
+
+                if (comic.isFavorite()) {
+                    holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+                } else {
+                    holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,13 +120,14 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
         ImageView imageComicHome;
         TextView textViewComicTitle;
         ImageView comicImageViewShare;
+        ImageView comicImageViewFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageComicHome = itemView.findViewById(R.id.imageComicHome);
             textViewComicTitle = itemView.findViewById(R.id.textTitle);
             comicImageViewShare = itemView.findViewById(R.id.comicImageViewShare);
-
+            comicImageViewFavorite = itemView.findViewById(R.id.comicImageViewFavorite);
         }
 
         private void bind(Comic comic) {
@@ -120,6 +142,8 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
 
             if (comic.getTitle() != null) {
                 textViewComicTitle.setText(comic.getTitle());
+            } else {
+                textViewComicTitle.setText("");
             }
         }
     }

@@ -24,6 +24,7 @@ public class SerieDetalheActivity extends AppCompatActivity {
     private TextView textViewStartYear;
     private TextView textViewEndYear;
     private ImageView serieImageViewShare;
+    private ImageView serieImageViewFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,21 +47,28 @@ public class SerieDetalheActivity extends AppCompatActivity {
         imageHero.setTransitionName(transitionName);
 
         // Configuramos nas view os valores do quadrinho que pegamos
-
         if (serie.getTitle() != null) {
             textTitle.setText(serie.getTitle());
+        } else {
+            textTitle.setText("");
         }
 
         if (serie.getRating() != null) {
             textViewRating.setText(Html.fromHtml(serie.getRating()));
+        } else {
+            textViewRating.setText("");
         }
 
         if (serie.getStartYear() != null) {
             textViewStartYear.setText(serie.getStartYear());
+        } else {
+            textViewStartYear.setText("");
         }
 
         if (serie.getEndYear() != null) {
             textViewEndYear.setText(serie.getEndYear());
+        } else {
+            textViewEndYear.setText("");
         }
 
         if (serie.getThumbnail().getPath() != null && serie.getThumbnail().getExtension() != null) {
@@ -73,6 +81,9 @@ public class SerieDetalheActivity extends AppCompatActivity {
 
         //Metodo para acessar os aplicativos de compartilhamento de dados
         compartilharSerie();
+
+        //Metodo para adicionar o serie como favorite
+        adicionarSerieFavovito();
     }
 
     private void compartilharSerie() {
@@ -103,6 +114,25 @@ public class SerieDetalheActivity extends AppCompatActivity {
         });
     }
 
+    private void adicionarSerieFavovito() {
+
+        serieImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                serie.setFavorite(!serie.isFavorite());
+
+                if (serie.isFavorite()) {
+                    serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+                } else {
+                    serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+                }
+            }
+        });
+    }
+
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed(); // one inherited from android.support.v4.app.FragmentActivity
@@ -117,5 +147,6 @@ public class SerieDetalheActivity extends AppCompatActivity {
         textViewStartYear = findViewById(R.id.textViewStartYear);
         textViewEndYear = findViewById(R.id.textViewEndYear);
         serieImageViewShare = findViewById(R.id.serieImageViewShare);
+        serieImageViewFavorite = findViewById(R.id.serieImageViewFavorite);
     }
 }

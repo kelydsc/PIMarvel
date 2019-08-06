@@ -18,8 +18,9 @@ import java.util.Date;
 import java.util.Locale;
 
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.data.database.dao.FavoriteDAO;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
-import br.com.digitalhouse.digital.pimarvel.view.base.BaseActivity;
+import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
 
 public class ComicDetalheActivity extends AppCompatActivity {
 
@@ -29,6 +30,12 @@ public class ComicDetalheActivity extends AppCompatActivity {
     private TextView textViewDescription;
     private TextView textViewPublished;
     private ImageView comicImageViewShare;
+    private ImageView comicImageViewFavorite;
+
+    //Declaração da tabela de favoritos
+    private Favorite favorite;
+    private FavoriteDAO favoriteDAO;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +61,14 @@ public class ComicDetalheActivity extends AppCompatActivity {
 
         if (comic.getTitle() != null) {
             textTitle.setText(comic.getTitle());
+        } else {
+            textTitle.setText("");
         }
 
         if (comic.getDescription() != null) {
             textViewDescription.setText(Html.fromHtml(comic.getDescription()));
+        } else {
+            textViewDescription.setText("");
         }
 
         if (comic.getThumbnail().getPath() != null && comic.getThumbnail().getExtension() != null) {
@@ -67,16 +78,6 @@ public class ComicDetalheActivity extends AppCompatActivity {
                     .error(R.drawable.ic_logo_marvel)
                     .into(imageHero);
         }
-
-        /*
-        if (comic.getImages() != null) {
-            Picasso.get().load(comic.getImages().get(0).getPath() + "/portrait_incredible." +
-                    comic.getImages().get(0).getExtension())
-                    .placeholder(R.drawable.ic_logo_marvel)
-                    .error(R.drawable.ic_logo_marvel)
-                    .into(imageHero);
-        }
-        */
 
         // Mudadamos a forma de mostrar a data DE '2007-10-31 00:00:00' para 'qua, 31 out 2007'
         try {
@@ -91,6 +92,9 @@ public class ComicDetalheActivity extends AppCompatActivity {
 
         //Metodo para acessar os aplicativos de compartilhamento de dados
         compartilharComic();
+
+        //Metodo para adicionar o comic como favorite
+        adicionarComicFavovito();
     }
 
     private void compartilharComic() {
@@ -121,6 +125,24 @@ public class ComicDetalheActivity extends AppCompatActivity {
         });
     }
 
+    private void adicionarComicFavovito() {
+
+        comicImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                comic.setFavorite(!comic.isFavorite());
+
+                if (comic.isFavorite()) {
+                    comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+                } else {
+                    comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+                }
+            }
+        });
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed(); // one inherited from android.support.v4.app.FragmentActivity
@@ -134,5 +156,6 @@ public class ComicDetalheActivity extends AppCompatActivity {
         textViewDescription = findViewById(R.id.textDescription);
         textViewPublished = findViewById(R.id.textViewPublished);
         comicImageViewShare = findViewById(R.id.comicImageViewShare);
+        comicImageViewFavorite = findViewById(R.id.comicImageViewFavorite);
     }
 }

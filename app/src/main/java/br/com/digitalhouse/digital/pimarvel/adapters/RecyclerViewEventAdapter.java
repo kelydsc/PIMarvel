@@ -70,6 +70,23 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             }
         });
 
+        //Ação no click do Favoritos do Fragmento Event
+        holder.eventImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                event.setFavorite(!event.isFavorite());
+
+                if(event.isFavorite()){
+                    holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+                }else{
+                    holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,6 +119,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         TextView textViewEventTitle;
         TextView textViewEventDescription;
         ImageView eventImageViewShare;
+        ImageView eventImageViewFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,6 +127,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             textViewEventTitle = itemView.findViewById(R.id.textTitle);
             textViewEventDescription = itemView.findViewById(R.id.textDescription);
             eventImageViewShare = itemView.findViewById(R.id.eventImageViewShare);
+            eventImageViewFavorite = itemView.findViewById(R.id.eventImageViewFavorite);
         }
 
         private void bind(Event event) {
@@ -123,10 +142,14 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
             if (event.getTitle() != null) {
                 textViewEventTitle.setText(event.getTitle());
+            }else{
+                textViewEventTitle.setText("");
             }
 
             if (event.getDescription() != null) {
                 textViewEventDescription.setText(event.getDescription());
+            }else{
+                textViewEventDescription.setText("");
             }
         }
     }
