@@ -41,6 +41,6 @@ public class EventRepository {
     public Single<EventResponse> getEvents() {
         String ts = Long.toString(System.currentTimeMillis() / 1000);
         String hash = md5(ts + PRIVATE_KEY + PUBLIC_KEY);
-        return getApiService().getEvents("startDate", "40", ts, hash, PUBLIC_KEY);
+        return getApiService().getEvents("startDate", "30", ts, hash, PUBLIC_KEY);
     }
 }

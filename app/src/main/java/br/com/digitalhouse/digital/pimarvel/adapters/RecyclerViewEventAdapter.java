@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,6 +33,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.event_recyclerview_item, parent, false);
 
@@ -79,10 +82,19 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
                 //Inverte opção do favoritos na tela
                 event.setFavorite(!event.isFavorite());
 
-                if(event.isFavorite()){
-                    holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
-                }else{
+                if (event.isFavorite()) {
+
                     holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(event);
+
+
+                } else {
+
+                    holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(event);
                 }
             }
         });
@@ -142,13 +154,13 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
             if (event.getTitle() != null) {
                 textViewEventTitle.setText(event.getTitle());
-            }else{
+            } else {
                 textViewEventTitle.setText("");
             }
 
             if (event.getDescription() != null) {
                 textViewEventDescription.setText(event.getDescription());
-            }else{
+            } else {
                 textViewEventDescription.setText("");
             }
         }
@@ -162,6 +174,41 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
     public void update(List<Event> eventList) {
         this.events = eventList;
         notifyDataSetChanged();
+    }
+
+    public void adicionaFavoritosUsuario(Event eventFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        usuarioReference
+                .child("favoritos")
+                .child("event")
+                .child(eventFavorite.getId())
+                .setValue(eventFavorite);
+    }
+
+
+    public void removeFavoritosUsuario(Event eventFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        usuarioReference
+                .child("favoritos")
+                .child("event")
+                .child(eventFavorite.getId())
+                .removeValue();
     }
 }
 

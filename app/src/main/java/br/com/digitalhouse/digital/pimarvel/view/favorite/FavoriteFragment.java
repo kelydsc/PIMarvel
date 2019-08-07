@@ -7,12 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +31,8 @@ import br.com.digitalhouse.digital.pimarvel.viewmodel.FavoriteViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
+//public class FavoriteFragment extends Fragment implements RecyclerViewFavoriteClickListener {
+
 public class FavoriteFragment extends Fragment {
 
     private RecyclerView recyclerViewhome;
@@ -56,6 +64,41 @@ public class FavoriteFragment extends Fragment {
 
         recyclerViewhome.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+        //Adicionamos o listener par pegar os resultados do firebase
+        serieReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                //Lista vazia pra pegar os resultados do firebase
+                List<Favorite> favoriteList = new ArrayList<>();
+
+                //Após receber os dados, os memos serão adicionados para atualização do Adapter
+                for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
+
+                    Favorite favoriteLocal = resultSnapshot.getValue(Favorite.class);
+
+                    //Acrescenta o registro na lista de favoritos
+                    favoriteList.add(favoriteLocal);
+                }
+
+                //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
+                adapter.updateFavorites(favoriteList);
+            }
+
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        /*
         favoriteViewModel.searchFavorite();
 
         // Adicionar os observables
@@ -74,8 +117,8 @@ public class FavoriteFragment extends Fragment {
         favoriteViewModel.getFavoriteErrorLiveData().observe(this, throwable -> {
             Snackbar.make(recyclerViewhome, throwable.getMessage(), Snackbar.LENGTH_SHORT).show();
         });
+        */
 
         return view;
     }
-
 }

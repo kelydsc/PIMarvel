@@ -13,15 +13,14 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.data.database.Database;
-import br.com.digitalhouse.digital.pimarvel.data.database.dao.FavoriteDAO;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
-import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
 import br.com.digitalhouse.digital.pimarvel.view.comic.ComicDetalheActivity;
 
 public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewComicAdapter.ViewHolder> {
@@ -43,7 +42,7 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Comic comic = comics.get(position);
+        final Comic comic = comics.get(position);
         holder.bind(comic);
 
         //Click na imagem para compartilhar evento
@@ -82,9 +81,15 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
                 comic.setFavorite(!comic.isFavorite());
 
                 if (comic.isFavorite()) {
-                    holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
-                } else {
                     holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(comic);
+
+                } else {
+                    holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(comic);
                 }
             }
         });
@@ -157,6 +162,51 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
         this.comics = comicList;
 
         notifyDataSetChanged();
+    }
+
+    public void adicionaFavoritosUsuario(Comic comicFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+        usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId())
+                .setValue(comicFavorite);
+    }
+
+    public void removeFavoritosUsuario(Comic comicFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+        usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId())
+                .removeValue();
+
+        /*
+        DatabaseReference comicReference = usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId());
+
+        usuarioReference
+                .removeValue();
+
+       */
     }
 }
 

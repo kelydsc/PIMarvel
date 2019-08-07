@@ -12,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -79,9 +81,17 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
                 serie.setFavorite(!serie.isFavorite());
 
                 if(serie.isFavorite()){
-                    holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
-                }else{
+
                     holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(serie);
+
+                }else{
+
+                    holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(serie);
                 }
             }
         });
@@ -153,5 +163,40 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
     public void update(List<Serie> serieList) {
         this.series = serieList;
         notifyDataSetChanged();
+    }
+
+    public void adicionaFavoritosUsuario(Serie serieFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+        usuarioReference
+                .child("favoritos")
+                .child("serie")
+                .child(serieFavorite.getId())
+                .setValue(serieFavorite);
+
+    }
+
+    public void removeFavoritosUsuario(Serie serieFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+        usuarioReference
+                .child("favoritos")
+                .child("serie")
+                .child(serieFavorite.getId())
+                .removeValue();
     }
 }

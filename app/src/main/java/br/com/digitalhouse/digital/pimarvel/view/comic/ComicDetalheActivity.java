@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.text.ParseException;
@@ -135,9 +137,18 @@ public class ComicDetalheActivity extends AppCompatActivity {
                 comic.setFavorite(!comic.isFavorite());
 
                 if (comic.isFavorite()) {
-                    comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
-                } else {
+
                     comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(comic);
+
+
+                } else {
+
+                    comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(comic);
                 }
             }
         });
@@ -157,5 +168,39 @@ public class ComicDetalheActivity extends AppCompatActivity {
         textViewPublished = findViewById(R.id.textViewPublished);
         comicImageViewShare = findViewById(R.id.comicImageViewShare);
         comicImageViewFavorite = findViewById(R.id.comicImageViewFavorite);
+    }
+
+    public void adicionaFavoritosUsuario(Comic comicFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+        usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId())
+                .setValue(comicFavorite);
+    }
+
+    public void removeFavoritosUsuario(Comic comicFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+        usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId())
+                .removeValue();
     }
 }
