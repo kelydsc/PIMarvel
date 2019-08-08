@@ -25,6 +25,7 @@ import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.adapters.RecyclerViewFavoriteAdapter;
+import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
 import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
 import br.com.digitalhouse.digital.pimarvel.viewmodel.FavoriteViewModel;
 
@@ -40,7 +41,7 @@ public class FavoriteFragment extends Fragment {
 
     private FavoriteViewModel favoriteViewModel;
 
-    private List<Favorite> favoriteList = new ArrayList<>();
+    private List<Comic> favoriteList = new ArrayList<>();
 
     public FavoriteFragment() {
         // Required empty public constructor
@@ -70,30 +71,62 @@ public class FavoriteFragment extends Fragment {
         //Referencia
         DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
 
-        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
 
-        //Adicionamos o listener par pegar os resultados do firebase
-        serieReference.addValueEventListener(new ValueEventListener() {
+        comicReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                //Lista vazia pra pegar os resultados do firebase
-                List<Favorite> favoriteList = new ArrayList<>();
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Comic comicLocal = ds.getValue(Comic.class);
 
-                //Após receber os dados, os memos serão adicionados para atualização do Adapter
-                for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
-
-                    Favorite favoriteLocal = resultSnapshot.getValue(Favorite.class);
-
-                    //Acrescenta o registro na lista de favoritos
-                    favoriteList.add(favoriteLocal);
+                    //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
+                    adapter.addFavorites(comicLocal);
                 }
-
-                //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
-                adapter.updateFavorites(favoriteList);
             }
 
-            public void onCancelled(DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        eventReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Comic comicLocal = ds.getValue(Comic.class);
+
+                    //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
+                    adapter.addFavorites(comicLocal);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+        serieReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Comic comicLocal = ds.getValue(Comic.class);
+
+                    //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
+                    adapter.addFavorites(comicLocal);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });

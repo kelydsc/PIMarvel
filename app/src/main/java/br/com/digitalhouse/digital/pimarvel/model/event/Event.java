@@ -73,6 +73,10 @@ public class Event implements Parcelable {
     @Expose
     private String loginUserEvent;
 
+    //atributo para controlar os favoritos de Event
+    @Expose
+    private String eventFavorito;
+
     public Event() {
     }
 
@@ -95,6 +99,7 @@ public class Event implements Parcelable {
         urls = in.createTypedArrayList(Url.CREATOR);
         favorite = in.readByte() != 0;
         loginUserEvent = in.readString();
+        eventFavorito = in.readString();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -254,6 +259,14 @@ public class Event implements Parcelable {
         this.loginUserEvent = loginUserEvent;
     }
 
+    public String getEventFavorito() {
+        return eventFavorito;
+    }
+
+    public void setEventFavorito(String eventFavorito) {
+        this.eventFavorito = eventFavorito;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -279,5 +292,6 @@ public class Event implements Parcelable {
         parcel.writeTypedList(urls);
         parcel.writeByte((byte) (favorite ? 1 : 0));
         parcel.writeString(loginUserEvent);
+        parcel.writeString(eventFavorito);
     }
 }

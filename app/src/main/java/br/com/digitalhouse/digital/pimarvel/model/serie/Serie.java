@@ -76,6 +76,10 @@ public class Serie implements Parcelable {
     @Expose
     private String loginUserSerie;
 
+    //atributo para controlar os favoritos de Serie
+    @Expose
+    private String serieFavorito;
+
     public Serie() {
     }
 
@@ -99,6 +103,7 @@ public class Serie implements Parcelable {
         urls = in.createTypedArrayList(Url.CREATOR);
         favorite = in.readByte() != 0;
         loginUserSerie = in.readString();
+        serieFavorito = in.readString();
     }
 
     public static final Creator<Serie> CREATOR = new Creator<Serie>() {
@@ -266,6 +271,14 @@ public class Serie implements Parcelable {
         this.loginUserSerie = loginUserSerie;
     }
 
+    public String getSerieFavorito() {
+        return serieFavorito;
+    }
+
+    public void setSerieFavorito(String serieFavorito) {
+        this.serieFavorito = serieFavorito;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -292,5 +305,6 @@ public class Serie implements Parcelable {
         parcel.writeTypedList(urls);
         parcel.writeByte((byte) (favorite ? 1 : 0));
         parcel.writeString(loginUserSerie);
+        parcel.writeString(serieFavorito);
     }
 }

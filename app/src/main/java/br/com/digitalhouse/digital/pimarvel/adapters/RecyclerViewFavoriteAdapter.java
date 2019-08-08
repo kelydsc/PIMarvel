@@ -1,7 +1,5 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,26 +7,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
-import br.com.digitalhouse.digital.pimarvel.view.comic.ComicDetalheActivity;
+import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
 
 public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerViewFavoriteAdapter.ViewHolder> {
 
-    private List<Favorite> favorites;
+    private List<Comic> favorites;
 
     /*
     private RecyclerViewFavoriteClickListener listener;
@@ -39,7 +29,7 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
     }
     */
 
-    public RecyclerViewFavoriteAdapter(List<Favorite> favorites) {
+    public RecyclerViewFavoriteAdapter(List<Comic> favorites) {
         this.favorites = favorites;
     }
 
@@ -56,10 +46,10 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Favorite favorite = favorites.get(position);
+        Comic favorite = favorites.get(position);
         holder.bind(favorite);
 
-        recuperaDadosBanco();
+        //recuperaDadosBanco();
 
         //Remove item dos Favoritos
         holder.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +60,7 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
                 removeFavorites(position);
 
                 //Remove o item no banco de dados
-                removeFavoritosUsuario(favorite);
+                //removeFavoritosUsuario(favorite);
             }
         });
 
@@ -99,6 +89,7 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
         });
     }
 
+    /*
     private void recuperaDadosBanco() {
 
         //Instancia do firebase
@@ -135,6 +126,7 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
             }
         });
     }
+    */
 
     @Override
     public int getItemCount() {
@@ -155,20 +147,20 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
             textTitle = itemView.findViewById(R.id.textTitle);
         }
 
-        public void bind(Favorite favorite) {
+        public void bind(Comic favorite) {
 
             //Imagem
-            if (favorite.getComicFavorite().getThumbnail().getPath() != null && favorite.getComicFavorite().getThumbnail().getExtension() != null) {
-                Picasso.get().load(favorite.getComicFavorite().getThumbnail().getPath() + "/portrait_incredible." +
-                        favorite.getComicFavorite().getThumbnail().getExtension())
+            if (favorite.getThumbnail().getPath() != null && favorite.getThumbnail().getExtension() != null) {
+                Picasso.get().load(favorite.getThumbnail().getPath() + "/portrait_incredible." +
+                        favorite.getThumbnail().getExtension())
                         .placeholder(R.drawable.ic_logo_marvel)
                         .error(R.drawable.ic_logo_marvel)
                         .into(imageFavoriteHome);
             }
 
             //Favoritos Título
-            if (favorite.getComicFavorite().getTitle() != null) {
-                textTitle.setText(favorite.getComicFavorite().getTitle());
+            if (favorite.getTitle() != null) {
+                textTitle.setText(favorite.getTitle());
             } else {
                 textTitle.setText("");
             }
@@ -183,13 +175,20 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
         notifyDataSetChanged();
     }
 
-    public void updateFavorites(List<Favorite> favoriteList) {
+    public void updateFavorites(List<Comic> favoriteList) {
         this.favorites = favoriteList;
 
         notifyDataSetChanged();
     }
 
-    public void removeFavoritosUsuario(Favorite comicFavorite) {
+    public void addFavorites(Comic favoriteLocal) {
+        this.favorites.add(favoriteLocal);
+
+        notifyDataSetChanged();
+    }
+
+    /*
+    public void removeFavoritosUsuario(Comic comicFavorite) {
 
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
@@ -205,4 +204,5 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
                 .child(comicFavorite.getIdComic())
                 .removeValue();
     }
+    */
 }

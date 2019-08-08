@@ -112,6 +112,10 @@ public class Comic implements Parcelable {
     @Expose
     private String loginUserComic;
 
+    //atributo para controlar os favoritos de Comic
+    @Expose
+    private String comicFavorito;
+
     public Comic() {
     }
 
@@ -147,6 +151,7 @@ public class Comic implements Parcelable {
         variants = in.createTypedArrayList(Variant.CREATOR);
         favorite = in.readByte() != 0;
         loginUserComic = in.readString();
+        comicFavorito = in.readString();
     }
 
     public static final Creator<Comic> CREATOR = new Creator<Comic>() {
@@ -410,6 +415,14 @@ public class Comic implements Parcelable {
         this.loginUserComic = loginUserComic;
     }
 
+    public String getComicFavorito() {
+        return comicFavorito;
+    }
+
+    public void setComicFavorito(String comicFavorito) {
+        this.comicFavorito = comicFavorito;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -448,5 +461,6 @@ public class Comic implements Parcelable {
         parcel.writeTypedList(variants);
         parcel.writeByte((byte) (favorite ? 1 : 0));
         parcel.writeString(loginUserComic);
+        parcel.writeString(comicFavorito);
     }
 }

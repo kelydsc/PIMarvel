@@ -46,12 +46,14 @@ public class BaseActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Inicialização do Google*****************************************************************//
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()//request email id
                 .build();
 
         googleSignInClient= GoogleSignIn.getClient(this, gso);
+        //Inicialização do Google*****************************************************************//
 
         //Configura a BottomNavigationBar e seta o listener dos botões
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav_bar_view);
