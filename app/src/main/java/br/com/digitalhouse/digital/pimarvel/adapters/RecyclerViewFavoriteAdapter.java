@@ -1,5 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,27 +9,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
+import br.com.digitalhouse.digital.pimarvel.data.database.dao.FavoriteDAO;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
+import br.com.digitalhouse.digital.pimarvel.view.comic.ComicDetalheActivity;
+import br.com.digitalhouse.digital.pimarvel.view.event.EventDetalheActivity;
+import br.com.digitalhouse.digital.pimarvel.view.serie.SerieDetalheActivity;
 
 public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerViewFavoriteAdapter.ViewHolder> {
 
     private List<Comic> favorites;
 
-    /*
-    private RecyclerViewFavoriteClickListener listener;
-
-    public RecyclerViewFavoriteAdapter(List<Favorite> favorites, RecyclerViewFavoriteClickListener listener) {
-        this.favorites = favorites;
-        this.listener = listener;
-    }
-    */
+    //Verifica se o favorito selecionado eh comic, event ou serie
+    private String tipoFavorito = "";
+    private String comic = "comic";
+    private String event = "event";
+    private String serie = "serie";
 
     public RecyclerViewFavoriteAdapter(List<Comic> favorites) {
         this.favorites = favorites;
@@ -49,84 +56,77 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
         Comic favorite = favorites.get(position);
         holder.bind(favorite);
 
-        //recuperaDadosBanco();
-
         //Remove item dos Favoritos
         holder.imageViewFavorite.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                //Remove o item no banco de dados
+                removeFavoritosComicUsuario(favorite);
+
                 //Remove o item na tela
                 removeFavorites(position);
-
-                //Remove o item no banco de dados
-                //removeFavoritosUsuario(favorite);
             }
         });
-
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                /*
-                String transitionName = "image" + position;
-                Intent intent = new Intent(holder.itemView.getContext(), ComicDetalheActivity.class);
-                intent.putExtra("comic", favorite);
-                intent.putExtra("transitionName", transitionName);
+                //Verifica se o favorito selecionado eh comic, event ou serie
+                tipoFavorito = favorite.getComicFavorito();
 
-                holder.imageFavoriteHome.setTransitionName(transitionName);
+                if (tipoFavorito == comic) {
 
-                ActivityOptionsCompat options = ActivityOptionsCompat.
-                        makeSceneTransitionAnimation((Activity) holder.itemView.getContext(),
-                                holder.imageFavoriteHome, transitionName);
+                    String transitionName = "image" + position;
+                    Intent intent = new Intent(holder.itemView.getContext(), ComicDetalheActivity.class);
+                    intent.putExtra("comic", favorite);
+                    intent.putExtra("transitionName", transitionName);
 
-                holder.itemView.getContext().startActivity(intent, options.toBundle());
+                    holder.imageFavoriteHome.setTransitionName(transitionName);
 
-                */
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) holder.itemView.getContext(),
+                                    holder.imageFavoriteHome, transitionName);
 
-            }
-        });
-    }
+                    holder.itemView.getContext().startActivity(intent, options.toBundle());
 
-    /*
-    private void recuperaDadosBanco() {
-
-        //Instancia do firebase
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        //Referencia
-        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
-
-        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
-
-        //Adicionamos o listener par pegar os resultados do firebase
-        serieReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-                //Lista vazia pra pegar os resultados do firebase
-                List<Favorite> favoriteList = new ArrayList<>();
-
-                //Após receber os dados, os memos serão adicionados para atualização do Adapter
-                for (DataSnapshot resultSnapshot : dataSnapshot.getChildren()) {
-
-                    Favorite favoriteLocal = resultSnapshot.getValue(Favorite.class);
-
-                    //Acrescenta o registro na lista de favoritos
-                    favoriteList.add(favoriteLocal);
                 }
+                /*?????
+                else if (tipoFavorito == event) {
 
-                //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
-                updateFavorites(favoriteList);
-            }
+                    String transitionName = "image" + position;
+                    Intent intent = new Intent(holder.itemView.getContext(), EventDetalheActivity.class);
+                    intent.putExtra("event", favorite);
+                    intent.putExtra("transitionName", transitionName);
 
-            public void onCancelled(DatabaseError databaseError) {
+                    holder.imageFavoriteHome.setTransitionName(transitionName);
 
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) holder.itemView.getContext(),
+                                    holder.imageFavoriteHome, transitionName);
+
+                    holder.itemView.getContext().startActivity(intent, options.toBundle());
+
+                } else if (tipoFavorito == serie) {
+
+                    String transitionName = "image" + position;
+                    Intent intent = new Intent(holder.itemView.getContext(), SerieDetalheActivity.class);
+                    intent.putExtra("serie", favorite);
+                    intent.putExtra("transitionName", transitionName);
+
+                    holder.imageFavoriteHome.setTransitionName(transitionName);
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.
+                            makeSceneTransitionAnimation((Activity) holder.itemView.getContext(),
+                                    holder.imageFavoriteHome, transitionName);
+
+                    holder.itemView.getContext().startActivity(intent, options.toBundle());
+                }
+                */
             }
         });
     }
-    */
 
     @Override
     public int getItemCount() {
@@ -187,22 +187,49 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
         notifyDataSetChanged();
     }
 
-    /*
-    public void removeFavoritosUsuario(Comic comicFavorite) {
+    public void removeFavoritosComicUsuario(Comic comicFavorite) {
+
+        //Verifica se o favorito selecionado eh comic, event ou serie
+        tipoFavorito = comicFavorite.getComicFavorito();
 
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        //Referencia
+        //Referencia do firebase
         DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
 
-        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+        if (tipoFavorito == comic) {
 
-        usuarioReference
-                .child("favoritos")
-                .child("comic")
-                .child(comicFavorite.getIdComic())
-                .removeValue();
+            //Recupera dados do Comic
+            DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+            usuarioReference
+                    .child("favoritos")
+                    .child("comic")
+                    .child(comicFavorite.getId())
+                    .removeValue();
+
+        } else if (tipoFavorito == event) {
+
+            //Recupera dados do Event
+            DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+            usuarioReference
+                    .child("favoritos")
+                    .child("event")
+                    .child(comicFavorite.getId())
+                    .removeValue();
+
+        } else if (tipoFavorito == serie) {
+
+            //Recupera dados da Serie
+            DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+            usuarioReference
+                    .child("favoritos")
+                    .child("serie")
+                    .child(comicFavorite.getId())
+                    .removeValue();
+        }
     }
-    */
 }

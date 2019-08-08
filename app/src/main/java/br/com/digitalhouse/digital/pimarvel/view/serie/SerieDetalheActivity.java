@@ -163,6 +163,8 @@ public class SerieDetalheActivity extends AppCompatActivity {
 
     public void adicionaFavoritosUsuario(Serie serieFavorite) {
 
+        serie.setSerieFavorito("serie");
+
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 

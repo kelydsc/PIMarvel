@@ -172,6 +172,8 @@ public class ComicDetalheActivity extends AppCompatActivity {
 
     public void adicionaFavoritosUsuario(Comic comicFavorite) {
 
+        comic.setComicFavorito("comic");
+
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 

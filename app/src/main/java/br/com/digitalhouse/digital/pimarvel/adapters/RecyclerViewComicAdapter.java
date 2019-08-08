@@ -166,6 +166,8 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
 
     public void adicionaFavoritosUsuario(Comic comicFavorite) {
 
+        comicFavorite.setComicFavorito("comic");
+
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 

@@ -178,6 +178,8 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
     public void adicionaFavoritosUsuario(Event eventFavorite) {
 
+        eventFavorite.setEventFavorito("event");
+
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 

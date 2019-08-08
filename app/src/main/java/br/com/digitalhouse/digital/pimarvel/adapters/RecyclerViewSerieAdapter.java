@@ -167,6 +167,8 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
 
     public void adicionaFavoritosUsuario(Serie serieFavorite) {
 
+        serieFavorite.setSerieFavorito("serie");
+
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 

@@ -148,6 +148,8 @@ public class EventDetalheActivity extends AppCompatActivity {
 
     public void adicionaFavoritosUsuario(Event eventFavorite) {
 
+        event.setEventFavorito("event");
+
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 

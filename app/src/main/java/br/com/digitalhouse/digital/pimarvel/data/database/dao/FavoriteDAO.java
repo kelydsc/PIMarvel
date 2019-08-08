@@ -50,4 +50,7 @@ public interface FavoriteDAO {
 
     @Query("SELECT * FROM favorites WHERE loginUser = :loginUser and idSerie = :idSerie")
     Favorite getFavoritesByUserSerieId(String loginUser, String idSerie);
+
+    @Query("SELECT * FROM favorites WHERE idEvent = :idEvent")
+    Favorite getFavoritesByEventId(String idEvent);
 }

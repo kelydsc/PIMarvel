@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -13,7 +12,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,13 +24,14 @@ import java.util.List;
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.adapters.RecyclerViewFavoriteAdapter;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
+import br.com.digitalhouse.digital.pimarvel.model.event.Event;
 import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
+import br.com.digitalhouse.digital.pimarvel.model.serie.Serie;
 import br.com.digitalhouse.digital.pimarvel.viewmodel.FavoriteViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-//public class FavoriteFragment extends Fragment implements RecyclerViewFavoriteClickListener {
 
 public class FavoriteFragment extends Fragment {
 
@@ -54,7 +53,7 @@ public class FavoriteFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_favorite, container, false);
 
-        ProgressBar progressBar = view.findViewById(R.id.progressBar);
+        //ProgressBar progressBar = view.findViewById(R.id.progressBar);
 
         favoriteViewModel = ViewModelProviders.of(this).get(FavoriteViewModel.class);
 
@@ -68,9 +67,10 @@ public class FavoriteFragment extends Fragment {
         //Instancia do firebase
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        //Referencia
+        //Referencia do firebase
         DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
 
+        //Recupera dados do Comic
         DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
 
         comicReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -78,7 +78,11 @@ public class FavoriteFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
                     Comic comicLocal = ds.getValue(Comic.class);
+
+                    //seta tipo de favorito para atualizar o adapter
+                    comicLocal.setComicFavorito("comic");
 
                     //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
                     adapter.addFavorites(comicLocal);
@@ -91,6 +95,7 @@ public class FavoriteFragment extends Fragment {
             }
         });
 
+        //Recupera dados do Event
         DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
 
         eventReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -98,7 +103,11 @@ public class FavoriteFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
                     Comic comicLocal = ds.getValue(Comic.class);
+
+                    //seta tipo de favorito para atualizar o adapter
+                    comicLocal.setComicFavorito("event");
 
                     //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
                     adapter.addFavorites(comicLocal);
@@ -111,6 +120,7 @@ public class FavoriteFragment extends Fragment {
             }
         });
 
+        //Recupera dados da Serie
         DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
 
         serieReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -118,7 +128,11 @@ public class FavoriteFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
                     Comic comicLocal = ds.getValue(Comic.class);
+
+                    //seta tipo de favorito para atualizar o adapter
+                    comicLocal.setComicFavorito("serie");
 
                     //Atualiza o Adapter para exibição da lista de favoritos a partir do Firebase
                     adapter.addFavorites(comicLocal);
