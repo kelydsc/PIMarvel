@@ -1,5 +1,6 @@
 package br.com.digitalhouse.digital.pimarvel.view.login;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,15 +39,17 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout textInputLayoutLogPassword;
     private Button btnCreateAccount;
     private Button btnLogin;
-    private ImageView imageViewGoogle;
+    //private ImageView imageViewGoogle;
+    private SignInButton googleSignInButton;
+    private GoogleSignInClient googleSignInClient;
 
     //Declaração de FirebaseAuth
     private FirebaseAuth firebaseAuth;
 
-    private GoogleSignInClient mGoogleSignInClient;
+    //private GoogleSignInClient mGoogleSignInClient;
 
-    private static final int RC_SIGN_IN = 14;
-    private static final String TAG = "login";
+   //private static final int RC_SIGN_IN = 14;
+   //private static final String TAG = "login";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +74,19 @@ public class LoginActivity extends AppCompatActivity {
         textInputLayoutLogPassword = findViewById(R.id.textInputLayoutPasswordLog);
         btnCreateAccount = findViewById(R.id.btnCreateAccount);
         btnLogin = findViewById(R.id.btnLogin);
-        imageViewGoogle = findViewById(R.id.imageViewGoogle);
+        //imageViewGoogle = findViewById(R.id.imageViewGoogle);
 
         // Initialize Firebase Auth
         firebaseAuth = FirebaseAuth.getInstance();
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
+       // GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+       //         .requestEmail()
+       //         .build();
 
         // Build a GoogleSignInClient with the options specified by gso.
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+       // mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
     }
 
     private void validaDadosLogin() {
@@ -146,17 +150,6 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUI(FirebaseUser user) {
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
-        updateUI(currentUser);
-    }
-
     private void chamaTelaCadastro() {
         btnCreateAccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,7 +163,75 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void updateUI(FirebaseUser user) {
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        updateUI(currentUser);
+
+        GoogleSignInAccount alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(this);
+        if (alreadyloggedAccount != null) {
+            Toast.makeText(this, "Você já está logado", Toast.LENGTH_SHORT).show();
+            onLoggedIn(alreadyloggedAccount);
+        } else {
+            Toast.makeText(this, "Você  não já está logado", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode) {
+                case 101:
+                    try {
+                        // The Task returned from this call is always completed, no need to attach
+                        // a listener.
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                        GoogleSignInAccount account = task.getResult(ApiException.class);
+                        onLoggedIn(account);
+                    } catch (ApiException e) {
+                        // The ApiException status code indicates the detailed failure reason.
+                        Toast.makeText(getApplicationContext(),"Deu merda", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
+    }
+
+    private void onLoggedIn(GoogleSignInAccount googleSignInAccount) {
+
+        Intent intent = new Intent(this, BaseActivity.class);
+        intent.putExtra(BaseActivity.GOOGLE_ACCOUNT, googleSignInAccount);
+
+        startActivity(intent);
+        finish();
+    }
+
+
     private void chamaTelaAcessoGoogle() {
+
+        googleSignInButton = findViewById(R.id.sign_in_button);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        googleSignInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                startActivityForResult(signInIntent, 101);
+            }
+        });
+
+        /*
         imageViewGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -243,6 +304,6 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-
+        */
     }
 }

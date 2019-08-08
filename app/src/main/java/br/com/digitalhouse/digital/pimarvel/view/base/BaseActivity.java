@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import br.com.digitalhouse.digital.pimarvel.R;
@@ -26,6 +33,10 @@ import br.com.digitalhouse.digital.pimarvel.view.serie.SerieFragment;
 
 public class BaseActivity extends AppCompatActivity {
 
+    public static final String GOOGLE_ACCOUNT = "google_accout";
+    //private Button signOut;
+    private GoogleSignInClient googleSignInClient;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +45,13 @@ public class BaseActivity extends AppCompatActivity {
         //Configura a ToolBar
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()//request email id
+                .build();
+
+        googleSignInClient= GoogleSignIn.getClient(this, gso);
 
         //Configura a BottomNavigationBar e seta o listener dos botões
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav_bar_view);
@@ -134,8 +152,21 @@ public class BaseActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_logout:
-                intent = new Intent(BaseActivity.this, LoginActivity.class);
-                startActivity(intent);
+
+                //signOut.setOnClickListener(new View.OnClickListener() {
+                //    @Override
+                //    public void onClick(View v) {
+                        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
+                            }
+                        });
+                  //  }
+               // });
+
                 return true;
         }
         return super.onOptionsItemSelected(item);
