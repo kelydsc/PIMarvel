@@ -176,10 +176,10 @@ public class LoginActivity extends AppCompatActivity {
 
         GoogleSignInAccount alreadyloggedAccount = GoogleSignIn.getLastSignedInAccount(this);
         if (alreadyloggedAccount != null) {
-            Toast.makeText(this, "Você já está logado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "\n" + "Google login in progress", Toast.LENGTH_SHORT).show();
             onLoggedIn(alreadyloggedAccount);
         } else {
-            Toast.makeText(this, "Você  não já está logado", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "\n" + "Google login failed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -197,7 +197,8 @@ public class LoginActivity extends AppCompatActivity {
                         onLoggedIn(account);
                     } catch (ApiException e) {
                         // The ApiException status code indicates the detailed failure reason.
-                        Toast.makeText(getApplicationContext(),"Deu merda", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"\n" +
+                                "Google authentication failed: ", Toast.LENGTH_SHORT).show();
                     }
                     break;
             }
