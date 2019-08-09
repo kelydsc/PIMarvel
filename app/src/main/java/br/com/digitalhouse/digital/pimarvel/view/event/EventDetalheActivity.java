@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import br.com.digitalhouse.digital.pimarvel.R;
@@ -22,6 +24,7 @@ public class EventDetalheActivity extends AppCompatActivity {
     private TextView textTitle;
     private TextView textViewDescription;
     private ImageView eventImageViewShare;
+    private ImageView eventImageViewFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +42,30 @@ public class EventDetalheActivity extends AppCompatActivity {
         // Pegamos o quadrinho que que foi clicado na lista anterior
         event = getIntent().getParcelableExtra("event");
 
+        /*
+        //Favoritos
+        if (event.isFavorite()) {
+            eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+        } else {
+            eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+        }
+        */
+
         // Pegamos o nome da transição para fazer a animação
         String transitionName = getIntent().getStringExtra("transitionName");
         imageHero.setTransitionName(transitionName);
 
         // Configuramos nas view os valores do quadrinho que pegamos
-
         if (event.getTitle() != null) {
             textTitle.setText(event.getTitle());
+        } else {
+            textTitle.setText("");
         }
 
         if (event.getDescription() != null) {
             textViewDescription.setText(Html.fromHtml(event.getDescription()));
+        } else {
+            textViewDescription.setText("");
         }
 
         if (event.getThumbnail().getPath() != null && event.getThumbnail().getExtension() != null) {
@@ -63,6 +78,9 @@ public class EventDetalheActivity extends AppCompatActivity {
 
         //Metodo para acessar os aplicativos de compartilhamento de dados
         compartilharEvento();
+
+        //Metodo para adicionar o event como favorite
+        adicionarEventFavovito();
     }
 
     private void compartilharEvento() {
@@ -94,6 +112,34 @@ public class EventDetalheActivity extends AppCompatActivity {
         });
     }
 
+
+    private void adicionarEventFavovito() {
+
+        eventImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                event.setFavorite(!event.isFavorite());
+
+                if (event.isFavorite()) {
+
+                    eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(event);
+
+
+                } else {
+
+                    eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(event);
+                }
+            }
+        });
+    }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed(); // one inherited from android.support.v4.app.FragmentActivity
@@ -106,5 +152,43 @@ public class EventDetalheActivity extends AppCompatActivity {
         textTitle = findViewById(R.id.textTitle);
         textViewDescription = findViewById(R.id.textDescription);
         eventImageViewShare = findViewById(R.id.eventImageViewShare);
+        eventImageViewFavorite = findViewById(R.id.eventImageViewFavorite);
+    }
+
+    public void adicionaFavoritosUsuario(Event eventFavorite) {
+
+        event.setEventFavorito("event");
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        usuarioReference
+                .child("favoritos")
+                .child("event")
+                .child(eventFavorite.getId())
+                .setValue(eventFavorite);
+    }
+
+
+    public void removeFavoritosUsuario(Event eventFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        usuarioReference
+                .child("favoritos")
+                .child("event")
+                .child(eventFavorite.getId())
+                .removeValue();
     }
 }

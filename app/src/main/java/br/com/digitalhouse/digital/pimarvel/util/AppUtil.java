@@ -61,5 +61,4 @@ public class AppUtil {
         activity.getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
         activity.getWindow().setEnterTransition(new Explode());
     }
-
 }

@@ -6,12 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +60,45 @@ public class ComicFragment extends Fragment {
         comicViewModel.searchComic();
 
         // Adicionar os observables
-        comicViewModel.getComicLiveData().observe(this, comics -> adapter.update(comics));
+        comicViewModel.getComicLiveData().observe(this, comics -> {
+            adapter.update(comics);
+
+
+            // *** Favoritos ***********************************************************************
+            //Instancia do firebase
+            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+            //Referencia
+            DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+            //Verifica se há favoritos para os itens
+            for (Comic comicLine : comics) {
+
+                //Recupera dados do Comic
+                DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic").child(comicLine.getId());
+
+                //Adiciona o listener para buscar o objeto gravado em favoritos
+                comicReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        Comic comicLocal = dataSnapshot.getValue(Comic.class);
+
+                        if (comicLocal != null && comicLocal.getId() != null) {
+                            adapter.modifyObject(comicLocal, getContext());
+                        }
+
+                    }
+
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+            // *** Favoritos ***********************************************************************
+
+
+        });
 
         //Observable Loading
         comicViewModel.getLoadingLiveData().observe(this, isLoading -> {
@@ -72,4 +116,41 @@ public class ComicFragment extends Fragment {
 
         return view;
     }
+
+
+    //Recupera os dados do Firebase qdo retorna do DetalheActivity
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //Recupera os favoritos do Firebase
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        //Recupera dados dos Favoritos
+        DatabaseReference favoritesReference = usuarioReference.child("favoritos").child("comic");
+
+        //Adiciona o listener para buscar o objeto gravado em favoritos
+        favoritesReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshotLine : dataSnapshot.getChildren()) {
+                    Comic comicLocal = dataSnapshotLine.getValue(Comic.class);
+
+                    if (comicLocal != null && comicLocal.getId() != null) {
+                        adapter.modifyObject(comicLocal, getContext());
+                    }
+                }
+            }
+
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
 }

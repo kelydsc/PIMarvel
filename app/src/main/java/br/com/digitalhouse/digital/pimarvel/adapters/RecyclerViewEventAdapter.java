@@ -1,6 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,6 +34,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.event_recyclerview_item, parent, false);
 
@@ -70,6 +74,32 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             }
         });
 
+        //Ação no click do Favoritos do Fragmento Event
+        holder.eventImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                event.setFavorite(!event.isFavorite());
+
+                if (event.isFavorite()) {
+
+                    holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(event);
+
+
+                } else {
+
+                    holder.eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(event);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,6 +125,24 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         return events.size();
     }
 
+    //****Favoritos*********************************************************************************
+    public void modifyObject(Event eventFavorite, Context context) {
+
+        try {
+            //Atualiza o registro com os dados adicionais dos favoritos
+            for (Event eventLine : this.events) {
+                if (eventLine.getId().equals(eventFavorite.getId())) {
+                    eventLine.setFavorite(eventFavorite.isFavorite());
+                }
+            }
+
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //****Favoritos*********************************************************************************
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -102,6 +150,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         TextView textViewEventTitle;
         TextView textViewEventDescription;
         ImageView eventImageViewShare;
+        ImageView eventImageViewFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -109,9 +158,17 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             textViewEventTitle = itemView.findViewById(R.id.textTitle);
             textViewEventDescription = itemView.findViewById(R.id.textDescription);
             eventImageViewShare = itemView.findViewById(R.id.eventImageViewShare);
+            eventImageViewFavorite = itemView.findViewById(R.id.eventImageViewFavorite);
         }
 
         private void bind(Event event) {
+
+            //Verifica Favoritos
+            if (event.isFavorite()) {
+                eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+            } else {
+                eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+            }
 
             if (event.getThumbnail().getPath() != null && event.getThumbnail().getExtension() != null) {
                 Picasso.get().load(event.getThumbnail().getPath() + "/portrait_incredible." +
@@ -123,10 +180,14 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
             if (event.getTitle() != null) {
                 textViewEventTitle.setText(event.getTitle());
+            } else {
+                textViewEventTitle.setText("");
             }
 
             if (event.getDescription() != null) {
                 textViewEventDescription.setText(event.getDescription());
+            } else {
+                textViewEventDescription.setText("");
             }
         }
     }
@@ -139,6 +200,42 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
     public void update(List<Event> eventList) {
         this.events = eventList;
         notifyDataSetChanged();
+    }
+
+    public void adicionaFavoritosUsuario(Event eventFavorite) {
+
+        eventFavorite.setEventFavorito("event");
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        usuarioReference
+                .child("favoritos")
+                .child("event")
+                .child(eventFavorite.getId())
+                .setValue(eventFavorite);
+    }
+
+    public void removeFavoritosUsuario(Event eventFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference eventReference = usuarioReference.child("favoritos").child("event");
+
+        usuarioReference
+                .child("favoritos")
+                .child("event")
+                .child(eventFavorite.getId())
+                .removeValue();
     }
 }
 

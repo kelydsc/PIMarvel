@@ -5,11 +5,18 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.view.base.BaseActivity;
@@ -23,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity {
     private TextInputLayout textInputLayoutPassword;
     private TextInputLayout textInputLayoutConfPassword;
     private Button btnSave;
+
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +57,9 @@ public class RegisterActivity extends AppCompatActivity {
         textInputLayoutPassword = findViewById(R.id.TextInputLayoutPassword);
         textInputLayoutConfPassword = findViewById(R.id.TextInputLayoutConfPassword);
         btnSave = findViewById(R.id.btnSave);
+
+        //Inicializa Objetos
+        firebaseAuth = FirebaseAuth.getInstance(); //Autenticação
     }
 
     private void validaDados() {
@@ -101,13 +113,44 @@ public class RegisterActivity extends AppCompatActivity {
                 if (!(nome.isEmpty()) && !(email.isEmpty()) && !(senha.isEmpty())
                         && !(confsenha.isEmpty())) {
 
-                    //Chama a tela de Login
-                    Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
+                    //Cadastro do usuario
+                    firebaseAuth.createUserWithEmailAndPassword(email, senha)
+                            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
 
-                    startActivity(intent);
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+
+                                    if (task.isSuccessful()) { //Retorna true se o usuario for criado
+
+                                        // Sign in success, update UI with the signed-in user's information
+                                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                                        updateUI(user);
+
+                                        Toast.makeText(v.getContext(),
+                                                "Registered user successfully, login in progress...",
+                                                Toast.LENGTH_LONG).show();
+
+                                        //Chama a tela de Login
+                                        Intent intent = new Intent(RegisterActivity.this, BaseActivity.class);
+
+                                        startActivity(intent);
+
+                                    } else {
+                                        // If sign in fails, display a message to the user.
+                                        Toast.makeText(v.getContext(),
+                                                "Authentication failed: " + task.getException(),
+                                                Toast.LENGTH_LONG).show();
+
+                                        updateUI(null);
+                                    }
+                                }
+                            });
                 }
             }
         });
+    }
+
+    private void updateUI(Object o) {
     }
 
     private void initSetError() {

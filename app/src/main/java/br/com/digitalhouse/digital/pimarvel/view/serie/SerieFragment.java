@@ -6,12 +6,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +61,47 @@ public class SerieFragment extends Fragment {
         serieViewModel.searchSerie();
 
         // Adicionar os observables
-        serieViewModel.getSerieLiveData().observe(this, series -> adapter.update(series));
+        serieViewModel.getSerieLiveData().observe(this, new Observer<List<Serie>>() {
+            @Override
+            public void onChanged(List<Serie> series) {
+                adapter.update(series);
+
+
+                // *** Favoritos ******************************************************************
+                //Instancia do firebase
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                //Referencia
+                DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+                //Verifica se há favoritos para os itens
+                for (Serie serieLine : series) {
+
+                    //Recupera dados do Serie
+                    DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie").child(serieLine.getId());
+
+                    //Adiciona o listener para buscar o objeto gravado em favoritos
+                    serieReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                            Serie serieLocal = dataSnapshot.getValue(Serie.class);
+
+                            if (serieLocal != null && serieLocal.getId() != null) {
+                                adapter.modifyObject(serieLocal, getContext());
+                            }
+
+                        }
+
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+                // *** Favoritos ******************************************************************
+
+            }
+        });
 
         //Observable Loading
         serieViewModel.getLoadingLiveData().observe(this, isLoading -> {
@@ -71,5 +118,40 @@ public class SerieFragment extends Fragment {
         });
 
         return view;
+    }
+
+    //Recupera os dados do Firebase qdo retorna do DetalheActivity
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        //Recupera os favoritos do Firebase
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        //Recupera dados dos Favoritos
+        DatabaseReference favoritesReference = usuarioReference.child("favoritos").child("serie");
+
+        //Adiciona o listener para buscar o objeto gravado em favoritos
+        favoritesReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot dataSnapshotLine : dataSnapshot.getChildren()) {
+                    Serie serieLocal = dataSnapshotLine.getValue(Serie.class);
+
+                    if (serieLocal != null && serieLocal.getId() != null) {
+                        adapter.modifyObject(serieLocal, getContext());
+                    }
+                }
+            }
+
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

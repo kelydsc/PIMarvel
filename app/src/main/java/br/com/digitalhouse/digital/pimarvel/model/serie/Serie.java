@@ -68,6 +68,18 @@ public class Serie implements Parcelable {
     @Expose
     private List<Url> urls;
 
+    //atributo para controlar os favoritos
+    @Expose
+    private boolean favorite;
+
+    //atributo para controlar os favoritos
+    @Expose
+    private String loginUserSerie;
+
+    //atributo para controlar os favoritos de Serie
+    @Expose
+    private String serieFavorito;
+
     public Serie() {
     }
 
@@ -89,6 +101,9 @@ public class Serie implements Parcelable {
         thumbnail = in.readParcelable(Thumbnail.class.getClassLoader());
         title = in.readString();
         urls = in.createTypedArrayList(Url.CREATOR);
+        favorite = in.readByte() != 0;
+        loginUserSerie = in.readString();
+        serieFavorito = in.readString();
     }
 
     public static final Creator<Serie> CREATOR = new Creator<Serie>() {
@@ -151,11 +166,12 @@ public class Serie implements Parcelable {
         this.events = events;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -239,6 +255,30 @@ public class Serie implements Parcelable {
         this.urls = urls;
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public String getLoginUserSerie() {
+        return loginUserSerie;
+    }
+
+    public void setLoginUserSerie(String loginUserSerie) {
+        this.loginUserSerie = loginUserSerie;
+    }
+
+    public String getSerieFavorito() {
+        return serieFavorito;
+    }
+
+    public void setSerieFavorito(String serieFavorito) {
+        this.serieFavorito = serieFavorito;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -263,5 +303,8 @@ public class Serie implements Parcelable {
         parcel.writeParcelable(thumbnail, i);
         parcel.writeString(title);
         parcel.writeTypedList(urls);
+        parcel.writeByte((byte) (favorite ? 1 : 0));
+        parcel.writeString(loginUserSerie);
+        parcel.writeString(serieFavorito);
     }
 }

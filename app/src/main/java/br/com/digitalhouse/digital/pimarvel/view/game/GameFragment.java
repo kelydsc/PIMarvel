@@ -160,28 +160,28 @@ public class GameFragment extends Fragment {
         //App é o ganhador
         if (
                 (escolhaApp == "heroi01" && escolhaUsuario == "vilao01") ||
-                (escolhaApp == "heroi01" && escolhaUsuario == "vilao02") ||
-                (escolhaApp == "heroi01" && escolhaUsuario == "vilao03") ||
+                        (escolhaApp == "heroi01" && escolhaUsuario == "vilao02") ||
+                        (escolhaApp == "heroi01" && escolhaUsuario == "vilao03") ||
 
-                (escolhaApp == "heroi02" && escolhaUsuario == "vilao01") ||
-                (escolhaApp == "heroi02" && escolhaUsuario == "vilao02") ||
-                (escolhaApp == "heroi02" && escolhaUsuario == "vilao03") ||
+                        (escolhaApp == "heroi02" && escolhaUsuario == "vilao01") ||
+                        (escolhaApp == "heroi02" && escolhaUsuario == "vilao02") ||
+                        (escolhaApp == "heroi02" && escolhaUsuario == "vilao03") ||
 
-                (escolhaApp == "heroi03" && escolhaUsuario == "vilao01") ||
-                (escolhaApp == "heroi03" && escolhaUsuario == "vilao02") ||
-                (escolhaApp == "heroi03" && escolhaUsuario == "vilao03") ||
+                        (escolhaApp == "heroi03" && escolhaUsuario == "vilao01") ||
+                        (escolhaApp == "heroi03" && escolhaUsuario == "vilao02") ||
+                        (escolhaApp == "heroi03" && escolhaUsuario == "vilao03") ||
 
-                (escolhaApp == "vilao01" && escolhaUsuario == "heroi01") ||
-                (escolhaApp == "vilao01" && escolhaUsuario == "heroi02") ||
-                (escolhaApp == "vilao01" && escolhaUsuario == "heroi03") ||
+                        (escolhaApp == "vilao01" && escolhaUsuario == "heroi01") ||
+                        (escolhaApp == "vilao01" && escolhaUsuario == "heroi02") ||
+                        (escolhaApp == "vilao01" && escolhaUsuario == "heroi03") ||
 
-                (escolhaApp == "vilao02" && escolhaUsuario == "heroi01") ||
-                (escolhaApp == "vilao02" && escolhaUsuario == "heroi02") ||
-                (escolhaApp == "vilao02" && escolhaUsuario == "heroi03") ||
+                        (escolhaApp == "vilao02" && escolhaUsuario == "heroi01") ||
+                        (escolhaApp == "vilao02" && escolhaUsuario == "heroi02") ||
+                        (escolhaApp == "vilao02" && escolhaUsuario == "heroi03") ||
 
-                (escolhaApp == "vilao03" && escolhaUsuario == "heroi01") ||
-                (escolhaApp == "vilao03" && escolhaUsuario == "heroi02") ||
-                (escolhaApp == "vilao03" && escolhaUsuario == "heroi03")
+                        (escolhaApp == "vilao03" && escolhaUsuario == "heroi01") ||
+                        (escolhaApp == "vilao03" && escolhaUsuario == "heroi02") ||
+                        (escolhaApp == "vilao03" && escolhaUsuario == "heroi03")
         ) {
             //App é o ganhador
             //envia o TextView de acordo o resultado da validação do IF
@@ -193,22 +193,22 @@ public class GameFragment extends Fragment {
             //Usuario é o ganhador
         } else if (
                 (escolhaApp == "heroi01" && escolhaUsuario == "heroi02") ||
-                (escolhaApp == "heroi01" && escolhaUsuario == "heroi03") ||
+                        (escolhaApp == "heroi01" && escolhaUsuario == "heroi03") ||
 
-                (escolhaApp == "heroi02" && escolhaUsuario == "heroi01") ||
-                (escolhaApp == "heroi02" && escolhaUsuario == "heroi03") ||
+                        (escolhaApp == "heroi02" && escolhaUsuario == "heroi01") ||
+                        (escolhaApp == "heroi02" && escolhaUsuario == "heroi03") ||
 
-                (escolhaApp == "heroi03" && escolhaUsuario == "heroi01") ||
-                (escolhaApp == "heroi03" && escolhaUsuario == "heroi02") ||
+                        (escolhaApp == "heroi03" && escolhaUsuario == "heroi01") ||
+                        (escolhaApp == "heroi03" && escolhaUsuario == "heroi02") ||
 
-                (escolhaApp == "vilao01" && escolhaUsuario == "vilao02") ||
-                (escolhaApp == "vilao01" && escolhaUsuario == "vilao03") ||
+                        (escolhaApp == "vilao01" && escolhaUsuario == "vilao02") ||
+                        (escolhaApp == "vilao01" && escolhaUsuario == "vilao03") ||
 
-                (escolhaApp == "vilao02" && escolhaUsuario == "vilao01") ||
-                (escolhaApp == "vilao02" && escolhaUsuario == "vilao03") ||
+                        (escolhaApp == "vilao02" && escolhaUsuario == "vilao01") ||
+                        (escolhaApp == "vilao02" && escolhaUsuario == "vilao03") ||
 
-                (escolhaApp == "vilao03" && escolhaUsuario == "vilao01") ||
-                (escolhaApp == "vilao03" && escolhaUsuario == "vilao02")
+                        (escolhaApp == "vilao03" && escolhaUsuario == "vilao01") ||
+                        (escolhaApp == "vilao03" && escolhaUsuario == "vilao02")
         ) {
 
             //Usuario é o ganhador

@@ -1,6 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,6 +34,7 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comic_recyclerview_item, parent, false);
 
         return new ViewHolder(view);
@@ -39,7 +43,7 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        Comic comic = comics.get(position);
+        final Comic comic = comics.get(position);
         holder.bind(comic);
 
         //Click na imagem para compartilhar evento
@@ -68,6 +72,29 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
             }
         });
 
+        //Ação no click do Favoritos do Fragmento Comic
+        holder.comicImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                comic.setFavorite(!comic.isFavorite());
+
+                if (comic.isFavorite()) {
+                    holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(comic);
+
+                } else {
+                    holder.comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(comic);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,22 +120,48 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
         return comics.size();
     }
 
+    //****Favoritos*********************************************************************************
+    public void modifyObject(Comic comicFavorite, Context context) {
+
+        try {
+            //Atualiza o registro com os dados adicionais dos favoritos
+            for (Comic comicLine : this.comics) {
+                if (comicLine.getId().equals(comicFavorite.getId())) {
+                    comicLine.setFavorite(comicFavorite.isFavorite());
+                }
+            }
+
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //****Favoritos*********************************************************************************
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageComicHome;
         TextView textViewComicTitle;
         ImageView comicImageViewShare;
+        ImageView comicImageViewFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageComicHome = itemView.findViewById(R.id.imageComicHome);
             textViewComicTitle = itemView.findViewById(R.id.textTitle);
             comicImageViewShare = itemView.findViewById(R.id.comicImageViewShare);
-
+            comicImageViewFavorite = itemView.findViewById(R.id.comicImageViewFavorite);
         }
 
         private void bind(Comic comic) {
+
+            //Verifica favoritos
+            if (comic.isFavorite()) {
+                comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+            } else {
+                comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+            }
 
             if (comic.getThumbnail().getPath() != null && comic.getThumbnail().getExtension() != null) {
                 Picasso.get().load(comic.getThumbnail().getPath() + "/portrait_incredible." +
@@ -120,6 +173,8 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
 
             if (comic.getTitle() != null) {
                 textViewComicTitle.setText(comic.getTitle());
+            } else {
+                textViewComicTitle.setText("");
             }
         }
     }
@@ -133,6 +188,42 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
         this.comics = comicList;
 
         notifyDataSetChanged();
+    }
+
+    public void adicionaFavoritosUsuario(Comic comicFavorite) {
+
+        comicFavorite.setComicFavorito("comic");
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+        usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId())
+                .setValue(comicFavorite);
+    }
+
+    public void removeFavoritosUsuario(Comic comicFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference comicReference = usuarioReference.child("favoritos").child("comic");
+
+        usuarioReference
+                .child("favoritos")
+                .child("comic")
+                .child(comicFavorite.getId())
+                .removeValue();
     }
 }
 

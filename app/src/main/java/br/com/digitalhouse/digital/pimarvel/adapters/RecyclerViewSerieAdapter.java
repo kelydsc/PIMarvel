@@ -1,6 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -31,6 +34,7 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
     @NonNull
     @Override
     public RecyclerViewSerieAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.serie_recyclerview_item, parent, false);
 
@@ -69,6 +73,31 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
             }
         });
 
+        //Ação no click do Favoritos do Fragmento Serie
+        holder.serieImageViewFavorite.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                //Inverte opção do favoritos na tela
+                serie.setFavorite(!serie.isFavorite());
+
+                if (serie.isFavorite()) {
+
+                    holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+
+                    adicionaFavoritosUsuario(serie);
+
+                } else {
+
+                    holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+
+                    //Remove o item no banco de dados
+                    removeFavoritosUsuario(serie);
+                }
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,21 +123,48 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
         return series.size();
     }
 
+    //****Favoritos*********************************************************************************
+    public void modifyObject(Serie serieFavorite, Context context) {
+
+        try {
+            //Atualiza o registro com os dados adicionais dos favoritos
+            for (Serie serieLine : this.series) {
+                if (serieLine.getId().equals(serieFavorite.getId())) {
+                    serieLine.setFavorite(serieFavorite.isFavorite());
+                }
+            }
+
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //****Favoritos*********************************************************************************
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageSerieHome;
         TextView textViewSerieTitle;
         ImageView serieImageViewShare;
+        ImageView serieImageViewFavorite;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imageSerieHome = itemView.findViewById(R.id.imageSerieHome);
             textViewSerieTitle = itemView.findViewById(R.id.textTitle);
             serieImageViewShare = itemView.findViewById(R.id.serieImageViewShare);
+            serieImageViewFavorite = itemView.findViewById(R.id.serieImageViewFavorite);
 
         }
 
         private void bind(Serie serie) {
+
+            //Verifica Favoritos
+            if (serie.isFavorite()) {
+                serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+            } else {
+                serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+            }
 
             if (serie.getThumbnail().getPath() != null && serie.getThumbnail().getExtension() != null) {
                 Picasso.get().load(serie.getThumbnail().getPath() + "/portrait_incredible." +
@@ -120,6 +176,8 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
 
             if (serie.getTitle() != null) {
                 textViewSerieTitle.setText(serie.getTitle());
+            } else {
+                textViewSerieTitle.setText("");
             }
         }
     }
@@ -132,5 +190,42 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
     public void update(List<Serie> serieList) {
         this.series = serieList;
         notifyDataSetChanged();
+    }
+
+    public void adicionaFavoritosUsuario(Serie serieFavorite) {
+
+        serieFavorite.setSerieFavorito("serie");
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+        usuarioReference
+                .child("favoritos")
+                .child("serie")
+                .child(serieFavorite.getId())
+                .setValue(serieFavorite);
+
+    }
+
+    public void removeFavoritosUsuario(Serie serieFavorite) {
+
+        //Instancia do firebase
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        //Referencia
+        DatabaseReference usuarioReference = databaseReference.child("tab_usuarios").child("usuario");
+
+        DatabaseReference serieReference = usuarioReference.child("favoritos").child("serie");
+
+        usuarioReference
+                .child("favoritos")
+                .child("serie")
+                .child(serieFavorite.getId())
+                .removeValue();
     }
 }

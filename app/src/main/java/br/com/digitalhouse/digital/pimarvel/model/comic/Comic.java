@@ -104,6 +104,18 @@ public class Comic implements Parcelable {
     @Expose
     private List<Variant> variants;
 
+    //atributo para controlar os favoritos
+    @Expose
+    private boolean favorite;
+
+    //atributo para controlar os favoritos
+    @Expose
+    private String loginUserComic;
+
+    //atributo para controlar os favoritos de Comic
+    @Expose
+    private String comicFavorito;
+
     public Comic() {
     }
 
@@ -137,44 +149,9 @@ public class Comic implements Parcelable {
         urls = in.createTypedArrayList(Url.CREATOR);
         variantDescription = in.readString();
         variants = in.createTypedArrayList(Variant.CREATOR);
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeParcelable(characters, flags);
-        dest.writeTypedList(collectedIssues);
-        dest.writeTypedList(collections);
-        dest.writeParcelable(creators, flags);
-        dest.writeTypedList(dates);
-        dest.writeString(description);
-        dest.writeString(diamondCode);
-        dest.writeString(digitalId);
-        dest.writeString(ean);
-        dest.writeParcelable(events, flags);
-        dest.writeString(format);
-        dest.writeString(id);
-        dest.writeTypedList(images);
-        dest.writeString(isbn);
-        dest.writeString(issn);
-        dest.writeString(issueNumber);
-        dest.writeString(modified);
-        dest.writeString(pageCount);
-        dest.writeTypedList(prices);
-        dest.writeString(resourceURI);
-        dest.writeParcelable(series, flags);
-        dest.writeParcelable(stories, flags);
-        dest.writeTypedList(textObjects);
-        dest.writeParcelable(thumbnail, flags);
-        dest.writeString(title);
-        dest.writeString(upc);
-        dest.writeTypedList(urls);
-        dest.writeString(variantDescription);
-        dest.writeTypedList(variants);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
+        favorite = in.readByte() != 0;
+        loginUserComic = in.readString();
+        comicFavorito = in.readString();
     }
 
     public static final Creator<Comic> CREATOR = new Creator<Comic>() {
@@ -189,7 +166,8 @@ public class Comic implements Parcelable {
         }
     };
 
-    public Characters getCharacters() {return characters;
+    public Characters getCharacters() {
+        return characters;
     }
 
     public void setCharacters(Characters characters) {
@@ -419,5 +397,70 @@ public class Comic implements Parcelable {
 
     public void setVariants(List<Variant> variants) {
         this.variants = variants;
+    }
+
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public String getLoginUserComic() {
+        return loginUserComic;
+    }
+
+    public void setLoginUserComic(String loginUserComic) {
+        this.loginUserComic = loginUserComic;
+    }
+
+    public String getComicFavorito() {
+        return comicFavorito;
+    }
+
+    public void setComicFavorito(String comicFavorito) {
+        this.comicFavorito = comicFavorito;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeParcelable(characters, i);
+        parcel.writeTypedList(collectedIssues);
+        parcel.writeTypedList(collections);
+        parcel.writeParcelable(creators, i);
+        parcel.writeTypedList(dates);
+        parcel.writeString(description);
+        parcel.writeString(diamondCode);
+        parcel.writeString(digitalId);
+        parcel.writeString(ean);
+        parcel.writeParcelable(events, i);
+        parcel.writeString(format);
+        parcel.writeString(id);
+        parcel.writeTypedList(images);
+        parcel.writeString(isbn);
+        parcel.writeString(issn);
+        parcel.writeString(issueNumber);
+        parcel.writeString(modified);
+        parcel.writeString(pageCount);
+        parcel.writeTypedList(prices);
+        parcel.writeString(resourceURI);
+        parcel.writeParcelable(series, i);
+        parcel.writeParcelable(stories, i);
+        parcel.writeTypedList(textObjects);
+        parcel.writeParcelable(thumbnail, i);
+        parcel.writeString(title);
+        parcel.writeString(upc);
+        parcel.writeTypedList(urls);
+        parcel.writeString(variantDescription);
+        parcel.writeTypedList(variants);
+        parcel.writeByte((byte) (favorite ? 1 : 0));
+        parcel.writeString(loginUserComic);
+        parcel.writeString(comicFavorito);
     }
 }

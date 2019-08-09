@@ -65,6 +65,18 @@ public class Event implements Parcelable {
     @Expose
     private List<Url> urls;
 
+    //atributo para controlar os favoritos
+    @Expose
+    private boolean favorite;
+
+    //atributo para controlar os favoritos
+    @Expose
+    private String loginUserEvent;
+
+    //atributo para controlar os favoritos de Event
+    @Expose
+    private String eventFavorito;
+
     public Event() {
     }
 
@@ -85,6 +97,9 @@ public class Event implements Parcelable {
         thumbnail = in.readParcelable(Thumbnail.class.getClassLoader());
         title = in.readString();
         urls = in.createTypedArrayList(Url.CREATOR);
+        favorite = in.readByte() != 0;
+        loginUserEvent = in.readString();
+        eventFavorito = in.readString();
     }
 
     public static final Creator<Event> CREATOR = new Creator<Event>() {
@@ -139,11 +154,12 @@ public class Event implements Parcelable {
         this.end = end;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
@@ -227,6 +243,30 @@ public class Event implements Parcelable {
         this.urls = urls;
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean favorite) {
+        this.favorite = favorite;
+    }
+
+    public String getLoginUserEvent() {
+        return loginUserEvent;
+    }
+
+    public void setLoginUserEvent(String loginUserEvent) {
+        this.loginUserEvent = loginUserEvent;
+    }
+
+    public String getEventFavorito() {
+        return eventFavorito;
+    }
+
+    public void setEventFavorito(String eventFavorito) {
+        this.eventFavorito = eventFavorito;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -250,5 +290,8 @@ public class Event implements Parcelable {
         parcel.writeParcelable(thumbnail, i);
         parcel.writeString(title);
         parcel.writeTypedList(urls);
+        parcel.writeByte((byte) (favorite ? 1 : 0));
+        parcel.writeString(loginUserEvent);
+        parcel.writeString(eventFavorito);
     }
 }
