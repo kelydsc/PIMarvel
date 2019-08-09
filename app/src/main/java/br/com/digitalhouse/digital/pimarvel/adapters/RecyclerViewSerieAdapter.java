@@ -1,6 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,7 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
     @NonNull
     @Override
     public RecyclerViewSerieAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.serie_recyclerview_item, parent, false);
 
@@ -80,13 +82,13 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
                 //Inverte opção do favoritos na tela
                 serie.setFavorite(!serie.isFavorite());
 
-                if(serie.isFavorite()){
+                if (serie.isFavorite()) {
 
                     holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
 
                     adicionaFavoritosUsuario(serie);
 
-                }else{
+                } else {
 
                     holder.serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
 
@@ -121,6 +123,24 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
         return series.size();
     }
 
+    //****Favoritos*********************************************************************************
+    public void modifyObject(Serie serieFavorite, Context context) {
+
+        try {
+            //Atualiza o registro com os dados adicionais dos favoritos
+            for (Serie serieLine : this.series) {
+                if (serieLine.getId().equals(serieFavorite.getId())) {
+                    serieLine.setFavorite(serieFavorite.isFavorite());
+                }
+            }
+
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //****Favoritos*********************************************************************************
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageSerieHome;
@@ -139,6 +159,13 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
 
         private void bind(Serie serie) {
 
+            //Verifica Favoritos
+            if (serie.isFavorite()) {
+                serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+            } else {
+                serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+            }
+
             if (serie.getThumbnail().getPath() != null && serie.getThumbnail().getExtension() != null) {
                 Picasso.get().load(serie.getThumbnail().getPath() + "/portrait_incredible." +
                         serie.getThumbnail().getExtension())
@@ -149,7 +176,7 @@ public class RecyclerViewSerieAdapter extends RecyclerView.Adapter<RecyclerViewS
 
             if (serie.getTitle() != null) {
                 textViewSerieTitle.setText(serie.getTitle());
-            }else{
+            } else {
                 textViewSerieTitle.setText("");
             }
         }

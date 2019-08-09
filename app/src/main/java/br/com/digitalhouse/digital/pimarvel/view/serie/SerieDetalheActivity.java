@@ -44,6 +44,13 @@ public class SerieDetalheActivity extends AppCompatActivity {
         // Pegamos o quadrinho que que foi clicado na lista anterior
         serie = getIntent().getParcelableExtra("serie");
 
+        //Favoritos
+        if (serie.isFavorite()) {
+            serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+        } else {
+            serieImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+        }
+
         // Pegamos o nome da transição para fazer a animação
         String transitionName = getIntent().getStringExtra("transitionName");
         imageHero.setTransitionName(transitionName);

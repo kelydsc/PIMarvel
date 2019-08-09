@@ -55,12 +55,18 @@ public class ComicDetalheActivity extends AppCompatActivity {
         // Pegamos o quadrinho que que foi clicado na lista anterior
         comic = getIntent().getParcelableExtra("comic");
 
+        //Favoritos
+        if (comic.isFavorite()) {
+            comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+        } else {
+            comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+        }
+
         // Pegamos o nome da transição para fazer a animação
         String transitionName = getIntent().getStringExtra("transitionName");
         imageHero.setTransitionName(transitionName);
 
         // Configuramos nas view os valores do quadrinho que pegamos
-
         if (comic.getTitle() != null) {
             textTitle.setText(comic.getTitle());
         } else {

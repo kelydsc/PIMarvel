@@ -1,6 +1,7 @@
 package br.com.digitalhouse.digital.pimarvel.adapters;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,6 +125,24 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         return events.size();
     }
 
+    //****Favoritos*********************************************************************************
+    public void modifyObject(Event eventFavorite, Context context) {
+
+        try {
+            //Atualiza o registro com os dados adicionais dos favoritos
+            for (Event eventLine : this.events) {
+                if (eventLine.getId().equals(eventFavorite.getId())) {
+                    eventLine.setFavorite(eventFavorite.isFavorite());
+                }
+            }
+
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //****Favoritos*********************************************************************************
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -143,6 +162,13 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         }
 
         private void bind(Event event) {
+
+            //Verifica Favoritos
+            if (event.isFavorite()) {
+                eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+            } else {
+                eventImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+            }
 
             if (event.getThumbnail().getPath() != null && event.getThumbnail().getExtension() != null) {
                 Picasso.get().load(event.getThumbnail().getPath() + "/portrait_incredible." +
@@ -194,7 +220,6 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
                 .child(eventFavorite.getId())
                 .setValue(eventFavorite);
     }
-
 
     public void removeFavoritosUsuario(Event eventFavorite) {
 

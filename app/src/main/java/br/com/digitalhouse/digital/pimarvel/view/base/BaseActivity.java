@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +32,6 @@ import br.com.digitalhouse.digital.pimarvel.view.serie.SerieFragment;
 public class BaseActivity extends AppCompatActivity {
 
     public static final String GOOGLE_ACCOUNT = "google_accout";
-    //private Button signOut;
     private GoogleSignInClient googleSignInClient;
 
     @Override
@@ -52,7 +49,7 @@ public class BaseActivity extends AppCompatActivity {
                 .requestEmail()//request email id
                 .build();
 
-        googleSignInClient= GoogleSignIn.getClient(this, gso);
+        googleSignInClient = GoogleSignIn.getClient(this, gso);
         //Inicialização do Google*****************************************************************//
 
         //Configura a BottomNavigationBar e seta o listener dos botões
@@ -135,6 +132,7 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.upper_right_menu, menu);
         return true;
@@ -155,23 +153,17 @@ public class BaseActivity extends AppCompatActivity {
                 return true;
             case R.id.action_logout:
 
-                //signOut.setOnClickListener(new View.OnClickListener() {
-                //    @Override
-                //    public void onClick(View v) {
-                        googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                startActivity(intent);
-                            }
-                        });
-                  //  }
-               // });
+                googleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Intent intent = new Intent(BaseActivity.this, LoginActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(intent);
+                    }
+                });
 
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
-
 }

@@ -54,6 +54,4 @@ public class FavoriteConverters {
         Gson gson = new Gson();
         return gson.toJson(list);
     }
-
-
 }

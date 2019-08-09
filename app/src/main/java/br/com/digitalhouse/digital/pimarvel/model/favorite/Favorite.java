@@ -42,7 +42,7 @@ public class Favorite implements Parcelable {
     public Favorite() {
     }
 
-    protected Favorite(Parcel in) {
+    public Favorite(Parcel in) {
         tableId = in.readLong();
         loginUser = in.readString();
         idComic = in.readString();

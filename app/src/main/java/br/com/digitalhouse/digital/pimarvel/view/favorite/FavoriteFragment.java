@@ -24,9 +24,6 @@ import java.util.List;
 import br.com.digitalhouse.digital.pimarvel.R;
 import br.com.digitalhouse.digital.pimarvel.adapters.RecyclerViewFavoriteAdapter;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
-import br.com.digitalhouse.digital.pimarvel.model.event.Event;
-import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
-import br.com.digitalhouse.digital.pimarvel.model.serie.Serie;
 import br.com.digitalhouse.digital.pimarvel.viewmodel.FavoriteViewModel;
 
 /**

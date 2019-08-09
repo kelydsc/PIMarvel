@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -20,11 +19,8 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import br.com.digitalhouse.digital.pimarvel.R;
-import br.com.digitalhouse.digital.pimarvel.data.database.dao.FavoriteDAO;
 import br.com.digitalhouse.digital.pimarvel.model.comic.Comic;
 import br.com.digitalhouse.digital.pimarvel.view.comic.ComicDetalheActivity;
-import br.com.digitalhouse.digital.pimarvel.view.event.EventDetalheActivity;
-import br.com.digitalhouse.digital.pimarvel.view.serie.SerieDetalheActivity;
 
 public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerViewFavoriteAdapter.ViewHolder> {
 
@@ -73,6 +69,7 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
             @Override
             public void onClick(View v) {
 
+
                 //Verifica se o favorito selecionado eh comic, event ou serie
                 tipoFavorito = favorite.getComicFavorito();
 
@@ -92,7 +89,8 @@ public class RecyclerViewFavoriteAdapter extends RecyclerView.Adapter<RecyclerVi
                     holder.itemView.getContext().startActivity(intent, options.toBundle());
 
                 }
-                /*?????
+
+                /*
                 else if (tipoFavorito == event) {
 
                     String transitionName = "image" + position;

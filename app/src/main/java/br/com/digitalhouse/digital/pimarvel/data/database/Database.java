@@ -15,7 +15,7 @@ import br.com.digitalhouse.digital.pimarvel.model.event.Event;
 import br.com.digitalhouse.digital.pimarvel.model.favorite.Favorite;
 import br.com.digitalhouse.digital.pimarvel.model.serie.Serie;
 
-@androidx.room.Database(entities = {Comic.class, Event.class, Serie.class, Favorite.class}, version = 17, exportSchema = false)
+@androidx.room.Database(entities = {Comic.class, Event.class, Serie.class, Favorite.class}, version = 18, exportSchema = false)
 @TypeConverters({ComicConverters.class, EventConverters.class, SerieConverters.class, FavoriteConverters.class})
 
 public abstract class Database extends RoomDatabase {

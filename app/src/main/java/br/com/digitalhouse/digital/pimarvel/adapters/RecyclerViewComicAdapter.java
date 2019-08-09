@@ -34,6 +34,7 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.comic_recyclerview_item, parent, false);
 
         return new ViewHolder(view);
@@ -119,6 +120,24 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
         return comics.size();
     }
 
+    //****Favoritos*********************************************************************************
+    public void modifyObject(Comic comicFavorite, Context context) {
+
+        try {
+            //Atualiza o registro com os dados adicionais dos favoritos
+            for (Comic comicLine : this.comics) {
+                if (comicLine.getId().equals(comicFavorite.getId())) {
+                    comicLine.setFavorite(comicFavorite.isFavorite());
+                }
+            }
+
+            notifyDataSetChanged();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    //****Favoritos*********************************************************************************
+
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -136,6 +155,13 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
         }
 
         private void bind(Comic comic) {
+
+            //Verifica favoritos
+            if (comic.isFavorite()) {
+                comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_red_24dp);
+            } else {
+                comicImageViewFavorite.setImageResource(R.drawable.ic_favorite_24dp);
+            }
 
             if (comic.getThumbnail().getPath() != null && comic.getThumbnail().getExtension() != null) {
                 Picasso.get().load(comic.getThumbnail().getPath() + "/portrait_incredible." +
@@ -198,17 +224,6 @@ public class RecyclerViewComicAdapter extends RecyclerView.Adapter<RecyclerViewC
                 .child("comic")
                 .child(comicFavorite.getId())
                 .removeValue();
-
-        /*
-        DatabaseReference comicReference = usuarioReference
-                .child("favoritos")
-                .child("comic")
-                .child(comicFavorite.getId());
-
-        usuarioReference
-                .removeValue();
-
-       */
     }
 }
 
