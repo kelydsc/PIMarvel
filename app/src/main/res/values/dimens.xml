@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="welcome_title">24sp</dimen>
+    <dimen name="titleSize">20sp</dimen>
+    <dimen name="textSize">16sp</dimen>
+    <dimen name="default_martin_top_or_bottom">32dp</dimen>
+    <dimen name="default_line_spacing">32dp</dimen>
+</resources>

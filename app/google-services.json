@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "839069086208",
+    "firebase_url": "https://pimarvel-36b62.firebaseio.com",
+    "project_id": "pimarvel-36b62",
+    "storage_bucket": "pimarvel-36b62.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:839069086208:android:cbcc1ed0dba78b2f",
+        "android_client_info": {
+          "package_name": "br.com.digitalhouse.digital.pimarvel"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "839069086208-a5fqqkjuedo1bugu1plug1j6n1gdcp9i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.digitalhouse.digital.pimarvel",
+            "certificate_hash": "3b158ef61a6ba17aa3d58cbfc649b5e9b5494cc5"
+          }
+        },
+        {
+          "client_id": "839069086208-saoeekcpoavesa19hn8fctr4a9867qlm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBSz4zsdcAv9ezAfe1s8wX51wqMFknuhR8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "839069086208-saoeekcpoavesa19hn8fctr4a9867qlm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
